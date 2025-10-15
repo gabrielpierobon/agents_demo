@@ -3,8 +3,10 @@ class CasoUsoViewer {
         this.casoId = casoId;
         this.currentLayer = 0; // Empezar en Layer 0 (introducción)
         this.problemasRelevados = false;
+        this.puntosFuertesRelevados = false;
         this.maxLayers = 5;
         this.init();
+        this.setupNotes();
     }
 
     async init() {
@@ -397,14 +399,42 @@ class CasoUsoViewer {
     createComponentElement(comp) {
         const div = document.createElement('div');
         div.className = `componente componente-${comp.tipo}`;
-        div.innerHTML = `
-            <div class="componente-icon">${this.getIcon(comp.tipo)}</div>
-            <div class="componente-label">${comp.label}</div>
-            <div class="componente-desc">${comp.descripcion}</div>
-        `;
+        
+        const icon = document.createElement('div');
+        icon.className = 'componente-icon';
+        icon.textContent = this.getIcon(comp.tipo);
+        
+        const label = document.createElement('div');
+        label.className = 'componente-label';
+        label.textContent = comp.label;
+        
+        const desc = document.createElement('div');
+        desc.className = 'componente-desc';
+        desc.textContent = comp.descripcion;
+        
+        // Hacer label y descripción editables
+        const storageKeyLabel = `caso${this.casoId}_layer${this.currentLayer}_comp${comp.tipo}_${comp.label}_label`;
+        const storageKeyDesc = `caso${this.casoId}_layer${this.currentLayer}_comp${comp.tipo}_${comp.label}_desc`;
+        
+        this.makeTextEditable(label, storageKeyLabel);
+        this.makeTextEditable(desc, storageKeyDesc);
+        
+        div.appendChild(icon);
+        div.appendChild(label);
+        div.appendChild(desc);
 
-        // Añadir click handler para mostrar detalles
-        div.addEventListener('click', () => this.showComponentDetails(comp));
+        // Añadir click handler para mostrar detalles (solo en el icono para no interferir con edición)
+        icon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.showComponentDetails(comp);
+        });
+        
+        // También permitir click en el componente si no se está editando
+        div.addEventListener('click', (e) => {
+            if (e.target === div) {
+                this.showComponentDetails(comp);
+            }
+        });
 
         return div;
     }
@@ -418,29 +448,51 @@ class CasoUsoViewer {
             return;
         }
 
-        const ul = document.createElement('ul');
-        puntos.forEach((punto, index) => {
-            const li = document.createElement('li');
+        if (!this.puntosFuertesRelevados) {
+            const btn = document.createElement('button');
+            btn.textContent = '👁️ Revelar Puntos Fuertes';
+            btn.className = 'btn-revelar-puntos';
+            btn.addEventListener('click', () => this.revelarPuntosFuertes());
+            container.appendChild(btn);
+        } else {
+            const ul = document.createElement('ul');
+            puntos.forEach((punto, index) => {
+                const li = document.createElement('li');
+                
+                // Manejar tanto formato string como objeto
+                const texto = typeof punto === 'string' ? punto : punto.texto;
+                const explicacion = typeof punto === 'object' ? punto.explicacion : null;
+                
+                li.textContent = texto;
+                li.className = 'punto-fuerte revealed';
+                li.style.animationDelay = `${index * 0.1}s`;
+                
+                // Si tiene explicación, hacerlo clickeable
+                if (explicacion) {
+                    li.addEventListener('click', () => {
+                        this.showExplicacion('✅', texto, explicacion);
+                    });
+                }
+                
+                ul.appendChild(li);
+            });
             
-            // Manejar tanto formato string como objeto
-            const texto = typeof punto === 'string' ? punto : punto.texto;
-            const explicacion = typeof punto === 'object' ? punto.explicacion : null;
-            
-            li.textContent = texto;
-            li.className = 'punto-fuerte';
-            li.style.animationDelay = `${index * 0.1}s`;
-            
-            // Si tiene explicación, hacerlo clickeable
-            if (explicacion) {
-                li.addEventListener('click', () => {
-                    this.showExplicacion('✅', texto, explicacion);
-                });
-            }
-            
-            ul.appendChild(li);
-        });
+            container.appendChild(ul);
+        }
+    }
+
+    revelarPuntosFuertes() {
+        this.puntosFuertesRelevados = true;
+        this.loadLayer(this.currentLayer);
         
-        container.appendChild(ul);
+        // Mensaje de éxito
+        const container = document.getElementById('puntos-fuertes');
+        const successMsg = document.createElement('div');
+        successMsg.style.cssText = 'color: #107c10; font-weight: 600; padding: 12px; background: #dff6dd; border-radius: 4px; margin: 12px 0;';
+        successMsg.textContent = '✓ Puntos fuertes revelados';
+        container.insertBefore(successMsg, container.children[1]);
+        
+        setTimeout(() => successMsg.remove(), 2000);
     }
 
     renderProblemas(problemas, problemasResueltos = []) {
@@ -537,6 +589,9 @@ class CasoUsoViewer {
         const modal = document.getElementById('modal-explicacion');
         const content = modal.querySelector('.modal-explicacion-content');
         
+        // Convertir explicación a bullet points
+        const explicacionHTML = this.convertTextToBulletPoints(explicacion);
+        
         content.innerHTML = `
             <span class="modal-explicacion-close" onclick="document.getElementById('modal-explicacion').style.display='none'">&times;</span>
             <div class="modal-explicacion-header">
@@ -544,7 +599,7 @@ class CasoUsoViewer {
                 <div class="modal-explicacion-title">${titulo}</div>
             </div>
             <div class="modal-explicacion-body">
-                ${explicacion}
+                ${explicacionHTML}
             </div>
         `;
         
@@ -629,51 +684,101 @@ class CasoUsoViewer {
         const modal = document.getElementById('modal-detalles');
         const content = document.getElementById('modal-body');
         
-        let html = `
-            <h2>${this.getIcon(comp.tipo)} ${comp.label}</h2>
-            <p><strong>Descripción:</strong> ${comp.descripcion}</p>
-        `;
+        // Limpiar contenido previo
+        content.innerHTML = '';
+        
+        // Título
+        const title = document.createElement('h2');
+        title.textContent = `${this.getIcon(comp.tipo)} ${comp.label}`;
+        content.appendChild(title);
+        
+        // Descripción editable
+        const descLabel = document.createElement('p');
+        descLabel.innerHTML = '<strong>Descripción:</strong>';
+        content.appendChild(descLabel);
+        
+        const descText = document.createElement('p');
+        descText.textContent = comp.descripcion;
+        const storageKeyDesc = `caso${this.casoId}_modal_${comp.tipo}_${comp.label}_desc`;
+        this.makeTextEditable(descText, storageKeyDesc);
+        content.appendChild(descText);
 
+        // Ejemplo editable
         if (comp.ejemplo) {
-            html += `
-                <p><strong>Ejemplo:</strong></p>
-                <pre>${comp.ejemplo}</pre>
-            `;
+            const ejemploLabel = document.createElement('p');
+            ejemploLabel.innerHTML = '<strong>Ejemplo:</strong>';
+            content.appendChild(ejemploLabel);
+            
+            const ejemploPre = document.createElement('pre');
+            ejemploPre.textContent = comp.ejemplo;
+            const storageKeyEjemplo = `caso${this.casoId}_modal_${comp.tipo}_${comp.label}_ejemplo`;
+            this.makeTextEditable(ejemploPre, storageKeyEjemplo);
+            content.appendChild(ejemploPre);
         }
 
+        // System Prompt editable
         if (comp.system_prompt) {
-            html += `
-                <p><strong>System Prompt:</strong></p>
-                <pre>${comp.system_prompt}</pre>
-            `;
+            const promptLabel = document.createElement('p');
+            promptLabel.innerHTML = '<strong>System Prompt:</strong>';
+            content.appendChild(promptLabel);
+            
+            const promptPre = document.createElement('pre');
+            promptPre.textContent = comp.system_prompt;
+            const storageKeyPrompt = `caso${this.casoId}_modal_${comp.tipo}_${comp.label}_prompt`;
+            this.makeTextEditable(promptPre, storageKeyPrompt);
+            content.appendChild(promptPre);
         }
 
-        // Si es LLM o Agent con configuración, mostrarla
+        // Configuración editable
         if ((comp.tipo === 'llm' || comp.tipo === 'agent') && comp.configuracion) {
-            html += `
-                <div class="llm-config-section">
-                    <h3>⚙️ Configuración del ${comp.tipo === 'agent' ? 'Agente' : 'Modelo'}</h3>
-                    <div class="config-grid">
-                        ${Object.entries(comp.configuracion).map(([key, value]) => `
-                            <div class="config-item">
-                                <span class="config-label">${this.formatConfigLabel(key)}</span>
-                                <span class="config-value">${value}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-        }
-
-        if (comp.ejemplo_docs) {
-            html += `<p><strong>Documentos recuperados:</strong></p><ul>`;
-            comp.ejemplo_docs.forEach(doc => {
-                html += `<li><strong>${doc.titulo}</strong> - Score: ${doc.score}</li>`;
+            const configSection = document.createElement('div');
+            configSection.className = 'llm-config-section';
+            
+            const configTitle = document.createElement('h3');
+            configTitle.textContent = `⚙️ Configuración del ${comp.tipo === 'agent' ? 'Agente' : 'Modelo'}`;
+            configSection.appendChild(configTitle);
+            
+            const configGrid = document.createElement('div');
+            configGrid.className = 'config-grid';
+            
+            Object.entries(comp.configuracion).forEach(([key, value]) => {
+                const configItem = document.createElement('div');
+                configItem.className = 'config-item';
+                
+                const configLabel = document.createElement('span');
+                configLabel.className = 'config-label';
+                configLabel.textContent = this.formatConfigLabel(key);
+                
+                const configValue = document.createElement('span');
+                configValue.className = 'config-value';
+                configValue.textContent = value;
+                const storageKeyConfig = `caso${this.casoId}_modal_${comp.tipo}_${comp.label}_config_${key}`;
+                this.makeTextEditable(configValue, storageKeyConfig);
+                
+                configItem.appendChild(configLabel);
+                configItem.appendChild(configValue);
+                configGrid.appendChild(configItem);
             });
-            html += `</ul>`;
+            
+            configSection.appendChild(configGrid);
+            content.appendChild(configSection);
         }
 
-        content.innerHTML = html;
+        // Documentos recuperados
+        if (comp.ejemplo_docs) {
+            const docsLabel = document.createElement('p');
+            docsLabel.innerHTML = '<strong>Documentos recuperados:</strong>';
+            content.appendChild(docsLabel);
+            
+            const docsList = document.createElement('ul');
+            comp.ejemplo_docs.forEach(doc => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${doc.titulo}</strong> - Score: ${doc.score}`;
+                docsList.appendChild(li);
+            });
+            content.appendChild(docsList);
+        }
+
         modal.style.display = 'block';
     }
 
@@ -690,6 +795,72 @@ class CasoUsoViewer {
             'retry_attempts': 'Reintentos'
         };
         return labels[key] || key;
+    }
+
+    setupNotes() {
+        const textarea = document.getElementById('notes-textarea');
+        if (!textarea) return;
+
+        // Cargar notas guardadas
+        const savedNotes = localStorage.getItem(`caso${this.casoId}_notes`);
+        if (savedNotes) {
+            textarea.value = savedNotes;
+        }
+
+        // Guardar automáticamente al escribir
+        textarea.addEventListener('input', () => {
+            localStorage.setItem(`caso${this.casoId}_notes`, textarea.value);
+        });
+    }
+
+    makeTextEditable(element, storageKey) {
+        element.classList.add('editable-text');
+        element.contentEditable = 'true';
+        element.setAttribute('data-placeholder', 'Click para editar...');
+
+        // Cargar texto guardado
+        const savedText = localStorage.getItem(storageKey);
+        if (savedText) {
+            element.textContent = savedText;
+        }
+
+        // Guardar al perder foco
+        element.addEventListener('blur', () => {
+            localStorage.setItem(storageKey, element.textContent);
+        });
+
+        // Prevenir saltos de línea con Enter
+        element.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                element.blur();
+            }
+        });
+    }
+
+    convertTextToBulletPoints(text) {
+        // Divide el texto en oraciones y crea bullet points
+        if (!text) return '';
+        
+        // Si ya tiene formato HTML de lista, retornarlo
+        if (text.includes('<ul>') || text.includes('<li>')) {
+            return text;
+        }
+
+        // Dividir por puntos seguidos de espacio o por saltos de línea
+        const sentences = text.split(/\.\s+|\n/).filter(s => s.trim().length > 0);
+        
+        if (sentences.length <= 1) {
+            return `<p>${text}</p>`;
+        }
+
+        const listItems = sentences.map(s => {
+            const trimmed = s.trim();
+            // Asegurarse de que termine con punto si no lo tiene
+            return trimmed.endsWith('.') ? trimmed : trimmed + '.';
+        }).map(s => `<li>${s}</li>`).join('\n');
+
+        return `<ul>\n${listItems}\n</ul>`;
     }
 }
 

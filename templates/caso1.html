@@ -8,32 +8,40 @@
 </head>
 <body>
     <div class="caso-container">
-        <div class="caso-header">
-            <a href="/" class="btn-back">← Volver al inicio</a>
-            <h1 id="caso-titulo">Caso 1: Generación de Documentación Técnica</h1>
-            <p id="caso-descripcion">Sistema de IA para generar memorias técnicas de proyectos ferroviarios</p>
-            <div id="breadcrumb">Layer 1 de 5</div>
-        </div>
-
-        <div id="diagrama-container" class="diagrama-container">
-            <!-- Los componentes se cargarán dinámicamente aquí -->
-        </div>
-
-        <div class="info-grid">
-            <div class="info-card" id="puntos-fuertes">
-                <h3>✅ Puntos Fuertes</h3>
-                <!-- Se cargará dinámicamente -->
+        <div class="main-content">
+            <div class="caso-header">
+                <a href="/" class="btn-back">← Volver al inicio</a>
+                <h1 id="caso-titulo">Caso 1: Generación de Documentación Técnica</h1>
+                <p id="caso-descripcion">Sistema de IA para generar memorias técnicas de proyectos ferroviarios</p>
+                <div id="breadcrumb">Layer 1 de 5</div>
             </div>
 
-            <div class="info-card" id="problemas">
-                <h3>⚠️ Problemas</h3>
-                <!-- Se cargará dinámicamente -->
+            <div id="diagrama-container" class="diagrama-container">
+                <!-- Los componentes se cargarán dinámicamente aquí -->
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card" id="puntos-fuertes">
+                    <h3>✅ Puntos Fuertes</h3>
+                    <!-- Se cargará dinámicamente -->
+                </div>
+
+                <div class="info-card" id="problemas">
+                    <h3>⚠️ Problemas</h3>
+                    <!-- Se cargará dinámicamente -->
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button id="btn-anterior" class="btn-nav" style="display:none;">← Layer Anterior</button>
+                <button id="btn-siguiente" class="btn-nav">Siguiente Layer →</button>
             </div>
         </div>
 
-        <div class="navigation">
-            <button id="btn-anterior" class="btn-nav" style="display:none;">← Layer Anterior</button>
-            <button id="btn-siguiente" class="btn-nav">Siguiente Layer →</button>
+        <div class="notes-panel">
+            <h3>📝 Notas</h3>
+            <textarea class="notes-textarea" id="notes-textarea" placeholder="Escribe tus notas aquí..."></textarea>
+            <div class="notes-info">Las notas se guardan automáticamente</div>
         </div>
     </div>
 

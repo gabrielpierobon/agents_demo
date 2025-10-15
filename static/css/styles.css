@@ -191,10 +191,68 @@ body {
 
 /* Caso de Uso Page */
 .caso-container {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 20px;
     animation: fadeIn 0.5s ease-out;
+    display: flex;
+    gap: 20px;
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notes-panel {
+    width: 300px;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow-card);
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    max-height: calc(100vh - 40px);
+    display: flex;
+    flex-direction: column;
+}
+
+.notes-panel h3 {
+    margin: 0 0 16px 0;
+    font-size: 1rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.notes-textarea {
+    flex: 1;
+    min-height: 400px;
+    max-height: calc(100vh - 140px);
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    resize: vertical;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.notes-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.1);
+}
+
+.notes-info {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-style: italic;
 }
 
 .caso-header {
@@ -341,6 +399,32 @@ body {
     line-height: 1.4;
 }
 
+.editable-text {
+    cursor: text;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+    min-height: 20px;
+    display: inline-block;
+    width: 100%;
+}
+
+.editable-text:hover {
+    background: rgba(0, 120, 212, 0.05);
+    outline: 1px dashed var(--primary-color);
+}
+
+.editable-text:focus {
+    outline: 2px solid var(--primary-color);
+    background: var(--bg-color);
+}
+
+.editable-text[contenteditable="true"]:empty:before {
+    content: attr(data-placeholder);
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
 /* Tipos de componentes con colores diferentes */
 .componente-input {
     background: linear-gradient(135deg, #0078d4 0%, #50e6ff 100%);
@@ -440,6 +524,33 @@ body {
     background: #dff6dd;
     color: #0b5a08;
     border-left: 3px solid var(--success-color);
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.punto-fuerte.revealed {
+    animation: slideIn 0.5s forwards;
+}
+
+.btn-revelar-puntos {
+    padding: 12px 24px;
+    background: var(--success-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: var(--shadow-card);
+    margin-bottom: 16px;
+}
+
+.btn-revelar-puntos:hover {
+    background: #0b7a0b;
 }
 
 .problema-pendiente {
@@ -888,6 +999,21 @@ body {
     color: var(--text-secondary);
     font-size: 0.875rem;
     line-height: 1.7;
+}
+
+.modal-explicacion-body ul {
+    margin: 16px 0;
+    padding-left: 24px;
+    line-height: 1.8;
+}
+
+.modal-explicacion-body li {
+    margin-bottom: 12px;
+    color: var(--text-color);
+}
+
+.modal-explicacion-body li:last-child {
+    margin-bottom: 0;
 }
 
 .modal-explicacion-close {

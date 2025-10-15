@@ -1,4 +1,4 @@
-# 🚄 Innovation Day INECO - Webapp Simulación IA
+# 🚄 Webapp Simulación IA - Casos de Uso
 
 Webapp interactiva y didáctica que simula la construcción progresiva (layer-by-layer) de dos casos de uso de IA, mostrando cómo se añaden capas de seguridad e inteligencia de forma incremental.
 
@@ -186,7 +186,7 @@ Edita `static/css/styles.css` para cambiar:
 
 ### Caso 1: Generación de Documentación Técnica
 
-**Objetivo:** Construir un sistema RAG seguro para INECO
+**Objetivo:** Construir un sistema RAG seguro para empresas de ingeniería
 
 **Layers:**
 1. Sistema Base (LLM básico)
@@ -261,15 +261,15 @@ app.run(debug=True, host='localhost', port=5000)  # Cambia 5555 por otro puerto
 
 ## 📄 Licencia
 
-Este proyecto es para uso interno de INECO - Innovation Day 2025.
+Este proyecto es de código abierto para fines educativos y demostrativos.
 
 ## 👥 Autor
 
-Desarrollado para el Innovation Day INECO - Octubre 2025
+Desarrollado como herramienta educativa para demostración de sistemas de IA - 2025
 
 ## 🆘 Soporte
 
-Para preguntas o problemas, contacta al equipo de desarrollo.
+Para preguntas o problemas, abre un issue en el repositorio.
 
 ---
 

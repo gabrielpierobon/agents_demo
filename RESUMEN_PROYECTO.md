@@ -1,60 +1,60 @@
-# 📊 Resumen del Proyecto - Innovation Day INECO
+﻿# ðŸ“Š Resumen del Proyecto - demostraciÃ³n empresas de ingenierÃ­a
 
-## ✅ PROYECTO COMPLETADO
+## âœ… PROYECTO COMPLETADO
 
-La webapp de simulación layer-by-layer está **100% funcional y lista para usar**.
+La webapp de simulaciÃ³n layer-by-layer estÃ¡ **100% funcional y lista para usar**.
 
 ---
 
-## 🎯 Lo que se ha construido
+## ðŸŽ¯ Lo que se ha construido
 
-### 1. **Backend Flask** ✅
+### 1. **Backend Flask** âœ…
 - Servidor Flask configurado en puerto 5555
 - API REST para servir datos de layers
 - Rutas para home y ambos casos de uso
-- Manejo de errores y validación
+- Manejo de errores y validaciÃ³n
 
-### 2. **Frontend Interactivo** ✅
-- **3 páginas HTML:**
+### 2. **Frontend Interactivo** âœ…
+- **3 pÃ¡ginas HTML:**
   - `index.html` - Home con selector de casos
-  - `caso1.html` - Generación de Documentación Técnica
+  - `caso1.html` - GeneraciÃ³n de DocumentaciÃ³n TÃ©cnica
   - `caso2.html` - Sistema Multiagente
 
-- **JavaScript dinámico:**
-  - Carga asíncrona de layers desde API
-  - Navegación adelante/atrás
-  - Animaciones de transición
+- **JavaScript dinÃ¡mico:**
+  - Carga asÃ­ncrona de layers desde API
+  - NavegaciÃ³n adelante/atrÃ¡s
+  - Animaciones de transiciÃ³n
   - Modales de detalles
   - Atajos de teclado
 
 - **CSS moderno:**
-  - Diseño responsive (móvil, tablet, desktop)
+  - DiseÃ±o responsive (mÃ³vil, tablet, desktop)
   - Animaciones suaves (fade, slide, pulse)
   - Gradientes por tipo de componente
-  - Variables CSS para fácil personalización
+  - Variables CSS para fÃ¡cil personalizaciÃ³n
 
-### 3. **Contenido Completo** ✅
+### 3. **Contenido Completo** âœ…
 - **Caso 1: 5 Layers completos**
-  1. Sistema Base (LLM básico)
+  1. Sistema Base (LLM bÃ¡sico)
   2. RAG (Vector DB + Retrieval)
-  3. Seguridad Arquitectónica (ACL + RBAC)
+  3. Seguridad ArquitectÃ³nica (ACL + RBAC)
   4. Guardrails (Prompt Security)
   5. Gobierno del Dato (Purview DLP)
 
 - **Caso 2: 5 Layers completos**
-  1. Sistema Base (Agente único)
-  2. Orquestación (Múltiples agentes)
+  1. Sistema Base (Agente Ãºnico)
+  2. OrquestaciÃ³n (MÃºltiples agentes)
   3. Tool Use Security (Permisos)
-  4. Monitorización (Dashboard)
+  4. MonitorizaciÃ³n (Dashboard)
   5. Validadores y Grounding (Confidence)
 
-### 4. **Documentación** ✅
-- `README.md` - Documentación completa y detallada
-- `INSTRUCCIONES_RAPIDAS.md` - Guía de inicio rápido
+### 4. **DocumentaciÃ³n** âœ…
+- `README.md` - DocumentaciÃ³n completa y detallada
+- `INSTRUCCIONES_RAPIDAS.md` - GuÃ­a de inicio rÃ¡pido
 - `RESUMEN_PROYECTO.md` - Este archivo
-- Comentarios en código
+- Comentarios en cÃ³digo
 
-### 5. **Git Repository** ✅
+### 5. **Git Repository** âœ…
 - Repositorio inicializado
 - `.gitignore` configurado
 - 2 commits realizados
@@ -62,94 +62,94 @@ La webapp de simulación layer-by-layer está **100% funcional y lista para usar
 
 ---
 
-## 📁 Estructura Final
+## ðŸ“ Estructura Final
 
 ```
-ineco/
-├── 📄 app.py                          # Flask backend
-├── 📄 requirements.txt                # Flask==3.0.0
-├── 📄 README.md                       # Documentación completa
-├── 📄 INSTRUCCIONES_RAPIDAS.md        # Guía rápida
-├── 📄 RESUMEN_PROYECTO.md             # Este archivo
-├── 📄 .gitignore                      # Git ignore
-│
-├── 📁 static/
-│   ├── 📁 css/
-│   │   └── 📄 styles.css              # ~500 líneas de CSS
-│   ├── 📁 js/
-│   │   ├── 📄 caso1.js                # ~300 líneas
-│   │   └── 📄 caso2.js                # ~350 líneas
-│   └── 📁 img/                        # (vacío, listo para assets)
-│
-├── 📁 templates/
-│   ├── 📄 index.html                  # Home page
-│   ├── 📄 caso1.html                  # Caso 1
-│   └── 📄 caso2.html                  # Caso 2
-│
-├── 📁 data/
-│   ├── 📄 caso1_layers.json           # 5 layers × ~50 líneas
-│   └── 📄 caso2_layers.json           # 5 layers × ~50 líneas
-│
-├── 📁 TASKS/
-│   └── 📄 especificaciones_webapp_simulacion.md
-│
-└── 📁 venv/                           # Entorno virtual Python
-    └── Flask 3.0.0 instalado
+empresas de ingenierÃ­a/
+â”œâ”€â”€ ðŸ“„ app.py                          # Flask backend
+â”œâ”€â”€ ðŸ“„ requirements.txt                # Flask==3.0.0
+â”œâ”€â”€ ðŸ“„ README.md                       # DocumentaciÃ³n completa
+â”œâ”€â”€ ðŸ“„ INSTRUCCIONES_RAPIDAS.md        # GuÃ­a rÃ¡pida
+â”œâ”€â”€ ðŸ“„ RESUMEN_PROYECTO.md             # Este archivo
+â”œâ”€â”€ ðŸ“„ .gitignore                      # Git ignore
+â”‚
+â”œâ”€â”€ ðŸ“ static/
+â”‚   â”œâ”€â”€ ðŸ“ css/
+â”‚   â”‚   â””â”€â”€ ðŸ“„ styles.css              # ~500 lÃ­neas de CSS
+â”‚   â”œâ”€â”€ ðŸ“ js/
+â”‚   â”‚   â”œâ”€â”€ ðŸ“„ caso1.js                # ~300 lÃ­neas
+â”‚   â”‚   â””â”€â”€ ðŸ“„ caso2.js                # ~350 lÃ­neas
+â”‚   â””â”€â”€ ðŸ“ img/                        # (vacÃ­o, listo para assets)
+â”‚
+â”œâ”€â”€ ðŸ“ templates/
+â”‚   â”œâ”€â”€ ðŸ“„ index.html                  # Home page
+â”‚   â”œâ”€â”€ ðŸ“„ caso1.html                  # Caso 1
+â”‚   â””â”€â”€ ðŸ“„ caso2.html                  # Caso 2
+â”‚
+â”œâ”€â”€ ðŸ“ data/
+â”‚   â”œâ”€â”€ ðŸ“„ caso1_layers.json           # 5 layers Ã— ~50 lÃ­neas
+â”‚   â””â”€â”€ ðŸ“„ caso2_layers.json           # 5 layers Ã— ~50 lÃ­neas
+â”‚
+â”œâ”€â”€ ðŸ“ TASKS/
+â”‚   â””â”€â”€ ðŸ“„ especificaciones_webapp_simulacion.md
+â”‚
+â””â”€â”€ ðŸ“ venv/                           # Entorno virtual Python
+    â””â”€â”€ Flask 3.0.0 instalado
 ```
 
 ---
 
-## 🎨 Características Implementadas
+## ðŸŽ¨ CaracterÃ­sticas Implementadas
 
-### Visualización
-- ✅ Diagramas arquitectónicos con componentes visuales
-- ✅ 10+ tipos de componentes con colores únicos
-- ✅ Iconos emoji descriptivos
-- ✅ Flechas de flujo entre componentes
-- ✅ Layout especial para múltiples agentes (Caso 2)
+### VisualizaciÃ³n
+- âœ… Diagramas arquitectÃ³nicos con componentes visuales
+- âœ… 10+ tipos de componentes con colores Ãºnicos
+- âœ… Iconos emoji descriptivos
+- âœ… Flechas de flujo entre componentes
+- âœ… Layout especial para mÃºltiples agentes (Caso 2)
 
 ### Interactividad
-- ✅ Navegación entre layers (botones + teclado)
-- ✅ Botón "Revelar Problemas" con animación
-- ✅ Click en componentes → modal con detalles
-- ✅ Breadcrumb dinámico (Layer X de 5)
-- ✅ Botón "Sistema Completo" en layer 5
+- âœ… NavegaciÃ³n entre layers (botones + teclado)
+- âœ… BotÃ³n "Revelar Problemas" con animaciÃ³n
+- âœ… Click en componentes â†’ modal con detalles
+- âœ… Breadcrumb dinÃ¡mico (Layer X de 5)
+- âœ… BotÃ³n "Sistema Completo" en layer 5
 
 ### Animaciones
-- ✅ Fade in de componentes (secuencial)
-- ✅ Slide in de problemas revelados
-- ✅ Pulse en botón final
-- ✅ Hover effects en todos los elementos
-- ✅ Transiciones suaves (300-500ms)
+- âœ… Fade in de componentes (secuencial)
+- âœ… Slide in de problemas revelados
+- âœ… Pulse en botÃ³n final
+- âœ… Hover effects en todos los elementos
+- âœ… Transiciones suaves (300-500ms)
 
-### Contenido Didáctico
-- ✅ Puntos fuertes visibles desde inicio
-- ✅ Problemas ocultos hasta revelar
-- ✅ Problemas resueltos tachados
-- ✅ Ejemplos en modales
-- ✅ System prompts visibles
-- ✅ Documentos recuperados (Caso 1)
+### Contenido DidÃ¡ctico
+- âœ… Puntos fuertes visibles desde inicio
+- âœ… Problemas ocultos hasta revelar
+- âœ… Problemas resueltos tachados
+- âœ… Ejemplos en modales
+- âœ… System prompts visibles
+- âœ… Documentos recuperados (Caso 1)
 
 ### UX/UI
-- ✅ Diseño responsive (3 breakpoints)
-- ✅ Colores corporativos INECO
-- ✅ Tipografía clara (Segoe UI)
-- ✅ Contraste accesible
-- ✅ Loading states
-- ✅ Error handling
+- âœ… DiseÃ±o responsive (3 breakpoints)
+- âœ… Colores corporativos empresas de ingenierÃ­a
+- âœ… TipografÃ­a clara (Segoe UI)
+- âœ… Contraste accesible
+- âœ… Loading states
+- âœ… Error handling
 
 ---
 
-## 🚀 Cómo Ejecutar
+## ðŸš€ CÃ³mo Ejecutar
 
-### Opción 1: Inicio Rápido
+### OpciÃ³n 1: Inicio RÃ¡pido
 ```bash
 .\venv\Scripts\Activate.ps1
 python app.py
 ```
 Abre: http://localhost:5555
 
-### Opción 2: Desde cero
+### OpciÃ³n 2: Desde cero
 ```bash
 python -m venv venv
 .\venv\Scripts\Activate.ps1
@@ -159,151 +159,151 @@ python app.py
 
 ---
 
-## 📊 Métricas del Proyecto
+## ðŸ“Š MÃ©tricas del Proyecto
 
-- **Líneas de código:** ~4,100+
+- **LÃ­neas de cÃ³digo:** ~4,100+
 - **Archivos creados:** 12
 - **Tiempo de desarrollo:** ~2 horas
 - **Casos de uso:** 2
 - **Layers por caso:** 5
 - **Total layers:** 10
-- **Componentes únicos:** 15+
+- **Componentes Ãºnicos:** 15+
 - **Animaciones CSS:** 8
 - **Endpoints API:** 4
 
 ---
 
-## 🎯 Casos de Uso Implementados
+## ðŸŽ¯ Casos de Uso Implementados
 
-### Caso 1: Generación de Documentación Técnica
-**Problema:** Generar memorias técnicas de proyectos ferroviarios de forma segura
+### Caso 1: GeneraciÃ³n de DocumentaciÃ³n TÃ©cnica
+**Problema:** Generar memorias tÃ©cnicas de proyectos ferroviarios de forma segura
 
-**Solución progresiva:**
-1. **Layer 1:** LLM básico → Genera texto pero sin contexto
-2. **Layer 2:** + RAG → Accede a 55 años de documentación INECO
-3. **Layer 3:** + Seguridad → Control de acceso por usuario/rol
-4. **Layer 4:** + Guardrails → Protección contra prompt injection + filtrado PII
-5. **Layer 5:** + Compliance → Purview DLP + auditoría completa
+**SoluciÃ³n progresiva:**
+1. **Layer 1:** LLM bÃ¡sico â†’ Genera texto pero sin contexto
+2. **Layer 2:** + RAG â†’ Accede a 55 aÃ±os de documentaciÃ³n empresas de ingenierÃ­a
+3. **Layer 3:** + Seguridad â†’ Control de acceso por usuario/rol
+4. **Layer 4:** + Guardrails â†’ ProtecciÃ³n contra prompt injection + filtrado PII
+5. **Layer 5:** + Compliance â†’ Purview DLP + auditorÃ­a completa
 
 **Resultado:** Sistema RAG empresarial completo y seguro
 
-### Caso 2: Sistema Multiagente - Supervisión de Obra
-**Problema:** Supervisar obras ferroviarias con imágenes de drones
+### Caso 2: Sistema Multiagente - SupervisiÃ³n de Obra
+**Problema:** Supervisar obras ferroviarias con imÃ¡genes de drones
 
-**Solución progresiva:**
-1. **Layer 1:** Agente único → Hace todo pero sobrecargado (8s)
-2. **Layer 2:** + Orquestación → 5 agentes especializados (7s)
-3. **Layer 3:** + Security → Permisos por agente + Human-in-the-Loop
-4. **Layer 4:** + Monitorización → Dashboard + error handling + logs
-5. **Layer 5:** + Validación → Grounding + confidence scoring + citations
+**SoluciÃ³n progresiva:**
+1. **Layer 1:** Agente Ãºnico â†’ Hace todo pero sobrecargado (8s)
+2. **Layer 2:** + OrquestaciÃ³n â†’ 5 agentes especializados (7s)
+3. **Layer 3:** + Security â†’ Permisos por agente + Human-in-the-Loop
+4. **Layer 4:** + MonitorizaciÃ³n â†’ Dashboard + error handling + logs
+5. **Layer 5:** + ValidaciÃ³n â†’ Grounding + confidence scoring + citations
 
 **Resultado:** Arquitectura multiagente robusta y confiable
 
 ---
 
-## ✨ Puntos Destacados
+## âœ¨ Puntos Destacados
 
-### 1. **Didáctica Efectiva**
-- Construcción incremental visible
-- Problemas → Soluciones claras
-- Cada layer resuelve problemas específicos
+### 1. **DidÃ¡ctica Efectiva**
+- ConstrucciÃ³n incremental visible
+- Problemas â†’ Soluciones claras
+- Cada layer resuelve problemas especÃ­ficos
 
 ### 2. **Interactividad**
-- No es una presentación estática
+- No es una presentaciÃ³n estÃ¡tica
 - Usuario controla el ritmo
-- Exploración activa de componentes
+- ExploraciÃ³n activa de componentes
 
-### 3. **Diseño Profesional**
-- Estética moderna
+### 3. **DiseÃ±o Profesional**
+- EstÃ©tica moderna
 - Animaciones sutiles
 - Responsive design
 
-### 4. **Contenido Técnico**
+### 4. **Contenido TÃ©cnico**
 - Basado en especificaciones reales
-- Casos de uso INECO auténticos
-- Tecnologías actuales (RAG, Agents, DLP)
+- Casos de uso empresas de ingenierÃ­a autÃ©nticos
+- TecnologÃ­as actuales (RAG, Agents, DLP)
 
 ### 5. **Facilidad de Uso**
-- Instalación simple
-- Documentación clara
+- InstalaciÃ³n simple
+- DocumentaciÃ³n clara
 - Sin dependencias complejas
 
 ---
 
-## 🔄 Posibles Extensiones Futuras
+## ðŸ”„ Posibles Extensiones Futuras
 
 Si quieres mejorar la webapp:
 
 ### Corto plazo
-- [ ] Añadir más ejemplos en modales
+- [ ] AÃ±adir mÃ¡s ejemplos en modales
 - [ ] Animaciones especiales (flujo de mensajes A2A)
 - [ ] Modo oscuro
-- [ ] Búsqueda de contenido
+- [ ] BÃºsqueda de contenido
 
 ### Medio plazo
-- [ ] Modo presentación fullscreen
+- [ ] Modo presentaciÃ³n fullscreen
 - [ ] Exportar a PDF
 - [ ] Comparador side-by-side de layers
-- [ ] Estadísticas de uso
+- [ ] EstadÃ­sticas de uso
 
 ### Largo plazo
 - [ ] Modo playground (drag & drop componentes)
 - [ ] Editor de layers en tiempo real
-- [ ] Más casos de uso
-- [ ] Integración con backend real
+- [ ] MÃ¡s casos de uso
+- [ ] IntegraciÃ³n con backend real
 
 ---
 
-## 🎓 Valor Educativo
+## ðŸŽ“ Valor Educativo
 
 Esta webapp es perfecta para:
 
-✅ **Workshops de IA** - Muestra arquitecturas reales
-✅ **Onboarding técnico** - Explica conceptos progresivamente
-✅ **Demos comerciales** - Visualización profesional
-✅ **Innovation Days** - Contenido interactivo
-✅ **Formación interna** - Casos de uso INECO
+âœ… **Workshops de IA** - Muestra arquitecturas reales
+âœ… **Onboarding tÃ©cnico** - Explica conceptos progresivamente
+âœ… **Demos comerciales** - VisualizaciÃ³n profesional
+âœ… **demostraciÃ³ns** - Contenido interactivo
+âœ… **FormaciÃ³n interna** - Casos de uso empresas de ingenierÃ­a
 
 ---
 
-## 📝 Notas Técnicas
+## ðŸ“ Notas TÃ©cnicas
 
-### Tecnologías Usadas
+### TecnologÃ­as Usadas
 - **Backend:** Flask 3.0.0 (Python)
 - **Frontend:** Vanilla JavaScript (ES6+)
 - **Estilos:** CSS3 (Variables, Grid, Flexbox, Animations)
-- **Datos:** JSON estático
-- **Sin frameworks:** React, Vue, Angular (por diseño)
+- **Datos:** JSON estÃ¡tico
+- **Sin frameworks:** React, Vue, Angular (por diseÃ±o)
 
 ### Compatibilidad
-- ✅ Chrome/Edge (recomendado)
-- ✅ Firefox
-- ✅ Safari
-- ✅ Mobile browsers
+- âœ… Chrome/Edge (recomendado)
+- âœ… Firefox
+- âœ… Safari
+- âœ… Mobile browsers
 
 ### Rendimiento
-- ⚡ Carga inicial: <1s
-- ⚡ Transición entre layers: <500ms
-- ⚡ Sin dependencias pesadas
-- ⚡ Tamaño total: <100KB (sin venv)
+- âš¡ Carga inicial: <1s
+- âš¡ TransiciÃ³n entre layers: <500ms
+- âš¡ Sin dependencias pesadas
+- âš¡ TamaÃ±o total: <100KB (sin venv)
 
 ---
 
-## 🎉 Estado Final
+## ðŸŽ‰ Estado Final
 
-**✅ PROYECTO 100% COMPLETO Y FUNCIONAL**
+**âœ… PROYECTO 100% COMPLETO Y FUNCIONAL**
 
 - Servidor corriendo en http://localhost:5555
 - Todos los archivos creados
-- Documentación completa
+- DocumentaciÃ³n completa
 - Git configurado
 - Listo para presentar
 
 ---
 
-## 👤 Para el Usuario
+## ðŸ‘¤ Para el Usuario
 
-**Todo está listo para que lo pruebes:**
+**Todo estÃ¡ listo para que lo pruebes:**
 
 1. Abre tu navegador
 2. Ve a: **http://localhost:5555**
@@ -312,9 +312,10 @@ Esta webapp es perfecta para:
 5. Haz click en componentes para ver detalles
 6. Usa las flechas del teclado para navegar
 
-**¡Disfruta la experiencia! 🚀**
+**Â¡Disfruta la experiencia! ðŸš€**
 
 ---
 
-**Desarrollado para Innovation Day INECO - Octubre 2025**
+**Desarrollado para demostraciÃ³n empresas de ingenierÃ­a - Octubre 2025**
+
 
