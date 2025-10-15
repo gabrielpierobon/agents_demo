@@ -6,6 +6,35 @@
   },
   "layers": [
     {
+      "id": 0,
+      "nombre": "Problema de Negocio",
+      "es_introduccion": true,
+      "problema": {
+        "titulo": "El Desafío de la Supervisión de Obras Ferroviarias",
+        "descripcion": "INECO supervisa obras ferroviarias complejas en múltiples países. La supervisión manual presenta desafíos críticos:",
+        "puntos": [
+          "📷 Miles de imágenes de drones diarias que revisar manualmente",
+          "👷 Inspectores en campo limitados (1 por cada 5km de obra)",
+          "⏰ Detección de desviaciones tarda 2-3 días (cuando ya hay sobrecostes)",
+          "📊 Comparación manual con planos y normativas (propenso a errores)",
+          "🔄 Sin integración con gemelo digital TWINECO en tiempo real"
+        ],
+        "impacto": "Las desviaciones detectadas tarde generan sobrecostes del 15-20%. La falta de supervisión continua compromete calidad y seguridad."
+      },
+      "solucion": {
+        "titulo": "¿Por qué un Sistema Multiagente?",
+        "descripcion": "Un sistema de agentes especializados puede:",
+        "beneficios": [
+          "👁️ Analizar automáticamente imágenes de drones en tiempo real",
+          "⚡ Detectar desviaciones en minutos en lugar de días",
+          "🤖 Especialización: cada agente domina una tarea específica",
+          "🔗 Integración automática con TWINECO (gemelo digital)",
+          "📋 Validación contra normativas ADIF/UIC sin intervención humana"
+        ],
+        "enfoque": "Construiremos el sistema capa por capa: desde un agente único hasta una arquitectura multiagente robusta, segura y confiable."
+      }
+    },
+    {
       "id": 1,
       "nombre": "Sistema Base",
       "componentes": [
@@ -29,17 +58,44 @@
         }
       ],
       "puntos_fuertes": [
-        "Detecta desviaciones automáticamente",
-        "Procesa imágenes de drones",
-        "Genera alertas"
+        {
+          "texto": "Detecta desviaciones automáticamente",
+          "explicacion": "El agente analiza imágenes y detecta diferencias respecto a planos: posición de vía, estructuras, elementos de seguridad. Automatiza trabajo manual de inspectores."
+        },
+        {
+          "texto": "Procesa imágenes de drones",
+          "explicacion": "Computer vision integrado: reconoce elementos ferroviarios (vías, traviesas, balasto, catenaria) y mide dimensiones con precisión milimétrica."
+        },
+        {
+          "texto": "Genera alertas",
+          "explicacion": "Cuando detecta una desviación, crea automáticamente una alerta con ubicación, tipo de problema y severidad estimada."
+        }
       ],
       "problemas": [
-        "Un solo agente hace todo (sobrecarga)",
-        "No valida contra normativa técnica",
-        "No actualiza gemelo digital (TWINECO)",
-        "No puede acceder a herramientas peligrosas de forma controlada",
-        "Sin monitorización de rendimiento",
-        "Sin validación de confianza en decisiones"
+        {
+          "texto": "Un solo agente hace todo (sobrecarga)",
+          "explicacion": "El agente debe: analizar imagen, validar normativa, actualizar TWINECO, generar informe. Demasiadas responsabilidades → lento y propenso a errores."
+        },
+        {
+          "texto": "No valida contra normativa técnica",
+          "explicacion": "Detecta la desviación pero no sabe si está dentro de tolerancias permitidas por ADIF. Un inspector debe validar manualmente cada alerta."
+        },
+        {
+          "texto": "No actualiza gemelo digital (TWINECO)",
+          "explicacion": "La desviación detectada no se refleja en TWINECO. El gemelo digital queda desactualizado, perdiendo valor como fuente de verdad."
+        },
+        {
+          "texto": "No puede acceder a herramientas peligrosas de forma controlada",
+          "explicacion": "Si necesita actualizar TWINECO o enviar alertas críticas, no hay control sobre qué puede hacer. Riesgo de acciones no autorizadas."
+        },
+        {
+          "texto": "Sin monitorización de rendimiento",
+          "explicacion": "No sabemos si el agente funciona correctamente: ¿cuántas imágenes procesa? ¿cuánto tarda? ¿cuántos errores tiene? Caja negra."
+        },
+        {
+          "texto": "Sin validación de confianza en decisiones",
+          "explicacion": "¿Qué tan seguro está el agente de que hay una desviación? ¿Es 50% o 99% de confianza? Sin esto, no sabemos si confiar en las alertas."
+        }
       ],
       "problemas_resueltos": []
     },
@@ -90,21 +146,54 @@
         }
       ],
       "puntos_fuertes": [
-        "Especialización: cada agente una función",
-        "Paralelización de tareas",
-        "Integración con TWINECO",
-        "Validación normativa automática",
-        "Comunicación A2A/MCP entre agentes"
+        {
+          "texto": "Especialización: cada agente una función",
+          "explicacion": "Computer Vision solo analiza imágenes. Validador solo verifica normativas. Cada agente es experto en su dominio → mayor precisión y mantenibilidad."
+        },
+        {
+          "texto": "Paralelización de tareas",
+          "explicacion": "Mientras Computer Vision analiza imagen 2, Validador procesa resultado de imagen 1. Ejecución concurrente → 12% más rápido que agente único."
+        },
+        {
+          "texto": "Integración con TWINECO",
+          "explicacion": "Agente Gemelo Digital actualiza automáticamente el modelo 3D con cada desviación detectada. TWINECO siempre refleja estado real de la obra."
+        },
+        {
+          "texto": "Validación normativa automática",
+          "explicacion": "Agente Validador conoce todas las normativas ADIF/UIC. Verifica automáticamente si desviación está dentro de tolerancias. Reduce falsos positivos 80%."
+        },
+        {
+          "texto": "Comunicación A2A/MCP entre agentes",
+          "explicacion": "Agentes se comunican mediante protocolo MCP (Model Context Protocol). Mensajes estructurados, trazables y con retry automático si hay fallos."
+        }
       ],
       "problemas": [
-        "Agentes pueden ejecutar acciones peligrosas sin control",
-        "Sin métricas de rendimiento",
-        "¿Cómo sabemos si las decisiones son correctas?"
+        {
+          "texto": "Agentes pueden ejecutar acciones peligrosas sin control",
+          "explicacion": "Agente Gemelo Digital puede modificar TWINECO sin restricciones. ¿Y si un bug hace que marque toda la obra como 'CRÍTICO'? No hay permisos granulares."
+        },
+        {
+          "texto": "Sin métricas de rendimiento",
+          "explicacion": "No sabemos qué agente es el cuello de botella. ¿Computer Vision tarda mucho? ¿Validador falla a menudo? Sin métricas, no podemos optimizar."
+        },
+        {
+          "texto": "¿Cómo sabemos si las decisiones son correctas?",
+          "explicacion": "Si Computer Vision dice 'desviación 3cm' y Validador dice 'crítico', ¿cómo verificamos que es correcto? No hay validación cruzada ni evidencia documental."
+        }
       ],
       "problemas_resueltos": [
-        "Un solo agente sobrecargado",
-        "No valida normativa",
-        "No actualiza gemelo digital"
+        {
+          "texto": "Un solo agente sobrecargado",
+          "explicacion": "Resuelto: 5 agentes especializados distribuyen la carga. Cada uno domina su función."
+        },
+        {
+          "texto": "No valida normativa",
+          "explicacion": "Resuelto: Agente Validador Normativo verifica automáticamente contra ADIF/UIC."
+        },
+        {
+          "texto": "No actualiza gemelo digital",
+          "explicacion": "Resuelto: Agente Gemelo Digital sincroniza automáticamente con TWINECO."
+        }
       ]
     },
     {
@@ -162,21 +251,54 @@
         }
       ],
       "puntos_fuertes": [
-        "Principle of Least Privilege aplicado",
-        "Whitelisting de funciones por agente",
-        "Aprobación humana para acciones críticas",
-        "Auditoría de intentos no autorizados",
-        "Function Whitelist por agente"
+        {
+          "texto": "Principle of Least Privilege aplicado",
+          "explicacion": "Cada agente solo tiene los permisos mínimos necesarios. Computer Vision puede leer imágenes pero no escribir en TWINECO. Reduce superficie de ataque."
+        },
+        {
+          "texto": "Whitelisting de funciones por agente",
+          "explicacion": "Lista explícita de funciones permitidas por agente. Computer Vision: [analyze_image, detect_objects]. Cualquier otra función → bloqueada."
+        },
+        {
+          "texto": "Aprobación humana para acciones críticas",
+          "explicacion": "Si Agente Gemelo Digital quiere cambiar estado de infraestructura a 'SHUTDOWN', requiere aprobación de ingeniero senior. Human-in-the-Loop para decisiones críticas."
+        },
+        {
+          "texto": "Auditoría de intentos no autorizados",
+          "explicacion": "Cada intento de ejecutar función no permitida se registra: agente, función, timestamp. Permite detectar comportamientos anómalos o bugs."
+        },
+        {
+          "texto": "Function Whitelist por agente",
+          "explicacion": "Configuración declarativa de permisos. Fácil de auditar y modificar. Ejemplo: Validador puede [read_norms, validate_spec] pero no [write_db, send_email]."
+        }
       ],
       "problemas": [
-        "Sin métricas de rendimiento",
-        "¿Cómo validamos que decisiones son correctas?"
+        {
+          "texto": "Sin métricas de rendimiento",
+          "explicacion": "Aunque tenemos seguridad, seguimos sin saber: ¿cuánto tarda cada agente? ¿cuántas imágenes procesa por minuto? ¿cuál es el accuracy?"
+        },
+        {
+          "texto": "¿Cómo validamos que decisiones son correctas?",
+          "explicacion": "Tenemos permisos pero no validación de calidad. Si Computer Vision detecta mal, nadie lo verifica. Necesitamos cross-validation y confidence scoring."
+        }
       ],
       "problemas_resueltos": [
-        "Un solo agente sobrecargado",
-        "No valida normativa",
-        "No actualiza gemelo digital",
-        "Agentes con acceso sin control"
+        {
+          "texto": "Un solo agente sobrecargado",
+          "explicacion": "✅ Resuelto en Layer 2"
+        },
+        {
+          "texto": "No valida normativa",
+          "explicacion": "✅ Resuelto en Layer 2"
+        },
+        {
+          "texto": "No actualiza gemelo digital",
+          "explicacion": "✅ Resuelto en Layer 2"
+        },
+        {
+          "texto": "Agentes con acceso sin control",
+          "explicacion": "Resuelto: Policy Engine + Whitelisting + Human-in-the-Loop controlan todas las acciones."
+        }
       ]
     },
     {
@@ -224,23 +346,62 @@
         }
       ],
       "puntos_fuertes": [
-        "Monitorización en tiempo real",
-        "Logging inmutable para auditoría",
-        "Manejo automático de errores",
-        "Alertas por anomalías",
-        "Métricas de rendimiento por agente",
-        "Dashboard de operaciones"
+        {
+          "texto": "Monitorización en tiempo real",
+          "explicacion": "Dashboard muestra métricas live: latencia por agente, throughput, errores, token usage. Detecta problemas antes de que afecten producción."
+        },
+        {
+          "texto": "Logging inmutable para auditoría",
+          "explicacion": "Cada operación genera log firmado criptográficamente. No se puede modificar ni borrar. Cumple requisitos de auditoría y compliance."
+        },
+        {
+          "texto": "Manejo automático de errores",
+          "explicacion": "Si un agente falla (timeout, API error), el sistema reintenta automáticamente con backoff exponencial. 3 intentos antes de escalar a humano."
+        },
+        {
+          "texto": "Alertas por anomalías",
+          "explicacion": "Sistema detecta comportamientos anómalos: agente muy lento, accuracy bajando, errores aumentando. Alerta a equipo de ops automáticamente."
+        },
+        {
+          "texto": "Métricas de rendimiento por agente",
+          "explicacion": "Desglose detallado: Computer Vision 2.1s avg, Validador 0.8s, Gemelo Digital 5.3s. Identifica cuellos de botella para optimización."
+        },
+        {
+          "texto": "Dashboard de operaciones",
+          "explicacion": "Panel centralizado para equipo de ops: estado de agentes, cola de procesamiento, historial de errores, métricas de negocio (desviaciones detectadas/hora)."
+        }
       ],
       "problemas": [
-        "¿Cómo validamos que las decisiones son correctas?",
-        "¿Qué confianza tenemos en cada resultado?"
+        {
+          "texto": "¿Cómo validamos que las decisiones son correctas?",
+          "explicacion": "Tenemos métricas de rendimiento pero no de calidad. Si Computer Vision dice 'desviación 3cm', ¿cómo sabemos que es correcto? Falta validación de evidencia."
+        },
+        {
+          "texto": "¿Qué confianza tenemos en cada resultado?",
+          "explicacion": "No hay confidence scoring. Una detección con 60% de confianza se trata igual que una con 99%. Necesitamos cuantificar incertidumbre."
+        }
       ],
       "problemas_resueltos": [
-        "Un solo agente sobrecargado",
-        "No valida normativa",
-        "No actualiza gemelo digital",
-        "Agentes con acceso sin control",
-        "Sin métricas de rendimiento"
+        {
+          "texto": "Un solo agente sobrecargado",
+          "explicacion": "✅ Resuelto en Layer 2"
+        },
+        {
+          "texto": "No valida normativa",
+          "explicacion": "✅ Resuelto en Layer 2"
+        },
+        {
+          "texto": "No actualiza gemelo digital",
+          "explicacion": "✅ Resuelto en Layer 2"
+        },
+        {
+          "texto": "Agentes con acceso sin control",
+          "explicacion": "✅ Resuelto en Layer 3"
+        },
+        {
+          "texto": "Sin métricas de rendimiento",
+          "explicacion": "Resuelto: Dashboard en tiempo real + logging inmutable + alerting system."
+        }
       ]
     },
     {
@@ -299,24 +460,62 @@
         }
       ],
       "puntos_fuertes": [
-        "Grounding: toda afirmación con evidencia documental",
-        "Cross-validation entre agentes",
-        "Confidence scoring para decisiones",
-        "Citations completas y trazables",
-        "Human-in-the-loop para baja confianza",
-        "Sistema robusto y confiable"
+        {
+          "texto": "Grounding: toda afirmación con evidencia documental",
+          "explicacion": "Cada detección está respaldada por evidencia: imagen analizada, medición DIGAV, estado previo TWINECO. No hay afirmaciones sin fundamento."
+        },
+        {
+          "texto": "Cross-validation entre agentes",
+          "explicacion": "Computer Vision detecta desviación (confidence 0.94). Cross-Validator revisa evidencia, correlaciona con alertas previas, ajusta confidence a 0.91. Reduce falsos positivos."
+        },
+        {
+          "texto": "Confidence scoring para decisiones",
+          "explicacion": "Cada resultado tiene score 0-1. >0.85 → auto-aprobado. 0.70-0.85 → revisión opcional. <0.70 → requiere humano. Decisiones basadas en certeza."
+        },
+        {
+          "texto": "Citations completas y trazables",
+          "explicacion": "Output incluye referencias: 'Desviación 3cm [1][2] excede tolerancia 2cm [3]'. [1]=imagen, [2]=medición DIGAV, [3]=norma ADIF. Trazabilidad total."
+        },
+        {
+          "texto": "Human-in-the-loop para baja confianza",
+          "explicacion": "Si confidence < 0.85, ingeniero senior recibe notificación con contexto completo. Puede aprobar, rechazar o solicitar más información."
+        },
+        {
+          "texto": "Sistema robusto y confiable",
+          "explicacion": "Combinación de especialización, seguridad, monitorización y validación. Sistema empresarial production-ready con SLA 99.9%."
+        }
       ],
       "problemas": [],
       "problemas_resueltos": [
-        "Un solo agente sobrecargado",
-        "No valida normativa",
-        "No actualiza gemelo digital",
-        "Agentes con acceso sin control",
-        "Sin métricas de rendimiento",
-        "Validación de decisiones",
-        "Nivel de confianza en resultados"
+        {
+          "texto": "Un solo agente sobrecargado",
+          "explicacion": "✅ Resuelto en Layer 2"
+        },
+        {
+          "texto": "No valida normativa",
+          "explicacion": "✅ Resuelto en Layer 2"
+        },
+        {
+          "texto": "No actualiza gemelo digital",
+          "explicacion": "✅ Resuelto en Layer 2"
+        },
+        {
+          "texto": "Agentes con acceso sin control",
+          "explicacion": "✅ Resuelto en Layer 3"
+        },
+        {
+          "texto": "Sin métricas de rendimiento",
+          "explicacion": "✅ Resuelto en Layer 4"
+        },
+        {
+          "texto": "Validación de decisiones",
+          "explicacion": "Resuelto: Grounding Engine + Cross-Validator verifican cada decisión con evidencia."
+        },
+        {
+          "texto": "Nivel de confianza en resultados",
+          "explicacion": "Resuelto: Confidence Scoring cuantifica certeza. Human review para casos de baja confianza."
+        }
       ]
     }
   ]
 }
-

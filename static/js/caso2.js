@@ -1,7 +1,7 @@
 class CasoUsoViewer {
     constructor(casoId) {
         this.casoId = casoId;
-        this.currentLayer = 1;
+        this.currentLayer = 0; // Empezar en Layer 0 (introducción)
         this.problemasRelevados = false;
         this.maxLayers = 5;
         this.init();
@@ -24,11 +24,16 @@ class CasoUsoViewer {
             btnAnterior.addEventListener('click', () => this.previousLayer());
         }
 
-        // Cerrar modal al hacer click fuera
+        // Cerrar modales al hacer click fuera
         window.addEventListener('click', (e) => {
             const modal = document.getElementById('modal-detalles');
+            const modalExplicacion = document.getElementById('modal-explicacion');
+            
             if (e.target === modal) {
                 modal.style.display = 'none';
+            }
+            if (e.target === modalExplicacion) {
+                modalExplicacion.style.display = 'none';
             }
         });
 
@@ -40,6 +45,7 @@ class CasoUsoViewer {
                 this.previousLayer();
             } else if (e.key === 'Escape') {
                 document.getElementById('modal-detalles').style.display = 'none';
+                document.getElementById('modal-explicacion').style.display = 'none';
             }
         });
     }
@@ -61,6 +67,12 @@ class CasoUsoViewer {
     }
 
     renderLayer(layer) {
+        // Si es Layer 0 (introducción), renderizar pantalla especial
+        if (layer.es_introduccion) {
+            this.renderIntroduccion(layer);
+            return;
+        }
+
         // Actualizar breadcrumb
         document.getElementById('breadcrumb').textContent = 
             `Layer ${layer.id} de ${this.maxLayers}: ${layer.nombre}`;
@@ -78,7 +90,60 @@ class CasoUsoViewer {
         this.updateNavigationButtons(layer.id);
     }
 
+    renderIntroduccion(layer) {
+        // Ocultar breadcrumb
+        document.getElementById('breadcrumb').style.display = 'none';
+
+        // Renderizar pantalla de introducción
+        const diagramaContainer = document.getElementById('diagrama-container');
+        diagramaContainer.innerHTML = `
+            <div class="introduccion-container">
+                <div class="problema-section">
+                    <h2>🎯 ${layer.problema.titulo}</h2>
+                    <p>${layer.problema.descripcion}</p>
+                    <ul>
+                        ${layer.problema.puntos.map(p => `<li>${p}</li>`).join('')}
+                    </ul>
+                    <div class="impacto-box">
+                        <strong>💥 Impacto:</strong> ${layer.problema.impacto}
+                    </div>
+                </div>
+
+                <div class="solucion-section">
+                    <h2>💡 ${layer.solucion.titulo}</h2>
+                    <p>${layer.solucion.descripcion}</p>
+                    <ul>
+                        ${layer.solucion.beneficios.map(b => `<li>${b}</li>`).join('')}
+                    </ul>
+                    <div class="enfoque-box">
+                        <strong>🚀 Enfoque:</strong> ${layer.solucion.enfoque}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Ocultar secciones de puntos fuertes y problemas
+        document.getElementById('puntos-fuertes').style.display = 'none';
+        document.getElementById('problemas').style.display = 'none';
+
+        // Actualizar botones
+        const btnAnterior = document.getElementById('btn-anterior');
+        const btnSiguiente = document.getElementById('btn-siguiente');
+        
+        btnAnterior.style.display = 'none';
+        btnSiguiente.textContent = '🚀 Comenzar con Layer 1 →';
+        btnSiguiente.classList.remove('btn-completo');
+        btnSiguiente.disabled = false;
+    }
+
     renderDiagrama(componentes) {
+        // Mostrar breadcrumb
+        document.getElementById('breadcrumb').style.display = 'inline-block';
+        
+        // Mostrar secciones
+        document.getElementById('puntos-fuertes').style.display = 'block';
+        document.getElementById('problemas').style.display = 'block';
+
         const container = document.getElementById('diagrama-container');
         container.innerHTML = '';
 
@@ -213,9 +278,22 @@ class CasoUsoViewer {
         const ul = document.createElement('ul');
         puntos.forEach((punto, index) => {
             const li = document.createElement('li');
-            li.textContent = punto;
+            
+            // Manejar tanto formato string como objeto
+            const texto = typeof punto === 'string' ? punto : punto.texto;
+            const explicacion = typeof punto === 'object' ? punto.explicacion : null;
+            
+            li.textContent = texto;
             li.className = 'punto-fuerte';
             li.style.animationDelay = `${index * 0.1}s`;
+            
+            // Si tiene explicación, hacerlo clickeable
+            if (explicacion) {
+                li.addEventListener('click', () => {
+                    this.showExplicacion('✅', texto, explicacion);
+                });
+            }
+            
             ul.appendChild(li);
         });
         
@@ -235,7 +313,7 @@ class CasoUsoViewer {
                 container.appendChild(btn);
             } else {
                 const successMsg = document.createElement('div');
-                successMsg.innerHTML = '<p style="color: #28a745; font-weight: 600; font-size: 1.1rem;">🎉 ¡Todos los problemas resueltos!</p>';
+                successMsg.innerHTML = '<p style="color: #107c10; font-weight: 600; font-size: 1.1rem;">🎉 ¡Todos los problemas resueltos!</p>';
                 container.appendChild(successMsg);
             }
         } else {
@@ -246,7 +324,19 @@ class CasoUsoViewer {
                 problemasResueltos.forEach(prob => {
                     const li = document.createElement('li');
                     li.className = 'problema-resuelto';
-                    li.innerHTML = `${prob} ✅`;
+                    
+                    const texto = typeof prob === 'string' ? prob : prob.texto;
+                    const explicacion = typeof prob === 'object' ? prob.explicacion : null;
+                    
+                    li.innerHTML = `${texto} ✅`;
+                    
+                    if (explicacion) {
+                        li.style.cursor = 'pointer';
+                        li.addEventListener('click', () => {
+                            this.showExplicacion('✅', texto, explicacion);
+                        });
+                    }
+                    
                     ul.appendChild(li);
                 });
             }
@@ -256,14 +346,25 @@ class CasoUsoViewer {
                 problemas.forEach(prob => {
                     const li = document.createElement('li');
                     li.className = 'problema-pendiente';
-                    li.textContent = prob;
+                    
+                    const texto = typeof prob === 'string' ? prob : prob.texto;
+                    const explicacion = typeof prob === 'object' ? prob.explicacion : null;
+                    
+                    li.textContent = texto;
+                    
+                    if (explicacion) {
+                        li.addEventListener('click', () => {
+                            this.showExplicacion('⚠️', texto, explicacion);
+                        });
+                    }
+                    
                     ul.appendChild(li);
                 });
             } else {
                 const li = document.createElement('li');
-                li.style.background = '#d4edda';
-                li.style.color = '#155724';
-                li.style.borderLeft = '4px solid #28a745';
+                li.style.background = '#dff6dd';
+                li.style.color = '#0b5a08';
+                li.style.borderLeft = '4px solid #107c10';
                 li.innerHTML = '🎉 <strong>¡Sistema completo! Arquitectura multiagente robusta y segura.</strong>';
                 li.style.opacity = '1';
                 ul.appendChild(li);
@@ -288,12 +389,30 @@ class CasoUsoViewer {
         }, 100);
     }
 
+    showExplicacion(icon, titulo, explicacion) {
+        const modal = document.getElementById('modal-explicacion');
+        const content = modal.querySelector('.modal-explicacion-content');
+        
+        content.innerHTML = `
+            <span class="modal-explicacion-close" onclick="document.getElementById('modal-explicacion').style.display='none'">&times;</span>
+            <div class="modal-explicacion-header">
+                <div class="modal-explicacion-icon">${icon}</div>
+                <div class="modal-explicacion-title">${titulo}</div>
+            </div>
+            <div class="modal-explicacion-body">
+                ${explicacion}
+            </div>
+        `;
+        
+        modal.style.display = 'block';
+    }
+
     updateNavigationButtons(currentLayerId) {
         const btnSiguiente = document.getElementById('btn-siguiente');
         const btnAnterior = document.getElementById('btn-anterior');
         
         // Botón anterior
-        if (currentLayerId > 1) {
+        if (currentLayerId > 0) {
             btnAnterior.style.display = 'inline-block';
         } else {
             btnAnterior.style.display = 'none';
@@ -305,7 +424,11 @@ class CasoUsoViewer {
             btnSiguiente.classList.add('btn-completo');
             btnSiguiente.disabled = true;
         } else {
-            btnSiguiente.textContent = `Siguiente Layer (${currentLayerId + 1}/${this.maxLayers}) →`;
+            if (currentLayerId === 0) {
+                btnSiguiente.textContent = `🚀 Comenzar con Layer 1 →`;
+            } else {
+                btnSiguiente.textContent = `Siguiente Layer (${currentLayerId + 1}/${this.maxLayers}) →`;
+            }
             btnSiguiente.classList.remove('btn-completo');
             btnSiguiente.disabled = false;
         }
@@ -320,7 +443,7 @@ class CasoUsoViewer {
     }
 
     previousLayer() {
-        if (this.currentLayer > 1) {
+        if (this.currentLayer > 0) {
             this.currentLayer--;
             this.loadLayer(this.currentLayer);
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -398,4 +521,3 @@ class CasoUsoViewer {
 document.addEventListener('DOMContentLoaded', () => {
     new CasoUsoViewer(CASO_ID);
 });
-
