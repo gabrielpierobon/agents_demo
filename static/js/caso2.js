@@ -486,9 +486,10 @@ class CasoUsoViewer {
 
             // Problemas pendientes
             if (problemas && problemas.length > 0) {
-                problemas.forEach(prob => {
+                problemas.forEach((prob, index) => {
                     const li = document.createElement('li');
-                    li.className = 'problema-pendiente';
+                    li.className = 'problema-pendiente revealed';
+                    li.style.animationDelay = `${index * 0.1}s`;
                     
                     const texto = typeof prob === 'string' ? prob : prob.texto;
                     const explicacion = typeof prob === 'object' ? prob.explicacion : null;
