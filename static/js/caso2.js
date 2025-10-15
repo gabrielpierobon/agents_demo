@@ -147,8 +147,17 @@ class CasoUsoViewer {
         const container = document.getElementById('diagrama-container');
         container.innerHTML = '';
 
-        // Para el caso 2, si hay muchos agentes, usar un layout diferente
-        if (componentes.length > 4 && componentes.filter(c => c.tipo === 'agent').length > 2) {
+        // Verificar si hay inputs/outputs especiales
+        const hasSpecialComponents = componentes.some(c => 
+            (c.tipo === 'input' && c.es_interactivo) || 
+            (c.tipo === 'output' && c.output_completo)
+        );
+
+        if (hasSpecialComponents) {
+            // Renderizar con componentes especiales
+            this.renderWithSpecialComponents(componentes, container);
+        } else if (componentes.length > 4 && componentes.filter(c => c.tipo === 'agent').length > 2) {
+            // Para el caso 2, si hay muchos agentes, usar un layout diferente
             this.renderMultiAgentDiagram(componentes, container);
         } else {
             this.renderLinearDiagram(componentes, container);
@@ -156,6 +165,98 @@ class CasoUsoViewer {
 
         // Animación de aparición con delay
         setTimeout(() => this.animateComponentsIn(), 100);
+    }
+
+    renderWithSpecialComponents(componentes, container) {
+        componentes.forEach((comp, index) => {
+            // Si es INPUT interactivo, renderizar input box
+            if (comp.tipo === 'input' && comp.es_interactivo) {
+                const inputContainer = this.createInputBox(comp);
+                container.appendChild(inputContainer);
+            } 
+            // Si es OUTPUT con simulación completa, renderizar output box
+            else if (comp.tipo === 'output' && comp.output_completo) {
+                const outputContainer = this.createOutputBox(comp);
+                container.appendChild(outputContainer);
+            }
+            // Componentes normales
+            else {
+                const elemento = this.createComponentElement(comp);
+                container.appendChild(elemento);
+            }
+
+            // Añadir flecha si no es el último
+            if (index < componentes.length - 1) {
+                const arrow = document.createElement('div');
+                arrow.className = 'arrow';
+                arrow.innerHTML = '→';
+                container.appendChild(arrow);
+            }
+        });
+    }
+
+    createInputBox(comp) {
+        const div = document.createElement('div');
+        div.className = 'input-box-container';
+        div.innerHTML = `
+            <label class="input-box-label">📝 ${comp.label} - ${comp.descripcion}</label>
+            <textarea class="input-box" readonly>${comp.input_value || ''}</textarea>
+        `;
+        return div;
+    }
+
+    createOutputBox(comp) {
+        const div = document.createElement('div');
+        div.className = 'output-container';
+        
+        const output = comp.output_completo;
+        const metadata = output.metadata || {};
+        
+        div.innerHTML = `
+            <div class="output-header">
+                <span class="output-label">📄 ${comp.label} - ${comp.descripcion}</span>
+                <button class="btn-export" onclick="window.casoViewer.exportOutput(${JSON.stringify(output).replace(/"/g, '&quot;')})">
+                    💾 Exportar JSON
+                </button>
+            </div>
+            <div class="output-content">${output.titulo ? output.titulo + '\n\n' : ''}${output.contenido || output}</div>
+            ${metadata && Object.keys(metadata).length > 0 ? `
+                <div class="output-metadata">
+                    ${Object.entries(metadata).map(([key, value]) => `
+                        <div class="metadata-item">
+                            <span class="metadata-label">${this.formatMetadataLabel(key)}:</span>
+                            <span class="metadata-value">${value}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            ` : ''}
+        `;
+        
+        return div;
+    }
+
+    formatMetadataLabel(key) {
+        const labels = {
+            'fecha_generacion': 'Fecha',
+            'version': 'Versión',
+            'tokens_utilizados': 'Tokens',
+            'tiempo_generacion': 'Tiempo',
+            'desviaciones_detectadas': 'Desviaciones',
+            'imagenes_procesadas': 'Imágenes',
+            'accuracy': 'Accuracy'
+        };
+        return labels[key] || key;
+    }
+
+    exportOutput(output) {
+        const dataStr = JSON.stringify(output, null, 2);
+        const dataBlob = new Blob([dataStr], {type: 'application/json'});
+        const url = URL.createObjectURL(dataBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `output_layer_${this.currentLayer}_${Date.now()}.json`;
+        link.click();
+        URL.revokeObjectURL(url);
     }
 
     renderLinearDiagram(componentes, container) {
@@ -504,6 +605,23 @@ class CasoUsoViewer {
             `;
         }
 
+        // Si es LLM o Agent con configuración, mostrarla
+        if ((comp.tipo === 'llm' || comp.tipo === 'agent') && comp.configuracion) {
+            html += `
+                <div class="llm-config-section">
+                    <h3>⚙️ Configuración del ${comp.tipo === 'agent' ? 'Agente' : 'Modelo'}</h3>
+                    <div class="config-grid">
+                        ${Object.entries(comp.configuracion).map(([key, value]) => `
+                            <div class="config-item">
+                                <span class="config-label">${this.formatConfigLabel(key)}</span>
+                                <span class="config-value">${value}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
         if (comp.ejemplo_docs) {
             html += `<p><strong>Documentos recuperados:</strong></p><ul>`;
             comp.ejemplo_docs.forEach(doc => {
@@ -515,9 +633,24 @@ class CasoUsoViewer {
         content.innerHTML = html;
         modal.style.display = 'block';
     }
+
+    formatConfigLabel(key) {
+        const labels = {
+            'modelo': 'Modelo',
+            'temperatura': 'Temperatura',
+            'max_tokens': 'Max Tokens',
+            'top_p': 'Top P',
+            'frequency_penalty': 'Frequency Penalty',
+            'presence_penalty': 'Presence Penalty',
+            'permisos': 'Permisos',
+            'timeout': 'Timeout',
+            'retry_attempts': 'Reintentos'
+        };
+        return labels[key] || key;
+    }
 }
 
 // Inicializar cuando cargue la página
 document.addEventListener('DOMContentLoaded', () => {
-    new CasoUsoViewer(CASO_ID);
+    window.casoViewer = new CasoUsoViewer(CASO_ID);
 });
