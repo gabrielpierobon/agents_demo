@@ -42,19 +42,40 @@
           "tipo": "input",
           "label": "IMÁGENES DRONES",
           "descripcion": "Fotografías aéreas de obra",
-          "ejemplo": "imagen_obra_tramo_5.jpg"
+          "ejemplo": "imagen_obra_tramo_5.jpg",
+          "input_value": "imagen_obra_tramo_5.jpg\n\n[Metadata: Fecha: 2025-10-15 | Tramo: 5 | KM: 23.4 | Drone: DJI-M300 | Resolución: 4K]",
+          "es_interactivo": true
         },
         {
           "tipo": "agent",
           "label": "AGENTE ANÁLISIS",
           "descripcion": "Agente único que hace todo",
-          "ejemplo": "Tiempo: 8 segundos"
+          "ejemplo": "Tiempo: 8 segundos",
+          "configuracion": {
+            "modelo": "GPT-4-Vision",
+            "temperatura": 0.1,
+            "max_tokens": 2000,
+            "top_p": 0.95,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0
+          },
+          "system_prompt": "Eres un agente especializado en análisis de imágenes de obras ferroviarias. Analiza la imagen, detecta elementos, compara con planos y genera alertas de desviaciones."
         },
         {
           "tipo": "output",
           "label": "ALERTA",
           "descripcion": "Notificación de desviación",
-          "ejemplo": "Desviación detectada: 3cm respecto a plano"
+          "ejemplo": "Desviación detectada: 3cm respecto a plano",
+          "output_completo": {
+            "titulo": "ALERTA DE DESVIACIÓN DETECTADA",
+            "contenido": "ANÁLISIS DE IMAGEN: imagen_obra_tramo_5.jpg\nFECHA: 2025-10-15 10:23:45\nTRAMO: 5 | KM: 23.4\n\n=== DESVIACIÓN DETECTADA ===\n\nTIPO: Posicionamiento de vía\nSEVERIDAD: Media\nDESCRIPCIÓN: La vía presenta una desviación lateral de 3.2cm respecto a la posición especificada en planos.\n\nUBICACIÓN EXACTA: KM 23.4 + 15m\nELEMENTO AFECTADO: Vía principal\nTOLERANCIA PERMITIDA: ±2cm\nDESVIACIÓN MEDIDA: 3.2cm\n\nACCIÓN RECOMENDADA: Corrección mediante ajuste de traviesas\nPRIORIDAD: Media\nTIEMPO ESTIMADO CORRECCIÓN: 2 horas",
+            "metadata": {
+              "fecha_analisis": "2025-10-15",
+              "tiempo_procesamiento": "8.3s",
+              "confianza": 0.87,
+              "elementos_detectados": 15
+            }
+          }
         }
       ],
       "puntos_fuertes": [
@@ -106,43 +127,100 @@
         {
           "tipo": "input",
           "label": "IMÁGENES",
-          "descripcion": "Input de drones"
+          "descripcion": "Input de drones",
+          "input_value": "imagen_obra_tramo_5.jpg\n\n[Metadata: Fecha: 2025-10-15 | Tramo: 5 | KM: 23.4 | Drone: DJI-M300 | Resolución: 4K | Elementos visibles: Vía, balasto, traviesas, señalización]",
+          "es_interactivo": true
         },
         {
           "tipo": "agent",
           "label": "COORDINADOR",
           "descripcion": "Orquesta el flujo entre agentes",
-          "ejemplo": "Distribuye tareas y recopila resultados"
+          "ejemplo": "Distribuye tareas y recopila resultados",
+          "configuracion": {
+            "modelo": "GPT-4",
+            "temperatura": 0.1,
+            "max_tokens": 2000,
+            "top_p": 0.95,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0
+          },
+          "system_prompt": "Eres el agente coordinador de un sistema multiagente. Recibes imágenes, determinas qué agentes especializados deben procesarlas, orquestas su ejecución y consolidas resultados."
         },
         {
           "tipo": "agent",
           "label": "COMPUTER VISION",
           "descripcion": "Analiza imágenes",
-          "ejemplo": "Tiempo: 2s - Desviación 3cm detectada"
+          "ejemplo": "Tiempo: 2s - Desviación 3cm detectada",
+          "configuracion": {
+            "modelo": "GPT-4-Vision",
+            "temperatura": 0.1,
+            "max_tokens": 2000,
+            "top_p": 0.95,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0
+          },
+          "system_prompt": "Eres un agente especializado en visión por computadora para infraestructura ferroviaria. Detecta y mide: vías, traviesas, balasto, catenaria, señalización, estructuras. Proporciona mediciones precisas."
         },
         {
           "tipo": "agent",
           "label": "VALIDADOR NORMATIVO",
           "descripcion": "Valida contra normas ADIF",
-          "ejemplo": "Tiempo: 1s - Fuera de tolerancia"
+          "ejemplo": "Tiempo: 1s - Fuera de tolerancia",
+          "configuracion": {
+            "modelo": "GPT-4",
+            "temperatura": 0.1,
+            "max_tokens": 2000,
+            "top_p": 0.95,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0
+          },
+          "system_prompt": "Eres un agente especializado en normativas ferroviarias (ADIF, UIC, EN). Validas que las mediciones cumplan con especificaciones técnicas y generas alertas de incumplimientos."
         },
         {
           "tipo": "agent",
           "label": "GEMELO DIGITAL",
           "descripcion": "Actualiza TWINECO",
-          "ejemplo": "Tiempo: 1s - Estado: ALERTA CRÍTICA"
+          "ejemplo": "Tiempo: 1s - Estado: ALERTA CRÍTICA",
+          "configuracion": {
+            "modelo": "GPT-4",
+            "temperatura": 0.1,
+            "max_tokens": 2000,
+            "top_p": 0.95,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0
+          },
+          "system_prompt": "Eres un agente que integra con TWINECO (gemelo digital). Actualizas el modelo 3D con datos reales de obra y detectas desviaciones respecto al diseño."
         },
         {
           "tipo": "agent",
           "label": "GENERADOR INFORMES",
           "descripcion": "Crea documentación",
-          "ejemplo": "Tiempo: 3s - informe_desviacion_tramo5.pdf"
+          "ejemplo": "Tiempo: 3s - informe_desviacion_tramo5.pdf",
+          "configuracion": {
+            "modelo": "GPT-4",
+            "temperatura": 0.1,
+            "max_tokens": 2000,
+            "top_p": 0.95,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0
+          },
+          "system_prompt": "Eres un agente especializado en generar informes técnicos. Consolidas información de otros agentes y produces informes estructurados para supervisores."
         },
         {
           "tipo": "output",
           "label": "OUTPUT",
           "descripcion": "Resultado completo",
-          "ejemplo": "Total tiempo: 7s (vs 8s anterior)"
+          "ejemplo": "Total tiempo: 7s (vs 8s anterior)",
+          "output_completo": {
+            "titulo": "INFORME DE SUPERVISIÓN MULTIAGENTE",
+            "contenido": "ANÁLISIS COORDINADO: imagen_obra_tramo_5.jpg\nFECHA: 2025-10-15 10:25:12\nTRAMO: 5 | KM: 23.4\n\n=== ANÁLISIS POR AGENTE ESPECIALIZADO ===\n\n[COMPUTER VISION]\nElementos detectados:\n- Vía principal: Posición correcta\n- Traviesas: 24 unidades visibles, espaciado correcto\n- Balasto: Granulometría adecuada, nivel correcto\n- Señalización: Poste KM 23 visible y correcto\n\nMediciones:\n- Ancho de vía: 1.435mm (✓ Correcto)\n- Espaciado traviesas: 60cm (✓ Correcto)\n- Altura balasto: 35cm (✓ Correcto)\n\n[VALIDADOR NORMATIVO]\nValidación contra ADIF ET 03.360.571.8:\n✓ Ancho de vía conforme\n✓ Espaciado traviesas conforme\n✓ Granulometría balasto conforme\n⚠️ ALERTA: Falta señalización de seguridad cada 50m (detectada solo en KM 23)\n\n[GEMELO DIGITAL - TWINECO]\nComparación con modelo 3D:\n✓ Posición vía: Desviación 0.8cm (dentro de tolerancia)\n✓ Elevación: Correcta\n⚠️ ALERTA: Estructura temporal no reflejada en gemelo digital\n\n[GENERADOR INFORMES]\n=== RESUMEN EJECUTIVO ===\nEstado general: ACEPTABLE CON OBSERVACIONES\nDesviaciones críticas: 0\nDesviaciones medias: 2\nAcciones requeridas: 2\n\nPróximos pasos:\n1. Instalar señalización de seguridad adicional\n2. Actualizar gemelo digital con estructura temporal",
+            "metadata": {
+              "fecha_analisis": "2025-10-15",
+              "tiempo_procesamiento": "12.7s",
+              "agentes_ejecutados": 4,
+              "confianza_promedio": 0.91
+            }
+          }
         }
       ],
       "puntos_fuertes": [
@@ -203,12 +281,23 @@
         {
           "tipo": "input",
           "label": "IMÁGENES",
-          "descripcion": "Input"
+          "descripcion": "Input",
+          "input_value": "imagen_obra_tramo_5.jpg\n\n[Metadata: Fecha: 2025-10-15 | Tramo: 5 | KM: 23.4 | Drone: DJI-M300 | Resolución: 4K | Usuario: inspector.campo@empresa.com | Proyecto: OBRA-2025-089 | Clearance: Interno]",
+          "es_interactivo": true
         },
         {
           "tipo": "agent",
           "label": "COORDINADOR",
-          "descripcion": "Orquestador"
+          "descripcion": "Orquestador",
+          "configuracion": {
+            "modelo": "GPT-4",
+            "temperatura": 0.1,
+            "max_tokens": 2000,
+            "top_p": 0.95,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0
+          },
+          "system_prompt": "Eres el agente coordinador de un sistema multiagente. Recibes imágenes, determinas qué agentes especializados deben procesarlas, orquestas su ejecución y consolidas resultados."
         },
         {
           "tipo": "security",
@@ -220,23 +309,59 @@
           "tipo": "agent",
           "label": "COMPUTER VISION",
           "descripcion": "Con permisos limitados",
-          "ejemplo": "Permisos: READ_IMAGES, ANALYZE_IMAGE"
+          "ejemplo": "Permisos: READ_IMAGES, ANALYZE_IMAGE",
+          "configuracion": {
+            "modelo": "GPT-4-Vision",
+            "temperatura": 0.1,
+            "max_tokens": 2000,
+            "top_p": 0.95,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0
+          },
+          "system_prompt": "Eres un agente especializado en visión por computadora para infraestructura ferroviaria. Detecta y mide: vías, traviesas, balasto, catenaria, señalización, estructuras. Proporciona mediciones precisas."
         },
         {
           "tipo": "agent",
           "label": "VALIDADOR NORMATIVO",
-          "descripcion": "Con permisos específicos"
+          "descripcion": "Con permisos específicos",
+          "configuracion": {
+            "modelo": "GPT-4",
+            "temperatura": 0.1,
+            "max_tokens": 2000,
+            "top_p": 0.95,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0
+          },
+          "system_prompt": "Eres un agente especializado en normativas ferroviarias (ADIF, UIC, EN). Validas que las mediciones cumplan con especificaciones técnicas y generas alertas de incumplimientos."
         },
         {
           "tipo": "agent",
           "label": "GEMELO DIGITAL",
           "descripcion": "Requiere aprobación humana",
-          "ejemplo": "Human-in-the-Loop para acciones críticas"
+          "ejemplo": "Human-in-the-Loop para acciones críticas",
+          "configuracion": {
+            "modelo": "GPT-4",
+            "temperatura": 0.1,
+            "max_tokens": 2000,
+            "top_p": 0.95,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0
+          },
+          "system_prompt": "Eres un agente que integra con TWINECO (gemelo digital). Actualizas el modelo 3D con datos reales de obra y detectas desviaciones respecto al diseño."
         },
         {
           "tipo": "agent",
           "label": "GENERADOR INFORMES",
-          "descripcion": "Con permisos de escritura"
+          "descripcion": "Con permisos de escritura",
+          "configuracion": {
+            "modelo": "GPT-4",
+            "temperatura": 0.1,
+            "max_tokens": 2000,
+            "top_p": 0.95,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0
+          },
+          "system_prompt": "Eres un agente especializado en generar informes técnicos. Consolidas información de otros agentes y produces informes estructurados para supervisores."
         },
         {
           "tipo": "security",
@@ -247,7 +372,24 @@
         {
           "tipo": "output",
           "label": "OUTPUT",
-          "descripcion": "Resultado seguro"
+          "descripcion": "Resultado seguro",
+          "output_completo": {
+            "titulo": "INFORME DE SUPERVISIÓN SEGURO",
+            "contenido": "═══════════════════════════════════════════════════════\nCLASIFICACIÓN: INTERNO\nPROYECTO: OBRA-2025-089\nANALIZADO POR: inspector.campo@empresa.com\nFECHA: 2025-10-15 10:27:33 UTC\nAUDIT ID: AUDIT-2025-10-15-102733\n═══════════════════════════════════════════════════════\n\nANÁLISIS COORDINADO: imagen_obra_tramo_5.jpg\nTRAMO: 5 | KM: 23.4\n\n[COMPUTER VISION - Autorizado]\nElementos detectados: 15\nMediciones realizadas: 8\nConfianza: 0.92\n\n[VALIDADOR NORMATIVO - Autorizado]\nNormativas consultadas: ADIF ET 03.360.571.8, UIC 719\nValidaciones: 12 conformes, 2 alertas\n\n[GEMELO DIGITAL - Acceso restringido aplicado]\nActualización TWINECO: Completada\nDesviaciones: 1 menor\n\n[GENERADOR INFORMES]\nEstado: ACEPTABLE CON OBSERVACIONES\nAcciones requeridas: 2\n\n═══════════════════════════════════════════════════════\nCLASIFICACIÓN: INTERNO\nDistribución: Personal autorizado proyecto OBRA-2025-089\n═══════════════════════════════════════════════════════",
+            "metadata": {
+              "fecha_analisis": "2025-10-15",
+              "tiempo_procesamiento": "13.4s",
+              "usuario": "inspector.campo@empresa.com",
+              "proyecto": "OBRA-2025-089",
+              "classification_level": "Interno",
+              "tools_used": [
+                "computer_vision",
+                "normativas_db",
+                "twineco_api"
+              ],
+              "audit_log_id": "AUDIT-2025-10-15-102733"
+            }
+          }
         }
       ],
       "puntos_fuertes": [
@@ -308,12 +450,23 @@
         {
           "tipo": "input",
           "label": "IMÁGENES",
-          "descripcion": "Input"
+          "descripcion": "Input",
+          "input_value": "imagen_obra_tramo_5.jpg\n\n[Metadata: Fecha: 2025-10-15 | Tramo: 5 | KM: 23.4 | Drone: DJI-M300 | Resolución: 4K | Usuario: inspector.campo@empresa.com | Proyecto: OBRA-2025-089 | Criticidad: Alta | Budget_Tramo: 12M€]",
+          "es_interactivo": true
         },
         {
           "tipo": "agent",
           "label": "SISTEMA MULTIAGENTE",
-          "descripcion": "5 agentes coordinados"
+          "descripcion": "5 agentes coordinados",
+          "configuracion": {
+            "modelo": "GPT-4",
+            "temperatura": 0.1,
+            "max_tokens": 2000,
+            "top_p": 0.95,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0
+          },
+          "system_prompt": "Eres el sistema coordinador de múltiples agentes especializados en supervisión de obras ferroviarias. Orquestas análisis de imágenes, validación normativa, actualización de gemelo digital y generación de informes."
         },
         {
           "tipo": "monitoring",
@@ -342,7 +495,23 @@
         {
           "tipo": "output",
           "label": "OUTPUT + MÉTRICAS",
-          "descripcion": "Resultado con trazabilidad completa"
+          "descripcion": "Resultado con trazabilidad completa",
+          "output_completo": {
+            "titulo": "INFORME DE SUPERVISIÓN CON MONITORIZACIÓN",
+            "contenido": "═══════════════════════════════════════════════════════\nCLASIFICACIÓN: INTERNO\nPROYECTO: OBRA-2025-089 | TRAMO: 5 | KM: 23.4\nANALIZADO POR: inspector.campo@empresa.com\nFECHA: 2025-10-15 10:29:18 UTC\n═══════════════════════════════════════════════════════\n\nANÁLISIS MULTIAGENTE: imagen_obra_tramo_5.jpg\n\n[MÉTRICAS DE SISTEMA]\nTiempo total: 13.2s\nAgentes ejecutados: 4/4 (100% éxito)\nConfianza promedio: 0.91\nErrores: 0\n\n[RESULTADOS]\nEstado general: ACEPTABLE CON OBSERVACIONES\nDesviaciones críticas: 0\nDesviaciones medias: 2\nAcciones requeridas: 2\n\n[VALIDACIONES]\n✓ Computer Vision: 15 elementos detectados\n✓ Normativas: 12/14 conformes\n✓ Gemelo Digital: Actualizado\n⚠️ Señalización: Falta 1 poste\n⚠️ Estructura temporal: No en gemelo\n\n[MONITORIZACIÓN]\nRendimiento agentes:\n- Computer Vision: 4.2s (Normal)\n- Validador: 3.1s (Normal)\n- Gemelo Digital: 4.8s (Normal)\n- Generador: 1.1s (Normal)\n\nConfianza por agente:\n- Computer Vision: 0.92\n- Validador: 0.89\n- Gemelo Digital: 0.94\n- Generador: 0.90\n\n[ACCIONES REQUERIDAS]\n1. Instalar señalización KM 23.5\n2. Actualizar gemelo con estructura temporal\n\n═══════════════════════════════════════════════════════",
+            "metadata": {
+              "fecha_analisis": "2025-10-15",
+              "tiempo_procesamiento": "13.2s",
+              "classification_level": "Interno",
+              "metricas_sistema": {
+                "agentes_exitosos": 4,
+                "agentes_fallidos": 0,
+                "tiempo_promedio_agente": "3.3s",
+                "confianza_minima": 0.89,
+                "confianza_promedio": 0.91
+              }
+            }
+          }
         }
       ],
       "puntos_fuertes": [
@@ -411,12 +580,23 @@
         {
           "tipo": "input",
           "label": "IMÁGENES",
-          "descripcion": "Input"
+          "descripcion": "Input",
+          "input_value": "imagen_obra_tramo_5.jpg\n\n[Metadata: Fecha: 2025-10-15 | Tramo: 5 | KM: 23.4 | Drone: DJI-M300 | Resolución: 4K | Usuario: inspector.campo@empresa.com | Proyecto: OBRA-2025-089 | Criticidad: Alta | Budget_Tramo: 12M€ | Safety_Critical: Yes]",
+          "es_interactivo": true
         },
         {
           "tipo": "agent",
           "label": "SISTEMA MULTIAGENTE",
-          "descripcion": "Agentes especializados"
+          "descripcion": "Agentes especializados",
+          "configuracion": {
+            "modelo": "GPT-4",
+            "temperatura": 0.1,
+            "max_tokens": 2000,
+            "top_p": 0.95,
+            "frequency_penalty": 0.0,
+            "presence_penalty": 0.0
+          },
+          "system_prompt": "Eres el sistema coordinador de múltiples agentes especializados en supervisión de obras ferroviarias. Orquestas análisis de imágenes, validación normativa, actualización de gemelo digital y generación de informes."
         },
         {
           "tipo": "validation",
@@ -456,7 +636,31 @@
         {
           "tipo": "output",
           "label": "OUTPUT VALIDADO",
-          "descripcion": "Resultado con evidencias y confianza"
+          "descripcion": "Resultado con evidencias y confianza",
+          "output_completo": {
+            "titulo": "INFORME DE SUPERVISIÓN VALIDADO",
+            "contenido": "═══════════════════════════════════════════════════════\nCLASIFICACIÓN: INTERNO\nPROYECTO: OBRA-2025-089 | TRAMO: 5 | KM: 23.4\nANALIZADO POR: inspector.campo@empresa.com\nVALIDADO POR: supervisor.senior@empresa.com\nFECHA ANÁLISIS: 2025-10-15 10:29:18 UTC\nFECHA VALIDACIÓN: 2025-10-15 10:45:22 UTC\nSTATUS: APROBADO\n═══════════════════════════════════════════════════════\n\nANÁLISIS MULTIAGENTE: imagen_obra_tramo_5.jpg\n\n[VALIDACIÓN AUTOMÁTICA]\n✓ Grounding: Todas las afirmaciones respaldadas por evidencia\n✓ Cross-Validation: Mediciones verificadas por múltiples agentes\n✓ Confidence Scoring: Todas las detecciones >0.85\n✓ Citations: Todas las normativas citadas correctamente\n\n[RESULTADOS VALIDADOS]\nEstado general: ACEPTABLE CON OBSERVACIONES\nDesviaciones críticas: 0 (Validado)\nDesviaciones medias: 2 (Validado)\nConfianza global: 0.91 (Alto)\n\n[DETECCIONES PRINCIPALES]\n✓ Vía: Posición correcta (Confianza: 0.94)\n  Evidencia: Medición láser + comparación gemelo digital\n  Validado por: Computer Vision + Gemelo Digital\n  \n✓ Traviesas: 24 unidades, espaciado 60cm (Confianza: 0.92)\n  Evidencia: Detección visual + medición calibrada\n  Normativa: ADIF ET 03.360.571.8 [Citado correctamente]\n  \n⚠️ Señalización: Falta poste KM 23.5 (Confianza: 0.89)\n  Evidencia: Ausencia detectada por Computer Vision\n  Normativa: ADIF requiere señalización cada 500m\n  Acción: Instalación requerida\n  \n⚠️ Estructura temporal no en gemelo (Confianza: 0.93)\n  Evidencia: Detectada en imagen, ausente en TWINECO\n  Acción: Actualización gemelo digital\n\n[REVISIÓN HUMANA]\nRevisor: supervisor.senior@empresa.com\nComentarios: \"Análisis correcto. Las dos observaciones son válidas y requieren acción. Prioridad media. Programar correcciones para esta semana.\"\nDecisión: APROBADO\n\n[MÉTRICAS DE CALIDAD]\nGrounding Score: 0.96\nCross-Validation Score: 0.94\nCitation Accuracy: 100%\nHuman Agreement: 100%\n\n═══════════════════════════════════════════════════════\nDOCUMENTO VALIDADO Y APROBADO PARA ACCIÓN\n═══════════════════════════════════════════════════════",
+            "metadata": {
+              "fecha_analisis": "2025-10-15",
+              "fecha_validacion": "2025-10-15 10:45:22",
+              "tiempo_procesamiento": "13.2s",
+              "tiempo_validacion_humana": "960s",
+              "classification_level": "Interno",
+              "validacion_automatica": {
+                "grounding_score": 0.96,
+                "cross_validation_score": 0.94,
+                "confidence_score": 0.91,
+                "citation_accuracy": 1.0
+              },
+              "validacion_humana": {
+                "revisor": "supervisor.senior@empresa.com",
+                "decision": "Aprobado",
+                "human_agreement": 1.0
+              },
+              "hitl_required": true,
+              "hitl_reason": "Safety-critical project"
+            }
+          }
         }
       ],
       "puntos_fuertes": [
