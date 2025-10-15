@@ -197,20 +197,43 @@ class CasoUsoViewer {
 
     createInputBox(comp) {
         const div = document.createElement('div');
-        div.className = 'input-box-container';
+        div.className = 'input-box-container collapsed';
         div.innerHTML = `
             <label class="input-box-label">📝 ${comp.label} - ${comp.descripcion}</label>
             <textarea class="input-box" readonly>${comp.input_value || ''}</textarea>
         `;
+        
+        // Toggle collapse/expand al hacer click
+        div.addEventListener('click', (e) => {
+            // No toggle si se hace click en el textarea
+            if (e.target.tagName !== 'TEXTAREA') {
+                div.classList.toggle('collapsed');
+            }
+        });
+        
         return div;
     }
 
     createOutputBox(comp) {
-        const div = document.createElement('div');
-        div.className = 'output-container';
+        const containerId = `output-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+        const btnId = `btn-run-${containerId}`;
+        
+        const wrapper = document.createElement('div');
         
         const output = comp.output_completo;
         const metadata = output.metadata || {};
+        
+        // Botón Run Agent
+        const btnRun = document.createElement('button');
+        btnRun.id = btnId;
+        btnRun.className = 'btn-run-agent';
+        btnRun.innerHTML = '▶️ Run Agent';
+        wrapper.appendChild(btnRun);
+        
+        // Output container (inicialmente oculto)
+        const div = document.createElement('div');
+        div.id = containerId;
+        div.className = 'output-container hidden';
         
         div.innerHTML = `
             <div class="output-header">
@@ -232,7 +255,26 @@ class CasoUsoViewer {
             ` : ''}
         `;
         
-        return div;
+        wrapper.appendChild(div);
+        
+        // Event listener para el botón
+        btnRun.addEventListener('click', () => {
+            btnRun.disabled = true;
+            btnRun.innerHTML = '<span class="loading-spinner"></span> Ejecutando...';
+            
+            // Simular procesamiento
+            setTimeout(() => {
+                div.classList.remove('hidden');
+                btnRun.style.display = 'none';
+                
+                // Scroll suave al output
+                setTimeout(() => {
+                    div.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }, 1500); // 1.5 segundos de "procesamiento"
+        });
+        
+        return wrapper;
     }
 
     formatMetadataLabel(key) {

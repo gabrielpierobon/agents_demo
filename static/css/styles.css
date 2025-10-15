@@ -447,6 +447,7 @@ body {
     color: #8a6116;
     border-left: 3px solid var(--warning-color);
     opacity: 0;
+    transform: translateX(-30px);
 }
 
 .problema-pendiente.revealed {
@@ -618,9 +619,13 @@ body {
     padding: 16px;
     border-radius: var(--border-radius);
     overflow-x: auto;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    word-wrap: break-word;
     border-left: 3px solid var(--primary-color);
     font-size: 0.8125rem;
     border: 1px solid var(--border-color);
+    max-width: 100%;
 }
 
 /* Responsive */
@@ -908,6 +913,25 @@ body {
     border: 2px solid var(--primary-color);
     margin: 16px 0;
     box-shadow: var(--shadow-card);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.input-box-container:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.input-box-container.collapsed {
+    padding: 16px 20px;
+    cursor: pointer;
+}
+
+.input-box-container.collapsed .input-box {
+    display: none;
+}
+
+.input-box-container.collapsed .input-box-label {
+    margin-bottom: 0;
 }
 
 .input-box-label {
@@ -932,6 +956,7 @@ body {
     min-height: 80px;
     background: var(--bg-color);
     color: var(--text-color);
+    display: block;
 }
 
 .input-box:focus {
@@ -950,6 +975,46 @@ body {
     box-shadow: var(--shadow-card);
     max-height: 500px;
     overflow-y: auto;
+}
+
+.output-container.hidden {
+    display: none;
+}
+
+.btn-run-agent {
+    padding: 12px 24px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.1s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: var(--shadow-card);
+    margin: 16px 0;
+}
+
+.btn-run-agent:hover {
+    background: var(--primary-hover);
+}
+
+.btn-run-agent:disabled {
+    background: #a19f9d;
+    cursor: not-allowed;
+}
+
+.btn-run-agent .loading-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
 }
 
 .output-header {
