@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso 1: Generación de Documentación Técnica</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="caso-container">
+        <div class="caso-header">
+            <a href="/" class="btn-back">← Volver al inicio</a>
+            <h1 id="caso-titulo">Caso 1: Generación de Documentación Técnica</h1>
+            <p id="caso-descripcion">Sistema de IA para generar memorias técnicas de proyectos ferroviarios</p>
+            <div id="breadcrumb">Layer 1 de 5</div>
+        </div>
+
+        <div id="diagrama-container" class="diagrama-container">
+            <!-- Los componentes se cargarán dinámicamente aquí -->
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card" id="puntos-fuertes">
+                <h3>✅ Puntos Fuertes</h3>
+                <!-- Se cargará dinámicamente -->
+            </div>
+
+            <div class="info-card" id="problemas">
+                <h3>⚠️ Problemas</h3>
+                <!-- Se cargará dinámicamente -->
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button id="btn-anterior" class="btn-nav" style="display:none;">← Layer Anterior</button>
+            <button id="btn-siguiente" class="btn-nav">Siguiente Layer →</button>
+        </div>
+    </div>
+
+    <!-- Modal para detalles de componentes -->
+    <div id="modal-detalles" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="document.getElementById('modal-detalles').style.display='none'">&times;</span>
+            <div id="modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const CASO_ID = 1;
+    </script>
+    <script src="{{ url_for('static', filename='js/caso1.js') }}"></script>
+</body>
+</html>
+

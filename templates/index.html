@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovation Day INECO - IA Generativa y Agentes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="home-container">
+        <div class="home-header">
+            <h1>🚄 Innovation Day INECO</h1>
+            <h2>IA Generativa y Agentes</h2>
+            <p class="subtitle">Aprende cómo construir sistemas de IA seguros y robustos, capa por capa</p>
+        </div>
+
+        <div class="casos-grid">
+            <div class="caso-card" onclick="window.location.href='/caso1'">
+                <div class="caso-icon">📄</div>
+                <h2>Caso 1</h2>
+                <h3>Generación de Documentación Técnica</h3>
+                <p>Descubre cómo construir un sistema RAG seguro para generar memorias técnicas de proyectos ferroviarios, añadiendo capas de seguridad, control de acceso y compliance.</p>
+                <a href="/caso1" class="btn-caso">Explorar Caso 1 →</a>
+            </div>
+
+            <div class="caso-card" onclick="window.location.href='/caso2'">
+                <div class="caso-icon">🤖</div>
+                <h2>Caso 2</h2>
+                <h3>Sistema Multiagente - Supervisión de Obra</h3>
+                <p>Aprende a diseñar un sistema de agentes especializados para supervisión automática de obras, con orquestación, seguridad y validación de decisiones.</p>
+                <a href="/caso2" class="btn-caso">Explorar Caso 2 →</a>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>¿Qué aprenderás?</h3>
+            <div class="features">
+                <div class="feature">
+                    <span class="feature-icon">🏗️</span>
+                    <h4>Construcción Incremental</h4>
+                    <p>Observa cómo cada capa añade capacidades y resuelve problemas específicos</p>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🔒</span>
+                    <h4>Seguridad por Diseño</h4>
+                    <p>Implementa controles de acceso, guardrails y protección contra ataques</p>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">📊</span>
+                    <h4>Gobierno y Compliance</h4>
+                    <p>Integra auditoría, trazabilidad y políticas de protección de datos</p>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">✅</span>
+                    <h4>Validación y Confianza</h4>
+                    <p>Asegura la calidad de las decisiones con grounding y confidence scoring</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

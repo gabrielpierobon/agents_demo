@@ -1,0 +1,322 @@
+{
+  "caso": {
+    "id": 2,
+    "titulo": "Sistema Multiagente - Supervisión de Obra",
+    "descripcion": "Sistema de agentes especializados para supervisión automática de obras ferroviarias"
+  },
+  "layers": [
+    {
+      "id": 1,
+      "nombre": "Sistema Base",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "IMÁGENES DRONES",
+          "descripcion": "Fotografías aéreas de obra",
+          "ejemplo": "imagen_obra_tramo_5.jpg"
+        },
+        {
+          "tipo": "agent",
+          "label": "AGENTE ANÁLISIS",
+          "descripcion": "Agente único que hace todo",
+          "ejemplo": "Tiempo: 8 segundos"
+        },
+        {
+          "tipo": "output",
+          "label": "ALERTA",
+          "descripcion": "Notificación de desviación",
+          "ejemplo": "Desviación detectada: 3cm respecto a plano"
+        }
+      ],
+      "puntos_fuertes": [
+        "Detecta desviaciones automáticamente",
+        "Procesa imágenes de drones",
+        "Genera alertas"
+      ],
+      "problemas": [
+        "Un solo agente hace todo (sobrecarga)",
+        "No valida contra normativa técnica",
+        "No actualiza gemelo digital (TWINECO)",
+        "No puede acceder a herramientas peligrosas de forma controlada",
+        "Sin monitorización de rendimiento",
+        "Sin validación de confianza en decisiones"
+      ],
+      "problemas_resueltos": []
+    },
+    {
+      "id": 2,
+      "nombre": "Orquestación de Agentes Especializados",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "IMÁGENES",
+          "descripcion": "Input de drones"
+        },
+        {
+          "tipo": "agent",
+          "label": "COORDINADOR",
+          "descripcion": "Orquesta el flujo entre agentes",
+          "ejemplo": "Distribuye tareas y recopila resultados"
+        },
+        {
+          "tipo": "agent",
+          "label": "COMPUTER VISION",
+          "descripcion": "Analiza imágenes",
+          "ejemplo": "Tiempo: 2s - Desviación 3cm detectada"
+        },
+        {
+          "tipo": "agent",
+          "label": "VALIDADOR NORMATIVO",
+          "descripcion": "Valida contra normas ADIF",
+          "ejemplo": "Tiempo: 1s - Fuera de tolerancia"
+        },
+        {
+          "tipo": "agent",
+          "label": "GEMELO DIGITAL",
+          "descripcion": "Actualiza TWINECO",
+          "ejemplo": "Tiempo: 1s - Estado: ALERTA CRÍTICA"
+        },
+        {
+          "tipo": "agent",
+          "label": "GENERADOR INFORMES",
+          "descripcion": "Crea documentación",
+          "ejemplo": "Tiempo: 3s - informe_desviacion_tramo5.pdf"
+        },
+        {
+          "tipo": "output",
+          "label": "OUTPUT",
+          "descripcion": "Resultado completo",
+          "ejemplo": "Total tiempo: 7s (vs 8s anterior)"
+        }
+      ],
+      "puntos_fuertes": [
+        "Especialización: cada agente una función",
+        "Paralelización de tareas",
+        "Integración con TWINECO",
+        "Validación normativa automática",
+        "Comunicación A2A/MCP entre agentes"
+      ],
+      "problemas": [
+        "Agentes pueden ejecutar acciones peligrosas sin control",
+        "Sin métricas de rendimiento",
+        "¿Cómo sabemos si las decisiones son correctas?"
+      ],
+      "problemas_resueltos": [
+        "Un solo agente sobrecargado",
+        "No valida normativa",
+        "No actualiza gemelo digital"
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Tool Use Security y Entitlements",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "IMÁGENES",
+          "descripcion": "Input"
+        },
+        {
+          "tipo": "agent",
+          "label": "COORDINADOR",
+          "descripcion": "Orquestador"
+        },
+        {
+          "tipo": "security",
+          "label": "POLICY ENGINE",
+          "descripcion": "Controla permisos de cada agente",
+          "ejemplo": "CV: ✅ READ_IMAGES ❌ WRITE_DATABASE"
+        },
+        {
+          "tipo": "agent",
+          "label": "COMPUTER VISION",
+          "descripcion": "Con permisos limitados",
+          "ejemplo": "Permisos: READ_IMAGES, ANALYZE_IMAGE"
+        },
+        {
+          "tipo": "agent",
+          "label": "VALIDADOR NORMATIVO",
+          "descripcion": "Con permisos específicos"
+        },
+        {
+          "tipo": "agent",
+          "label": "GEMELO DIGITAL",
+          "descripcion": "Requiere aprobación humana",
+          "ejemplo": "Human-in-the-Loop para acciones críticas"
+        },
+        {
+          "tipo": "agent",
+          "label": "GENERADOR INFORMES",
+          "descripcion": "Con permisos de escritura"
+        },
+        {
+          "tipo": "security",
+          "label": "AUDIT LOG",
+          "descripcion": "Registra intentos no autorizados",
+          "ejemplo": "Intento bloqueado - CV - 14:32:18"
+        },
+        {
+          "tipo": "output",
+          "label": "OUTPUT",
+          "descripcion": "Resultado seguro"
+        }
+      ],
+      "puntos_fuertes": [
+        "Principle of Least Privilege aplicado",
+        "Whitelisting de funciones por agente",
+        "Aprobación humana para acciones críticas",
+        "Auditoría de intentos no autorizados",
+        "Function Whitelist por agente"
+      ],
+      "problemas": [
+        "Sin métricas de rendimiento",
+        "¿Cómo validamos que decisiones son correctas?"
+      ],
+      "problemas_resueltos": [
+        "Un solo agente sobrecargado",
+        "No valida normativa",
+        "No actualiza gemelo digital",
+        "Agentes con acceso sin control"
+      ]
+    },
+    {
+      "id": 4,
+      "nombre": "Monitorización, Calibración y Gestión de Errores",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "IMÁGENES",
+          "descripcion": "Input"
+        },
+        {
+          "tipo": "agent",
+          "label": "SISTEMA MULTIAGENTE",
+          "descripcion": "5 agentes coordinados"
+        },
+        {
+          "tipo": "monitoring",
+          "label": "DASHBOARD TIEMPO REAL",
+          "descripcion": "Métricas en vivo",
+          "ejemplo": "Latencia: 4.2s | Accuracy: 98.7% | Tokens: 125,430"
+        },
+        {
+          "tipo": "monitoring",
+          "label": "LOGGING INMUTABLE",
+          "descripcion": "Logs encriptados y firmados",
+          "ejemplo": "Cada operación registrada con timestamp"
+        },
+        {
+          "tipo": "monitoring",
+          "label": "ERROR HANDLER",
+          "descripcion": "Retry logic automático",
+          "ejemplo": "Validador: 2 reintentos - API inestable"
+        },
+        {
+          "tipo": "monitoring",
+          "label": "ALERTING SYSTEM",
+          "descripcion": "Notificaciones de anomalías",
+          "ejemplo": "⚠️ Gemelo Digital lento (5.3s > 5s threshold)"
+        },
+        {
+          "tipo": "output",
+          "label": "OUTPUT + MÉTRICAS",
+          "descripcion": "Resultado con trazabilidad completa"
+        }
+      ],
+      "puntos_fuertes": [
+        "Monitorización en tiempo real",
+        "Logging inmutable para auditoría",
+        "Manejo automático de errores",
+        "Alertas por anomalías",
+        "Métricas de rendimiento por agente",
+        "Dashboard de operaciones"
+      ],
+      "problemas": [
+        "¿Cómo validamos que las decisiones son correctas?",
+        "¿Qué confianza tenemos en cada resultado?"
+      ],
+      "problemas_resueltos": [
+        "Un solo agente sobrecargado",
+        "No valida normativa",
+        "No actualiza gemelo digital",
+        "Agentes con acceso sin control",
+        "Sin métricas de rendimiento"
+      ]
+    },
+    {
+      "id": 5,
+      "nombre": "Validadores y Grounding",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "IMÁGENES",
+          "descripcion": "Input"
+        },
+        {
+          "tipo": "agent",
+          "label": "SISTEMA MULTIAGENTE",
+          "descripcion": "Agentes especializados"
+        },
+        {
+          "tipo": "validation",
+          "label": "GROUNDING ENGINE",
+          "descripcion": "Verifica evidencia documental",
+          "ejemplo": "100% afirmaciones con evidencia"
+        },
+        {
+          "tipo": "validation",
+          "label": "CROSS-VALIDATOR",
+          "descripcion": "Validación cruzada entre agentes",
+          "ejemplo": "Confidence ajustado: 0.94 → 0.91"
+        },
+        {
+          "tipo": "validation",
+          "label": "CONFIDENCE SCORING",
+          "descripcion": "Puntuación de confianza",
+          "ejemplo": "Score > 0.85 → Auto-approve"
+        },
+        {
+          "tipo": "validation",
+          "label": "CITATION SYSTEM",
+          "descripcion": "Referencias trazables",
+          "ejemplo": "Desviación 3cm [1][2] excede tolerancia [2]"
+        },
+        {
+          "tipo": "validation",
+          "label": "HUMAN REVIEW",
+          "descripcion": "Revisión humana si confidence < 0.85",
+          "ejemplo": "Confidence 0.72 → Requiere validación"
+        },
+        {
+          "tipo": "monitoring",
+          "label": "MONITORING",
+          "descripcion": "Dashboard completo"
+        },
+        {
+          "tipo": "output",
+          "label": "OUTPUT VALIDADO",
+          "descripcion": "Resultado con evidencias y confianza"
+        }
+      ],
+      "puntos_fuertes": [
+        "Grounding: toda afirmación con evidencia documental",
+        "Cross-validation entre agentes",
+        "Confidence scoring para decisiones",
+        "Citations completas y trazables",
+        "Human-in-the-loop para baja confianza",
+        "Sistema robusto y confiable"
+      ],
+      "problemas": [],
+      "problemas_resueltos": [
+        "Un solo agente sobrecargado",
+        "No valida normativa",
+        "No actualiza gemelo digital",
+        "Agentes con acceso sin control",
+        "Sin métricas de rendimiento",
+        "Validación de decisiones",
+        "Nivel de confianza en resultados"
+      ]
+    }
+  ]
+}
+
