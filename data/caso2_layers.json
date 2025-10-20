@@ -1,8 +1,8 @@
-﻿{
+{
   "caso": {
     "id": 2,
-    "titulo": "Sistema Multiagente - SupervisiÃ³n de Obra",
-    "descripcion": "Sistema de agentes especializados para supervisiÃ³n automÃ¡tica de obras ferroviarias"
+    "titulo": "Sistema Multiagente - Supervisión de Obra",
+    "descripcion": "Sistema de agentes especializados para supervisión automática de obras ferroviarias"
   },
   "layers": [
     {
@@ -10,28 +10,28 @@
       "nombre": "Problema de Negocio",
       "es_introduccion": true,
       "problema": {
-        "titulo": "El DesafÃ­o de la SupervisiÃ³n de Obras Ferroviarias",
-        "descripcion": "Las empresas de ingenierÃ­a supervisan obras ferroviarias complejas en mÃºltiples paÃ­ses. La supervisiÃ³n manual presenta desafÃ­os crÃ­ticos:",
+        "titulo": "El Desafío de la Supervisión de Obras Ferroviarias",
+        "descripcion": "Las empresas de ingeniería supervisan obras ferroviarias complejas en múltiples países. La supervisión manual presenta desafíos críticos:",
         "puntos": [
-          "ðŸ“· Miles de imÃ¡genes de drones diarias que revisar manualmente",
-          "ðŸ‘· Inspectores en campo limitados (1 por cada 5km de obra)",
-          "â° DetecciÃ³n de desviaciones tarda 2-3 dÃ­as (cuando ya hay sobrecostes)",
-          "ðŸ“Š ComparaciÃ³n manual con planos y normativas (propenso a errores)",
-          "ðŸ”„ Sin integraciÃ³n con gemelo digital Gemelo Digital en tiempo real"
+          "📷 Miles de imágenes de drones diarias que revisar manualmente",
+          "👷 Inspectores en campo limitados (1 por cada 5km de obra)",
+          "⏰ Detección de desviaciones tarda 2-3 días (cuando ya hay sobrecostes)",
+          "📊 Comparación manual con planos y normativas (propenso a errores)",
+          "🔄 Sin integración con gemelo digital Gemelo Digital en tiempo real"
         ],
-        "impacto": "Las desviaciones detectadas tarde generan sobrecostes del 15-20%. La falta de supervisiÃ³n continua compromete calidad y seguridad."
+        "impacto": "Las desviaciones detectadas tarde generan sobrecostes del 15-20%. La falta de supervisión continua compromete calidad y seguridad."
       },
       "solucion": {
-        "titulo": "Â¿Por quÃ© un Sistema Multiagente?",
+        "titulo": "¿Por qué un Sistema Multiagente?",
         "descripcion": "Un sistema de agentes especializados puede:",
         "beneficios": [
-          "ðŸ‘ï¸ Analizar automÃ¡ticamente imÃ¡genes de drones en tiempo real",
-          "âš¡ Detectar desviaciones en minutos en lugar de dÃ­as",
-          "ðŸ¤– EspecializaciÃ³n: cada agente domina una tarea especÃ­fica",
-          "ðŸ”— IntegraciÃ³n automÃ¡tica con Gemelo Digital (gemelo digital)",
-          "ðŸ“‹ ValidaciÃ³n contra normativas ADIF/UIC sin intervenciÃ³n humana"
+          "👁️ Analizar automáticamente imágenes de drones en tiempo real",
+          "⚡ Detectar desviaciones en minutos en lugar de días",
+          "🤖 Especialización: cada agente domina una tarea específica",
+          "🔗 Integración automática con Gemelo Digital (gemelo digital)",
+          "📋 Validación contra normativas ADIF/UIC sin intervención humana"
         ],
-        "enfoque": "Construiremos el sistema capa por capa: desde un agente Ãºnico hasta una arquitectura multiagente robusta, segura y confiable."
+        "enfoque": "Construiremos el sistema capa por capa: desde un agente único hasta una arquitectura multiagente robusta, segura y confiable."
       }
     },
     {
@@ -40,237 +40,159 @@
       "componentes": [
         {
           "tipo": "input",
-          "label": "IMÃGENES DRONES",
-          "descripcion": "FotografÃ­as aÃ©reas de obra",
-          "ejemplo": "imagen_obra_tramo_5.jpg",
-          "input_value": "imagen_obra_tramo_5.jpg\n\n[Metadata: Fecha: 2025-10-15 | Tramo: 5 | KM: 23.4 | Drone: DJI-M300 | ResoluciÃ³n: 4K]",
-          "es_interactivo": true
+          "label": "IMÁGENES DRONES",
+          "descripcion": "Fotografías aéreas de obra",
+          "ejemplo": "imagen_obra_tramo_5.jpg"
         },
         {
           "tipo": "agent",
-          "label": "AGENTE ANÃLISIS",
-          "descripcion": "Agente Ãºnico que hace todo",
-          "ejemplo": "Tiempo: 8 segundos",
-          "configuracion": {
-            "modelo": "GPT-4-Vision",
-            "temperatura": 0.1,
-            "max_tokens": 2000,
-            "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "presence_penalty": 0.0
-          },
-          "system_prompt": "Eres un agente especializado en anÃ¡lisis de imÃ¡genes de obras ferroviarias. Analiza la imagen, detecta elementos, compara con planos y genera alertas de desviaciones."
+          "label": "AGENTE ANÁLISIS",
+          "descripcion": "Agente único que hace todo",
+          "ejemplo": "Tiempo: 8 segundos"
         },
         {
           "tipo": "output",
           "label": "ALERTA",
-          "descripcion": "NotificaciÃ³n de desviaciÃ³n",
-          "ejemplo": "DesviaciÃ³n detectada: 3cm respecto a plano",
-          "output_completo": {
-            "titulo": "ALERTA DE DESVIACIÃ“N DETECTADA",
-            "contenido": "ANÃLISIS DE IMAGEN: imagen_obra_tramo_5.jpg\nFECHA: 2025-10-15 10:23:45\nTRAMO: 5 | KM: 23.4\n\n=== DESVIACIÃ“N DETECTADA ===\n\nTIPO: Posicionamiento de vÃ­a\nSEVERIDAD: Media\nDESCRIPCIÃ“N: La vÃ­a presenta una desviaciÃ³n lateral de 3.2cm respecto a la posiciÃ³n especificada en planos.\n\nUBICACIÃ“N EXACTA: KM 23.4 + 15m\nELEMENTO AFECTADO: VÃ­a principal\nTOLERANCIA PERMITIDA: Â±2cm\nDESVIACIÃ“N MEDIDA: 3.2cm\n\nACCIÃ“N RECOMENDADA: CorrecciÃ³n mediante ajuste de traviesas\nPRIORIDAD: Media\nTIEMPO ESTIMADO CORRECCIÃ“N: 2 horas",
-            "metadata": {
-              "fecha_analisis": "2025-10-15",
-              "tiempo_procesamiento": "8.3s",
-              "confianza": 0.87,
-              "elementos_detectados": 15
-            }
-          }
+          "descripcion": "Notificación de desviación",
+          "ejemplo": "Desviación detectada: 3cm respecto a plano"
         }
       ],
       "puntos_fuertes": [
         {
-          "texto": "Detecta desviaciones automÃ¡ticamente",
-          "explicacion": "El agente analiza imÃ¡genes y detecta diferencias respecto a planos: posiciÃ³n de vÃ­a, estructuras, elementos de seguridad. Automatiza trabajo manual de inspectores."
+          "texto": "Detecta desviaciones automáticamente",
+          "explicacion": "El agente analiza imágenes y detecta diferencias respecto a planos: posición de vía, estructuras, elementos de seguridad. Automatiza trabajo manual de inspectores."
         },
         {
-          "texto": "Procesa imÃ¡genes de drones",
-          "explicacion": "Computer vision integrado: reconoce elementos ferroviarios (vÃ­as, traviesas, balasto, catenaria) y mide dimensiones con precisiÃ³n milimÃ©trica."
+          "texto": "Procesa imágenes de drones",
+          "explicacion": "Computer vision integrado: reconoce elementos ferroviarios (vías, traviesas, balasto, catenaria) y mide dimensiones con precisión milimétrica."
         },
         {
           "texto": "Genera alertas",
-          "explicacion": "Cuando detecta una desviaciÃ³n, crea automÃ¡ticamente una alerta con ubicaciÃ³n, tipo de problema y severidad estimada."
+          "explicacion": "Cuando detecta una desviación, crea automáticamente una alerta con ubicación, tipo de problema y severidad estimada."
         }
       ],
       "problemas": [
         {
           "texto": "Un solo agente hace todo (sobrecarga)",
-          "explicacion": "El agente debe: analizar imagen, validar normativa, actualizar Gemelo Digital, generar informe. Demasiadas responsabilidades â†’ lento y propenso a errores."
+          "explicacion": "El agente debe: analizar imagen, validar normativa, actualizar Gemelo Digital, generar informe. Demasiadas responsabilidades → lento y propenso a errores."
         },
         {
-          "texto": "No valida contra normativa tÃ©cnica",
-          "explicacion": "Detecta la desviaciÃ³n pero no sabe si estÃ¡ dentro de tolerancias permitidas por ADIF. Un inspector debe validar manualmente cada alerta."
+          "texto": "No valida contra normativa técnica",
+          "explicacion": "Detecta la desviación pero no sabe si está dentro de tolerancias permitidas por ADIF. Un inspector debe validar manualmente cada alerta."
         },
         {
           "texto": "No actualiza gemelo digital (Gemelo Digital)",
-          "explicacion": "La desviaciÃ³n detectada no se refleja en Gemelo Digital. El gemelo digital queda desactualizado, perdiendo valor como fuente de verdad."
+          "explicacion": "La desviación detectada no se refleja en Gemelo Digital. El gemelo digital queda desactualizado, perdiendo valor como fuente de verdad."
         },
         {
           "texto": "No puede acceder a herramientas peligrosas de forma controlada",
-          "explicacion": "Si necesita actualizar Gemelo Digital o enviar alertas crÃ­ticas, no hay control sobre quÃ© puede hacer. Riesgo de acciones no autorizadas."
+          "explicacion": "Si necesita actualizar Gemelo Digital o enviar alertas críticas, no hay control sobre qué puede hacer. Riesgo de acciones no autorizadas."
         },
         {
-          "texto": "Sin monitorizaciÃ³n de rendimiento",
-          "explicacion": "No sabemos si el agente funciona correctamente: Â¿cuÃ¡ntas imÃ¡genes procesa? Â¿cuÃ¡nto tarda? Â¿cuÃ¡ntos errores tiene? Caja negra."
+          "texto": "Sin monitorización de rendimiento",
+          "explicacion": "No sabemos si el agente funciona correctamente: ¿cuántas imágenes procesa? ¿cuánto tarda? ¿cuántos errores tiene? Caja negra."
         },
         {
-          "texto": "Sin validaciÃ³n de confianza en decisiones",
-          "explicacion": "Â¿QuÃ© tan seguro estÃ¡ el agente de que hay una desviaciÃ³n? Â¿Es 50% o 99% de confianza? Sin esto, no sabemos si confiar en las alertas."
+          "texto": "Sin validación de confianza en decisiones",
+          "explicacion": "¿Qué tan seguro está el agente de que hay una desviación? ¿Es 50% o 99% de confianza? Sin esto, no sabemos si confiar en las alertas."
         }
       ],
       "problemas_resueltos": []
     },
     {
       "id": 2,
-      "nombre": "OrquestaciÃ³n de Agentes Especializados",
+      "nombre": "Orquestación de Agentes Especializados",
       "componentes": [
         {
           "tipo": "input",
-          "label": "IMÃGENES",
-          "descripcion": "Input de drones",
-          "input_value": "imagen_obra_tramo_5.jpg\n\n[Metadata: Fecha: 2025-10-15 | Tramo: 5 | KM: 23.4 | Drone: DJI-M300 | ResoluciÃ³n: 4K | Elementos visibles: VÃ­a, balasto, traviesas, seÃ±alizaciÃ³n]",
-          "es_interactivo": true
+          "label": "IMÁGENES",
+          "descripcion": "Input de drones"
         },
         {
           "tipo": "agent",
           "label": "COORDINADOR",
           "descripcion": "Orquesta el flujo entre agentes",
-          "ejemplo": "Distribuye tareas y recopila resultados",
-          "configuracion": {
-            "modelo": "GPT-4",
-            "temperatura": 0.1,
-            "max_tokens": 2000,
-            "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "presence_penalty": 0.0
-          },
-          "system_prompt": "Eres el agente coordinador de un sistema multiagente. Recibes imÃ¡genes, determinas quÃ© agentes especializados deben procesarlas, orquestas su ejecuciÃ³n y consolidas resultados."
+          "ejemplo": "Distribuye tareas y recopila resultados"
         },
         {
           "tipo": "agent",
           "label": "COMPUTER VISION",
-          "descripcion": "Analiza imÃ¡genes",
-          "ejemplo": "Tiempo: 2s - DesviaciÃ³n 3cm detectada",
-          "configuracion": {
-            "modelo": "GPT-4-Vision",
-            "temperatura": 0.1,
-            "max_tokens": 2000,
-            "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "presence_penalty": 0.0
-          },
-          "system_prompt": "Eres un agente especializado en visiÃ³n por computadora para infraestructura ferroviaria. Detecta y mide: vÃ­as, traviesas, balasto, catenaria, seÃ±alizaciÃ³n, estructuras. Proporciona mediciones precisas."
+          "descripcion": "Analiza imágenes",
+          "ejemplo": "Tiempo: 2s - Desviación 3cm detectada"
         },
         {
           "tipo": "agent",
           "label": "VALIDADOR NORMATIVO",
           "descripcion": "Valida contra normas ADIF",
-          "ejemplo": "Tiempo: 1s - Fuera de tolerancia",
-          "configuracion": {
-            "modelo": "GPT-4",
-            "temperatura": 0.1,
-            "max_tokens": 2000,
-            "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "presence_penalty": 0.0
-          },
-          "system_prompt": "Eres un agente especializado en normativas ferroviarias (ADIF, UIC, EN). Validas que las mediciones cumplan con especificaciones tÃ©cnicas y generas alertas de incumplimientos."
+          "ejemplo": "Tiempo: 1s - Fuera de tolerancia"
         },
         {
           "tipo": "agent",
           "label": "GEMELO DIGITAL",
           "descripcion": "Actualiza Gemelo Digital",
-          "ejemplo": "Tiempo: 1s - Estado: ALERTA CRÃTICA",
-          "configuracion": {
-            "modelo": "GPT-4",
-            "temperatura": 0.1,
-            "max_tokens": 2000,
-            "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "presence_penalty": 0.0
-          },
-          "system_prompt": "Eres un agente que integra con Gemelo Digital (gemelo digital). Actualizas el modelo 3D con datos reales de obra y detectas desviaciones respecto al diseÃ±o."
+          "ejemplo": "Tiempo: 1s - Estado: ALERTA CRÍTICA"
         },
         {
           "tipo": "agent",
           "label": "GENERADOR INFORMES",
-          "descripcion": "Crea documentaciÃ³n",
-          "ejemplo": "Tiempo: 3s - informe_desviacion_tramo5.pdf",
-          "configuracion": {
-            "modelo": "GPT-4",
-            "temperatura": 0.1,
-            "max_tokens": 2000,
-            "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "presence_penalty": 0.0
-          },
-          "system_prompt": "Eres un agente especializado en generar informes tÃ©cnicos. Consolidas informaciÃ³n de otros agentes y produces informes estructurados para supervisores."
+          "descripcion": "Crea documentación",
+          "ejemplo": "Tiempo: 3s - informe_desviacion_tramo5.pdf"
         },
         {
           "tipo": "output",
           "label": "OUTPUT",
           "descripcion": "Resultado completo",
-          "ejemplo": "Total tiempo: 7s (vs 8s anterior)",
-          "output_completo": {
-            "titulo": "INFORME DE SUPERVISIÃ“N MULTIAGENTE",
-            "contenido": "ANÃLISIS COORDINADO: imagen_obra_tramo_5.jpg\nFECHA: 2025-10-15 10:25:12\nTRAMO: 5 | KM: 23.4\n\n=== ANÃLISIS POR AGENTE ESPECIALIZADO ===\n\n[COMPUTER VISION]\nElementos detectados:\n- VÃ­a principal: PosiciÃ³n correcta\n- Traviesas: 24 unidades visibles, espaciado correcto\n- Balasto: GranulometrÃ­a adecuada, nivel correcto\n- SeÃ±alizaciÃ³n: Poste KM 23 visible y correcto\n\nMediciones:\n- Ancho de vÃ­a: 1.435mm (âœ“ Correcto)\n- Espaciado traviesas: 60cm (âœ“ Correcto)\n- Altura balasto: 35cm (âœ“ Correcto)\n\n[VALIDADOR NORMATIVO]\nValidaciÃ³n contra ADIF ET 03.360.571.8:\nâœ“ Ancho de vÃ­a conforme\nâœ“ Espaciado traviesas conforme\nâœ“ GranulometrÃ­a balasto conforme\nâš ï¸ ALERTA: Falta seÃ±alizaciÃ³n de seguridad cada 50m (detectada solo en KM 23)\n\n[GEMELO DIGITAL - Gemelo Digital]\nComparaciÃ³n con modelo 3D:\nâœ“ PosiciÃ³n vÃ­a: DesviaciÃ³n 0.8cm (dentro de tolerancia)\nâœ“ ElevaciÃ³n: Correcta\nâš ï¸ ALERTA: Estructura temporal no reflejada en gemelo digital\n\n[GENERADOR INFORMES]\n=== RESUMEN EJECUTIVO ===\nEstado general: ACEPTABLE CON OBSERVACIONES\nDesviaciones crÃ­ticas: 0\nDesviaciones medias: 2\nAcciones requeridas: 2\n\nPrÃ³ximos pasos:\n1. Instalar seÃ±alizaciÃ³n de seguridad adicional\n2. Actualizar gemelo digital con estructura temporal",
-            "metadata": {
-              "fecha_analisis": "2025-10-15",
-              "tiempo_procesamiento": "12.7s",
-              "agentes_ejecutados": 4,
-              "confianza_promedio": 0.91
-            }
-          }
+          "ejemplo": "Total tiempo: 7s (vs 8s anterior)"
         }
       ],
       "puntos_fuertes": [
         {
-          "texto": "EspecializaciÃ³n: cada agente una funciÃ³n",
-          "explicacion": "Computer Vision solo analiza imÃ¡genes. Validador solo verifica normativas. Cada agente es experto en su dominio â†’ mayor precisiÃ³n y mantenibilidad."
+          "texto": "Especialización: cada agente una función",
+          "explicacion": "Computer Vision solo analiza imágenes. Validador solo verifica normativas. Cada agente es experto en su dominio → mayor precisión y mantenibilidad."
         },
         {
-          "texto": "ParalelizaciÃ³n de tareas",
-          "explicacion": "Mientras Computer Vision analiza imagen 2, Validador procesa resultado de imagen 1. EjecuciÃ³n concurrente â†’ 12% mÃ¡s rÃ¡pido que agente Ãºnico."
+          "texto": "Paralelización de tareas",
+          "explicacion": "Mientras Computer Vision analiza imagen 2, Validador procesa resultado de imagen 1. Ejecución concurrente → 12% más rápido que agente único."
         },
         {
-          "texto": "IntegraciÃ³n con Gemelo Digital",
-          "explicacion": "Agente Gemelo Digital actualiza automÃ¡ticamente el modelo 3D con cada desviaciÃ³n detectada. Gemelo Digital siempre refleja estado real de la obra."
+          "texto": "Integración con Gemelo Digital",
+          "explicacion": "Agente Gemelo Digital actualiza automáticamente el modelo 3D con cada desviación detectada. Gemelo Digital siempre refleja estado real de la obra."
         },
         {
-          "texto": "ValidaciÃ³n normativa automÃ¡tica",
-          "explicacion": "Agente Validador conoce todas las normativas ADIF/UIC. Verifica automÃ¡ticamente si desviaciÃ³n estÃ¡ dentro de tolerancias. Reduce falsos positivos 80%."
+          "texto": "Validación normativa automática",
+          "explicacion": "Agente Validador conoce todas las normativas ADIF/UIC. Verifica automáticamente si desviación está dentro de tolerancias. Reduce falsos positivos 80%."
         },
         {
-          "texto": "ComunicaciÃ³n A2A/MCP entre agentes",
-          "explicacion": "Agentes se comunican mediante protocolo MCP (Model Context Protocol). Mensajes estructurados, trazables y con retry automÃ¡tico si hay fallos."
+          "texto": "Comunicación A2A/MCP entre agentes",
+          "explicacion": "Agentes se comunican mediante protocolo MCP (Model Context Protocol). Mensajes estructurados, trazables y con retry automático si hay fallos."
         }
       ],
       "problemas": [
         {
           "texto": "Agentes pueden ejecutar acciones peligrosas sin control",
-          "explicacion": "Agente Gemelo Digital puede modificar Gemelo Digital sin restricciones. Â¿Y si un bug hace que marque toda la obra como 'CRÃTICO'? No hay permisos granulares."
+          "explicacion": "Agente Gemelo Digital puede modificar Gemelo Digital sin restricciones. ¿Y si un bug hace que marque toda la obra como 'CRÍTICO'? No hay permisos granulares."
         },
         {
-          "texto": "Sin mÃ©tricas de rendimiento",
-          "explicacion": "No sabemos quÃ© agente es el cuello de botella. Â¿Computer Vision tarda mucho? Â¿Validador falla a menudo? Sin mÃ©tricas, no podemos optimizar."
+          "texto": "Sin métricas de rendimiento",
+          "explicacion": "No sabemos qué agente es el cuello de botella. ¿Computer Vision tarda mucho? ¿Validador falla a menudo? Sin métricas, no podemos optimizar."
         },
         {
-          "texto": "Â¿CÃ³mo sabemos si las decisiones son correctas?",
-          "explicacion": "Si Computer Vision dice 'desviaciÃ³n 3cm' y Validador dice 'crÃ­tico', Â¿cÃ³mo verificamos que es correcto? No hay validaciÃ³n cruzada ni evidencia documental."
+          "texto": "¿Cómo sabemos si las decisiones son correctas?",
+          "explicacion": "Si Computer Vision dice 'desviación 3cm' y Validador dice 'crítico', ¿cómo verificamos que es correcto? No hay validación cruzada ni evidencia documental."
         }
       ],
       "problemas_resueltos": [
         {
           "texto": "Un solo agente sobrecargado",
-          "explicacion": "Resuelto: 5 agentes especializados distribuyen la carga. Cada uno domina su funciÃ³n."
+          "explicacion": "Resuelto: 5 agentes especializados distribuyen la carga. Cada uno domina su función."
         },
         {
           "texto": "No valida normativa",
-          "explicacion": "Resuelto: Agente Validador Normativo verifica automÃ¡ticamente contra ADIF/UIC."
+          "explicacion": "Resuelto: Agente Validador Normativo verifica automáticamente contra ADIF/UIC."
         },
         {
           "texto": "No actualiza gemelo digital",
-          "explicacion": "Resuelto: Agente Gemelo Digital sincroniza automÃ¡ticamente con Gemelo Digital."
+          "explicacion": "Resuelto: Agente Gemelo Digital sincroniza automáticamente con Gemelo Digital."
         }
       ]
     },
@@ -280,88 +202,41 @@
       "componentes": [
         {
           "tipo": "input",
-          "label": "IMÃGENES",
-          "descripcion": "Input",
-          "input_value": "imagen_obra_tramo_5.jpg\n\n[Metadata: Fecha: 2025-10-15 | Tramo: 5 | KM: 23.4 | Drone: DJI-M300 | ResoluciÃ³n: 4K | Usuario: inspector.campo@empresa.com | Proyecto: OBRA-2025-089 | Clearance: Interno]",
-          "es_interactivo": true
+          "label": "IMÁGENES",
+          "descripcion": "Input"
         },
         {
           "tipo": "agent",
           "label": "COORDINADOR",
-          "descripcion": "Orquestador",
-          "configuracion": {
-            "modelo": "GPT-4",
-            "temperatura": 0.1,
-            "max_tokens": 2000,
-            "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "presence_penalty": 0.0
-          },
-          "system_prompt": "Eres el agente coordinador de un sistema multiagente. Recibes imÃ¡genes, determinas quÃ© agentes especializados deben procesarlas, orquestas su ejecuciÃ³n y consolidas resultados."
+          "descripcion": "Orquestador"
         },
         {
           "tipo": "security",
           "label": "POLICY ENGINE",
           "descripcion": "Controla permisos de cada agente",
-          "ejemplo": "CV: âœ… READ_IMAGES âŒ WRITE_DATABASE"
+          "ejemplo": "CV: ✅ READ_IMAGES ❌ WRITE_DATABASE"
         },
         {
           "tipo": "agent",
           "label": "COMPUTER VISION",
           "descripcion": "Con permisos limitados",
-          "ejemplo": "Permisos: READ_IMAGES, ANALYZE_IMAGE",
-          "configuracion": {
-            "modelo": "GPT-4-Vision",
-            "temperatura": 0.1,
-            "max_tokens": 2000,
-            "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "presence_penalty": 0.0
-          },
-          "system_prompt": "Eres un agente especializado en visiÃ³n por computadora para infraestructura ferroviaria. Detecta y mide: vÃ­as, traviesas, balasto, catenaria, seÃ±alizaciÃ³n, estructuras. Proporciona mediciones precisas."
+          "ejemplo": "Permisos: READ_IMAGES, ANALYZE_IMAGE"
         },
         {
           "tipo": "agent",
           "label": "VALIDADOR NORMATIVO",
-          "descripcion": "Con permisos especÃ­ficos",
-          "configuracion": {
-            "modelo": "GPT-4",
-            "temperatura": 0.1,
-            "max_tokens": 2000,
-            "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "presence_penalty": 0.0
-          },
-          "system_prompt": "Eres un agente especializado en normativas ferroviarias (ADIF, UIC, EN). Validas que las mediciones cumplan con especificaciones tÃ©cnicas y generas alertas de incumplimientos."
+          "descripcion": "Con permisos específicos"
         },
         {
           "tipo": "agent",
           "label": "GEMELO DIGITAL",
-          "descripcion": "Requiere aprobaciÃ³n humana",
-          "ejemplo": "Human-in-the-Loop para acciones crÃ­ticas",
-          "configuracion": {
-            "modelo": "GPT-4",
-            "temperatura": 0.1,
-            "max_tokens": 2000,
-            "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "presence_penalty": 0.0
-          },
-          "system_prompt": "Eres un agente que integra con Gemelo Digital (gemelo digital). Actualizas el modelo 3D con datos reales de obra y detectas desviaciones respecto al diseÃ±o."
+          "descripcion": "Requiere aprobación humana",
+          "ejemplo": "Human-in-the-Loop para acciones críticas"
         },
         {
           "tipo": "agent",
           "label": "GENERADOR INFORMES",
-          "descripcion": "Con permisos de escritura",
-          "configuracion": {
-            "modelo": "GPT-4",
-            "temperatura": 0.1,
-            "max_tokens": 2000,
-            "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "presence_penalty": 0.0
-          },
-          "system_prompt": "Eres un agente especializado en generar informes tÃ©cnicos. Consolidas informaciÃ³n de otros agentes y produces informes estructurados para supervisores."
+          "descripcion": "Con permisos de escritura"
         },
         {
           "tipo": "security",
@@ -372,70 +247,53 @@
         {
           "tipo": "output",
           "label": "OUTPUT",
-          "descripcion": "Resultado seguro",
-          "output_completo": {
-            "titulo": "INFORME DE SUPERVISIÃ“N SEGURO",
-            "contenido": "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•\nCLASIFICACIÃ“N: INTERNO\nPROYECTO: OBRA-2025-089\nANALIZADO POR: inspector.campo@empresa.com\nFECHA: 2025-10-15 10:27:33 UTC\nAUDIT ID: AUDIT-2025-10-15-102733\nâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•\n\nANÃLISIS COORDINADO: imagen_obra_tramo_5.jpg\nTRAMO: 5 | KM: 23.4\n\n[COMPUTER VISION - Autorizado]\nElementos detectados: 15\nMediciones realizadas: 8\nConfianza: 0.92\n\n[VALIDADOR NORMATIVO - Autorizado]\nNormativas consultadas: ADIF ET 03.360.571.8, UIC 719\nValidaciones: 12 conformes, 2 alertas\n\n[GEMELO DIGITAL - Acceso restringido aplicado]\nActualizaciÃ³n Gemelo Digital: Completada\nDesviaciones: 1 menor\n\n[GENERADOR INFORMES]\nEstado: ACEPTABLE CON OBSERVACIONES\nAcciones requeridas: 2\n\nâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•\nCLASIFICACIÃ“N: INTERNO\nDistribuciÃ³n: Personal autorizado proyecto OBRA-2025-089\nâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•",
-            "metadata": {
-              "fecha_analisis": "2025-10-15",
-              "tiempo_procesamiento": "13.4s",
-              "usuario": "inspector.campo@empresa.com",
-              "proyecto": "OBRA-2025-089",
-              "classification_level": "Interno",
-              "tools_used": [
-                "computer_vision",
-                "normativas_db",
-                "Gemelo Digital_api"
-              ],
-              "audit_log_id": "AUDIT-2025-10-15-102733"
-            }
-          }
+          "descripcion": "Resultado seguro"
         }
       ],
       "puntos_fuertes": [
         {
           "texto": "Principle of Least Privilege aplicado",
-          "explicacion": "Cada agente solo tiene los permisos mÃ­nimos necesarios. Computer Vision puede leer imÃ¡genes pero no escribir en Gemelo Digital. Reduce superficie de ataque."
+          "explicacion": "Cada agente solo tiene los permisos mínimos necesarios. Computer Vision puede leer imágenes pero no escribir en Gemelo Digital. Reduce superficie de ataque."
         },
         {
           "texto": "Whitelisting de funciones por agente",
-          "explicacion": "Lista explÃ­cita de funciones permitidas por agente. Computer Vision: [analyze_image, detect_objects]. Cualquier otra funciÃ³n â†’ bloqueada."
+          "explicacion": "Lista explícita de funciones permitidas por agente. Computer Vision: [analyze_image, detect_objects]. Cualquier otra función → bloqueada."
         },
         {
-          "texto": "AprobaciÃ³n humana para acciones crÃ­ticas",
-          "explicacion": "Si Agente Gemelo Digital quiere cambiar estado de infraestructura a 'SHUTDOWN', requiere aprobaciÃ³n de ingeniero senior. Human-in-the-Loop para decisiones crÃ­ticas."
+          "texto": "Aprobación humana para acciones críticas",
+          "explicacion": "Si Agente Gemelo Digital quiere cambiar estado de infraestructura a 'SHUTDOWN', requiere aprobación de ingeniero senior. Human-in-the-Loop para decisiones críticas."
         },
         {
-          "texto": "AuditorÃ­a de intentos no autorizados",
-          "explicacion": "Cada intento de ejecutar funciÃ³n no permitida se registra: agente, funciÃ³n, timestamp. Permite detectar comportamientos anÃ³malos o bugs."
+          "texto": "Auditoría de intentos no autorizados",
+          "explicacion": "Cada intento de ejecutar función no permitida se registra: agente, función, timestamp. Permite detectar comportamientos anómalos o bugs."
         },
         {
           "texto": "Function Whitelist por agente",
-          "explicacion": "ConfiguraciÃ³n declarativa de permisos. FÃ¡cil de auditar y modificar. Ejemplo: Validador puede [read_norms, validate_spec] pero no [write_db, send_email]."
+          "explicacion": "Configuración declarativa de permisos. Fácil de auditar y modificar. Ejemplo: Validador puede [read_norms, validate_spec] pero no [write_db, send_email]."
         }
       ],
       "problemas": [
         {
-          "texto": "Sin mÃ©tricas de rendimiento",
-          "explicacion": "Aunque tenemos seguridad, seguimos sin saber: Â¿cuÃ¡nto tarda cada agente? Â¿cuÃ¡ntas imÃ¡genes procesa por minuto? Â¿cuÃ¡l es el accuracy?"
+          "texto": "Sin métricas de rendimiento",
+          "explicacion": "Aunque tenemos seguridad, seguimos sin saber: ¿cuánto tarda cada agente? ¿cuántas imágenes procesa por minuto? ¿cuál es el accuracy?"
         },
         {
-          "texto": "Â¿CÃ³mo validamos que decisiones son correctas?",
-          "explicacion": "Tenemos permisos pero no validaciÃ³n de calidad. Si Computer Vision detecta mal, nadie lo verifica. Necesitamos cross-validation y confidence scoring."
+          "texto": "¿Cómo validamos que decisiones son correctas?",
+          "explicacion": "Tenemos permisos pero no validación de calidad. Si Computer Vision detecta mal, nadie lo verifica. Necesitamos cross-validation y confidence scoring."
         }
       ],
       "problemas_resueltos": [
         {
           "texto": "Un solo agente sobrecargado",
-          "explicacion": "âœ… Resuelto en Layer 2"
+          "explicacion": "✅ Resuelto en Layer 2"
         },
         {
           "texto": "No valida normativa",
-          "explicacion": "âœ… Resuelto en Layer 2"
+          "explicacion": "✅ Resuelto en Layer 2"
         },
         {
           "texto": "No actualiza gemelo digital",
-          "explicacion": "âœ… Resuelto en Layer 2"
+          "explicacion": "✅ Resuelto en Layer 2"
         },
         {
           "texto": "Agentes con acceso sin control",
@@ -445,130 +303,103 @@
     },
     {
       "id": 4,
-      "nombre": "MonitorizaciÃ³n, CalibraciÃ³n y GestiÃ³n de Errores",
+      "nombre": "Monitorización, Calibración y Gestión de Errores",
       "componentes": [
         {
           "tipo": "input",
-          "label": "IMÃGENES",
-          "descripcion": "Input",
-          "input_value": "imagen_obra_tramo_5.jpg\n\n[Metadata: Fecha: 2025-10-15 | Tramo: 5 | KM: 23.4 | Drone: DJI-M300 | ResoluciÃ³n: 4K | Usuario: inspector.campo@empresa.com | Proyecto: OBRA-2025-089 | Criticidad: Alta | Budget_Tramo: 12Mâ‚¬]",
-          "es_interactivo": true
+          "label": "IMÁGENES",
+          "descripcion": "Input"
         },
         {
           "tipo": "agent",
           "label": "SISTEMA MULTIAGENTE",
-          "descripcion": "5 agentes coordinados",
-          "configuracion": {
-            "modelo": "GPT-4",
-            "temperatura": 0.1,
-            "max_tokens": 2000,
-            "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "presence_penalty": 0.0
-          },
-          "system_prompt": "Eres el sistema coordinador de mÃºltiples agentes especializados en supervisiÃ³n de obras ferroviarias. Orquestas anÃ¡lisis de imÃ¡genes, validaciÃ³n normativa, actualizaciÃ³n de gemelo digital y generaciÃ³n de informes."
+          "descripcion": "5 agentes coordinados"
         },
         {
           "tipo": "monitoring",
           "label": "DASHBOARD TIEMPO REAL",
-          "descripcion": "MÃ©tricas en vivo",
+          "descripcion": "Métricas en vivo",
           "ejemplo": "Latencia: 4.2s | Accuracy: 98.7% | Tokens: 125,430"
         },
         {
           "tipo": "monitoring",
           "label": "LOGGING INMUTABLE",
           "descripcion": "Logs encriptados y firmados",
-          "ejemplo": "Cada operaciÃ³n registrada con timestamp"
+          "ejemplo": "Cada operación registrada con timestamp"
         },
         {
           "tipo": "monitoring",
           "label": "ERROR HANDLER",
-          "descripcion": "Retry logic automÃ¡tico",
+          "descripcion": "Retry logic automático",
           "ejemplo": "Validador: 2 reintentos - API inestable"
         },
         {
           "tipo": "monitoring",
           "label": "ALERTING SYSTEM",
-          "descripcion": "Notificaciones de anomalÃ­as",
-          "ejemplo": "âš ï¸ Gemelo Digital lento (5.3s > 5s threshold)"
+          "descripcion": "Notificaciones de anomalías",
+          "ejemplo": "⚠️ Gemelo Digital lento (5.3s > 5s threshold)"
         },
         {
           "tipo": "output",
-          "label": "OUTPUT + MÃ‰TRICAS",
-          "descripcion": "Resultado con trazabilidad completa",
-          "output_completo": {
-            "titulo": "INFORME DE SUPERVISIÃ“N CON MONITORIZACIÃ“N",
-            "contenido": "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•\nCLASIFICACIÃ“N: INTERNO\nPROYECTO: OBRA-2025-089 | TRAMO: 5 | KM: 23.4\nANALIZADO POR: inspector.campo@empresa.com\nFECHA: 2025-10-15 10:29:18 UTC\nâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•\n\nANÃLISIS MULTIAGENTE: imagen_obra_tramo_5.jpg\n\n[MÃ‰TRICAS DE SISTEMA]\nTiempo total: 13.2s\nAgentes ejecutados: 4/4 (100% Ã©xito)\nConfianza promedio: 0.91\nErrores: 0\n\n[RESULTADOS]\nEstado general: ACEPTABLE CON OBSERVACIONES\nDesviaciones crÃ­ticas: 0\nDesviaciones medias: 2\nAcciones requeridas: 2\n\n[VALIDACIONES]\nâœ“ Computer Vision: 15 elementos detectados\nâœ“ Normativas: 12/14 conformes\nâœ“ Gemelo Digital: Actualizado\nâš ï¸ SeÃ±alizaciÃ³n: Falta 1 poste\nâš ï¸ Estructura temporal: No en gemelo\n\n[MONITORIZACIÃ“N]\nRendimiento agentes:\n- Computer Vision: 4.2s (Normal)\n- Validador: 3.1s (Normal)\n- Gemelo Digital: 4.8s (Normal)\n- Generador: 1.1s (Normal)\n\nConfianza por agente:\n- Computer Vision: 0.92\n- Validador: 0.89\n- Gemelo Digital: 0.94\n- Generador: 0.90\n\n[ACCIONES REQUERIDAS]\n1. Instalar seÃ±alizaciÃ³n KM 23.5\n2. Actualizar gemelo con estructura temporal\n\nâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•",
-            "metadata": {
-              "fecha_analisis": "2025-10-15",
-              "tiempo_procesamiento": "13.2s",
-              "classification_level": "Interno",
-              "metricas_sistema": {
-                "agentes_exitosos": 4,
-                "agentes_fallidos": 0,
-                "tiempo_promedio_agente": "3.3s",
-                "confianza_minima": 0.89,
-                "confianza_promedio": 0.91
-              }
-            }
-          }
+          "label": "OUTPUT + MÉTRICAS",
+          "descripcion": "Resultado con trazabilidad completa"
         }
       ],
       "puntos_fuertes": [
         {
-          "texto": "MonitorizaciÃ³n en tiempo real",
-          "explicacion": "Dashboard muestra mÃ©tricas live: latencia por agente, throughput, errores, token usage. Detecta problemas antes de que afecten producciÃ³n."
+          "texto": "Monitorización en tiempo real",
+          "explicacion": "Dashboard muestra métricas live: latencia por agente, throughput, errores, token usage. Detecta problemas antes de que afecten producción."
         },
         {
-          "texto": "Logging inmutable para auditorÃ­a",
-          "explicacion": "Cada operaciÃ³n genera log firmado criptogrÃ¡ficamente. No se puede modificar ni borrar. Cumple requisitos de auditorÃ­a y compliance."
+          "texto": "Logging inmutable para auditoría",
+          "explicacion": "Cada operación genera log firmado criptográficamente. No se puede modificar ni borrar. Cumple requisitos de auditoría y compliance."
         },
         {
-          "texto": "Manejo automÃ¡tico de errores",
-          "explicacion": "Si un agente falla (timeout, API error), el sistema reintenta automÃ¡ticamente con backoff exponencial. 3 intentos antes de escalar a humano."
+          "texto": "Manejo automático de errores",
+          "explicacion": "Si un agente falla (timeout, API error), el sistema reintenta automáticamente con backoff exponencial. 3 intentos antes de escalar a humano."
         },
         {
-          "texto": "Alertas por anomalÃ­as",
-          "explicacion": "Sistema detecta comportamientos anÃ³malos: agente muy lento, accuracy bajando, errores aumentando. Alerta a equipo de ops automÃ¡ticamente."
+          "texto": "Alertas por anomalías",
+          "explicacion": "Sistema detecta comportamientos anómalos: agente muy lento, accuracy bajando, errores aumentando. Alerta a equipo de ops automáticamente."
         },
         {
-          "texto": "MÃ©tricas de rendimiento por agente",
-          "explicacion": "Desglose detallado: Computer Vision 2.1s avg, Validador 0.8s, Gemelo Digital 5.3s. Identifica cuellos de botella para optimizaciÃ³n."
+          "texto": "Métricas de rendimiento por agente",
+          "explicacion": "Desglose detallado: Computer Vision 2.1s avg, Validador 0.8s, Gemelo Digital 5.3s. Identifica cuellos de botella para optimización."
         },
         {
           "texto": "Dashboard de operaciones",
-          "explicacion": "Panel centralizado para equipo de ops: estado de agentes, cola de procesamiento, historial de errores, mÃ©tricas de negocio (desviaciones detectadas/hora)."
+          "explicacion": "Panel centralizado para equipo de ops: estado de agentes, cola de procesamiento, historial de errores, métricas de negocio (desviaciones detectadas/hora)."
         }
       ],
       "problemas": [
         {
-          "texto": "Â¿CÃ³mo validamos que las decisiones son correctas?",
-          "explicacion": "Tenemos mÃ©tricas de rendimiento pero no de calidad. Si Computer Vision dice 'desviaciÃ³n 3cm', Â¿cÃ³mo sabemos que es correcto? Falta validaciÃ³n de evidencia."
+          "texto": "¿Cómo validamos que las decisiones son correctas?",
+          "explicacion": "Tenemos métricas de rendimiento pero no de calidad. Si Computer Vision dice 'desviación 3cm', ¿cómo sabemos que es correcto? Falta validación de evidencia."
         },
         {
-          "texto": "Â¿QuÃ© confianza tenemos en cada resultado?",
-          "explicacion": "No hay confidence scoring. Una detecciÃ³n con 60% de confianza se trata igual que una con 99%. Necesitamos cuantificar incertidumbre."
+          "texto": "¿Qué confianza tenemos en cada resultado?",
+          "explicacion": "No hay confidence scoring. Una detección con 60% de confianza se trata igual que una con 99%. Necesitamos cuantificar incertidumbre."
         }
       ],
       "problemas_resueltos": [
         {
           "texto": "Un solo agente sobrecargado",
-          "explicacion": "âœ… Resuelto en Layer 2"
+          "explicacion": "✅ Resuelto en Layer 2"
         },
         {
           "texto": "No valida normativa",
-          "explicacion": "âœ… Resuelto en Layer 2"
+          "explicacion": "✅ Resuelto en Layer 2"
         },
         {
           "texto": "No actualiza gemelo digital",
-          "explicacion": "âœ… Resuelto en Layer 2"
+          "explicacion": "✅ Resuelto en Layer 2"
         },
         {
           "texto": "Agentes con acceso sin control",
-          "explicacion": "âœ… Resuelto en Layer 3"
+          "explicacion": "✅ Resuelto en Layer 3"
         },
         {
-          "texto": "Sin mÃ©tricas de rendimiento",
+          "texto": "Sin métricas de rendimiento",
           "explicacion": "Resuelto: Dashboard en tiempo real + logging inmutable + alerting system."
         }
       ]
@@ -579,24 +410,13 @@
       "componentes": [
         {
           "tipo": "input",
-          "label": "IMÃGENES",
-          "descripcion": "Input",
-          "input_value": "imagen_obra_tramo_5.jpg\n\n[Metadata: Fecha: 2025-10-15 | Tramo: 5 | KM: 23.4 | Drone: DJI-M300 | ResoluciÃ³n: 4K | Usuario: inspector.campo@empresa.com | Proyecto: OBRA-2025-089 | Criticidad: Alta | Budget_Tramo: 12Mâ‚¬ | Safety_Critical: Yes]",
-          "es_interactivo": true
+          "label": "IMÁGENES",
+          "descripcion": "Input"
         },
         {
           "tipo": "agent",
           "label": "SISTEMA MULTIAGENTE",
-          "descripcion": "Agentes especializados",
-          "configuracion": {
-            "modelo": "GPT-4",
-            "temperatura": 0.1,
-            "max_tokens": 2000,
-            "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "presence_penalty": 0.0
-          },
-          "system_prompt": "Eres el sistema coordinador de mÃºltiples agentes especializados en supervisiÃ³n de obras ferroviarias. Orquestas anÃ¡lisis de imÃ¡genes, validaciÃ³n normativa, actualizaciÃ³n de gemelo digital y generaciÃ³n de informes."
+          "descripcion": "Agentes especializados"
         },
         {
           "tipo": "validation",
@@ -607,26 +427,26 @@
         {
           "tipo": "validation",
           "label": "CROSS-VALIDATOR",
-          "descripcion": "ValidaciÃ³n cruzada entre agentes",
-          "ejemplo": "Confidence ajustado: 0.94 â†’ 0.91"
+          "descripcion": "Validación cruzada entre agentes",
+          "ejemplo": "Confidence ajustado: 0.94 → 0.91"
         },
         {
           "tipo": "validation",
           "label": "CONFIDENCE SCORING",
-          "descripcion": "PuntuaciÃ³n de confianza",
-          "ejemplo": "Score > 0.85 â†’ Auto-approve"
+          "descripcion": "Puntuación de confianza",
+          "ejemplo": "Score > 0.85 → Auto-approve"
         },
         {
           "tipo": "validation",
           "label": "CITATION SYSTEM",
           "descripcion": "Referencias trazables",
-          "ejemplo": "DesviaciÃ³n 3cm [1][2] excede tolerancia [2]"
+          "ejemplo": "Desviación 3cm [1][2] excede tolerancia [2]"
         },
         {
           "tipo": "validation",
           "label": "HUMAN REVIEW",
-          "descripcion": "RevisiÃ³n humana si confidence < 0.85",
-          "ejemplo": "Confidence 0.72 â†’ Requiere validaciÃ³n"
+          "descripcion": "Revisión humana si confidence < 0.85",
+          "ejemplo": "Confidence 0.72 → Requiere validación"
         },
         {
           "tipo": "monitoring",
@@ -636,84 +456,60 @@
         {
           "tipo": "output",
           "label": "OUTPUT VALIDADO",
-          "descripcion": "Resultado con evidencias y confianza",
-          "output_completo": {
-            "titulo": "INFORME DE SUPERVISIÃ“N VALIDADO",
-            "contenido": "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•\nCLASIFICACIÃ“N: INTERNO\nPROYECTO: OBRA-2025-089 | TRAMO: 5 | KM: 23.4\nANALIZADO POR: inspector.campo@empresa.com\nVALIDADO POR: supervisor.senior@empresa.com\nFECHA ANÃLISIS: 2025-10-15 10:29:18 UTC\nFECHA VALIDACIÃ“N: 2025-10-15 10:45:22 UTC\nSTATUS: APROBADO\nâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•\n\nANÃLISIS MULTIAGENTE: imagen_obra_tramo_5.jpg\n\n[VALIDACIÃ“N AUTOMÃTICA]\nâœ“ Grounding: Todas las afirmaciones respaldadas por evidencia\nâœ“ Cross-Validation: Mediciones verificadas por mÃºltiples agentes\nâœ“ Confidence Scoring: Todas las detecciones >0.85\nâœ“ Citations: Todas las normativas citadas correctamente\n\n[RESULTADOS VALIDADOS]\nEstado general: ACEPTABLE CON OBSERVACIONES\nDesviaciones crÃ­ticas: 0 (Validado)\nDesviaciones medias: 2 (Validado)\nConfianza global: 0.91 (Alto)\n\n[DETECCIONES PRINCIPALES]\nâœ“ VÃ­a: PosiciÃ³n correcta (Confianza: 0.94)\n  Evidencia: MediciÃ³n lÃ¡ser + comparaciÃ³n gemelo digital\n  Validado por: Computer Vision + Gemelo Digital\n  \nâœ“ Traviesas: 24 unidades, espaciado 60cm (Confianza: 0.92)\n  Evidencia: DetecciÃ³n visual + mediciÃ³n calibrada\n  Normativa: ADIF ET 03.360.571.8 [Citado correctamente]\n  \nâš ï¸ SeÃ±alizaciÃ³n: Falta poste KM 23.5 (Confianza: 0.89)\n  Evidencia: Ausencia detectada por Computer Vision\n  Normativa: ADIF requiere seÃ±alizaciÃ³n cada 500m\n  AcciÃ³n: InstalaciÃ³n requerida\n  \nâš ï¸ Estructura temporal no en gemelo (Confianza: 0.93)\n  Evidencia: Detectada en imagen, ausente en Gemelo Digital\n  AcciÃ³n: ActualizaciÃ³n gemelo digital\n\n[REVISIÃ“N HUMANA]\nRevisor: supervisor.senior@empresa.com\nComentarios: \"AnÃ¡lisis correcto. Las dos observaciones son vÃ¡lidas y requieren acciÃ³n. Prioridad media. Programar correcciones para esta semana.\"\nDecisiÃ³n: APROBADO\n\n[MÃ‰TRICAS DE CALIDAD]\nGrounding Score: 0.96\nCross-Validation Score: 0.94\nCitation Accuracy: 100%\nHuman Agreement: 100%\n\nâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•\nDOCUMENTO VALIDADO Y APROBADO PARA ACCIÃ“N\nâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•",
-            "metadata": {
-              "fecha_analisis": "2025-10-15",
-              "fecha_validacion": "2025-10-15 10:45:22",
-              "tiempo_procesamiento": "13.2s",
-              "tiempo_validacion_humana": "960s",
-              "classification_level": "Interno",
-              "validacion_automatica": {
-                "grounding_score": 0.96,
-                "cross_validation_score": 0.94,
-                "confidence_score": 0.91,
-                "citation_accuracy": 1.0
-              },
-              "validacion_humana": {
-                "revisor": "supervisor.senior@empresa.com",
-                "decision": "Aprobado",
-                "human_agreement": 1.0
-              },
-              "hitl_required": true,
-              "hitl_reason": "Safety-critical project"
-            }
-          }
+          "descripcion": "Resultado con evidencias y confianza"
         }
       ],
       "puntos_fuertes": [
         {
-          "texto": "Grounding: toda afirmaciÃ³n con evidencia documental",
-          "explicacion": "Cada detecciÃ³n estÃ¡ respaldada por evidencia: imagen analizada, mediciÃ³n DIGAV, estado previo Gemelo Digital. No hay afirmaciones sin fundamento."
+          "texto": "Grounding: toda afirmación con evidencia documental",
+          "explicacion": "Cada detección está respaldada por evidencia: imagen analizada, medición DIGAV, estado previo Gemelo Digital. No hay afirmaciones sin fundamento."
         },
         {
           "texto": "Cross-validation entre agentes",
-          "explicacion": "Computer Vision detecta desviaciÃ³n (confidence 0.94). Cross-Validator revisa evidencia, correlaciona con alertas previas, ajusta confidence a 0.91. Reduce falsos positivos."
+          "explicacion": "Computer Vision detecta desviación (confidence 0.94). Cross-Validator revisa evidencia, correlaciona con alertas previas, ajusta confidence a 0.91. Reduce falsos positivos."
         },
         {
           "texto": "Confidence scoring para decisiones",
-          "explicacion": "Cada resultado tiene score 0-1. >0.85 â†’ auto-aprobado. 0.70-0.85 â†’ revisiÃ³n opcional. <0.70 â†’ requiere humano. Decisiones basadas en certeza."
+          "explicacion": "Cada resultado tiene score 0-1. >0.85 → auto-aprobado. 0.70-0.85 → revisión opcional. <0.70 → requiere humano. Decisiones basadas en certeza."
         },
         {
           "texto": "Citations completas y trazables",
-          "explicacion": "Output incluye referencias: 'DesviaciÃ³n 3cm [1][2] excede tolerancia 2cm [3]'. [1]=imagen, [2]=mediciÃ³n DIGAV, [3]=norma ADIF. Trazabilidad total."
+          "explicacion": "Output incluye referencias: 'Desviación 3cm [1][2] excede tolerancia 2cm [3]'. [1]=imagen, [2]=medición DIGAV, [3]=norma ADIF. Trazabilidad total."
         },
         {
           "texto": "Human-in-the-loop para baja confianza",
-          "explicacion": "Si confidence < 0.85, ingeniero senior recibe notificaciÃ³n con contexto completo. Puede aprobar, rechazar o solicitar mÃ¡s informaciÃ³n."
+          "explicacion": "Si confidence < 0.85, ingeniero senior recibe notificación con contexto completo. Puede aprobar, rechazar o solicitar más información."
         },
         {
           "texto": "Sistema robusto y confiable",
-          "explicacion": "CombinaciÃ³n de especializaciÃ³n, seguridad, monitorizaciÃ³n y validaciÃ³n. Sistema empresarial production-ready con SLA 99.9%."
+          "explicacion": "Combinación de especialización, seguridad, monitorización y validación. Sistema empresarial production-ready con SLA 99.9%."
         }
       ],
       "problemas": [],
       "problemas_resueltos": [
         {
           "texto": "Un solo agente sobrecargado",
-          "explicacion": "âœ… Resuelto en Layer 2"
+          "explicacion": "✅ Resuelto en Layer 2"
         },
         {
           "texto": "No valida normativa",
-          "explicacion": "âœ… Resuelto en Layer 2"
+          "explicacion": "✅ Resuelto en Layer 2"
         },
         {
           "texto": "No actualiza gemelo digital",
-          "explicacion": "âœ… Resuelto en Layer 2"
+          "explicacion": "✅ Resuelto en Layer 2"
         },
         {
           "texto": "Agentes con acceso sin control",
-          "explicacion": "âœ… Resuelto en Layer 3"
+          "explicacion": "✅ Resuelto en Layer 3"
         },
         {
-          "texto": "Sin mÃ©tricas de rendimiento",
-          "explicacion": "âœ… Resuelto en Layer 4"
+          "texto": "Sin métricas de rendimiento",
+          "explicacion": "✅ Resuelto en Layer 4"
         },
         {
-          "texto": "ValidaciÃ³n de decisiones",
-          "explicacion": "Resuelto: Grounding Engine + Cross-Validator verifican cada decisiÃ³n con evidencia."
+          "texto": "Validación de decisiones",
+          "explicacion": "Resuelto: Grounding Engine + Cross-Validator verifican cada decisión con evidencia."
         },
         {
           "texto": "Nivel de confianza en resultados",

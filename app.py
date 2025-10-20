@@ -3,6 +3,7 @@ import json
 import os
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 
 # Cargar datos de layers
 def load_layer_data(caso):
