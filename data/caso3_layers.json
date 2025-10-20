@@ -1,0 +1,458 @@
+{
+  "caso": {
+    "id": 3,
+    "titulo": "Sistema Multiagente de Coordinación Interdisciplinar",
+    "descripcion": "Sistema de agentes especializados para coordinación automática entre disciplinas en proyectos complejos"
+  },
+  "layers": [
+    {
+      "id": 0,
+      "nombre": "Problema de Negocio",
+      "es_introduccion": true,
+      "problema": {
+        "titulo": "El Desafío de la Coordinación Interdisciplinar en Proyectos Complejos",
+        "descripcion": "INECO gestiona proyectos de infraestructuras que involucran simultáneamente más de 300 disciplinas diferentes. En proyectos como líneas de alta velocidad o ampliaciones aeroportuarias, los equipos multidisciplinares deben coordinarse constantemente:",
+        "puntos": [
+          "🏗️ Más de 300 disciplinas trabajando simultáneamente (civil, ferroviaria, aeroportuaria, señalización, telecomunicaciones, medio ambiente, arquitectura, urbanismo)",
+          "⚠️ Conflictos técnicos detectados tarde en la ejecución (sobrecostes del 15-25%)",
+          "📋 Coordinación manual entre equipos es lenta y propensa a errores",
+          "📊 Cada disciplina tiene normativas propias que deben cumplirse simultáneamente",
+          "⏰ Reuniones de coordinación consumen 30% del tiempo de ingenieros senior"
+        ],
+        "impacto": "Los conflictos detectados en fases avanzadas generan retrabajos costosos. Un conflicto estructural-ambiental no detectado a tiempo puede retrasar 6 meses un proyecto de alta velocidad."
+      },
+      "solucion": {
+        "titulo": "¿Por qué un Sistema Multiagente Coordinado?",
+        "descripcion": "Un sistema de agentes especializados por disciplina puede:",
+        "beneficios": [
+          "🤖 Agentes expertos por disciplina: estructural, ambiental, señalización, costes, plazos",
+          "🔍 Detección temprana de conflictos entre disciplinas en tiempo real",
+          "🤝 Negociación automatizada de soluciones antes de escalar a humanos",
+          "📈 Validación continua de cumplimiento normativo multisectorial",
+          "⚡ Reducción de tiempo de coordinación de semanas a horas"
+        ],
+        "enfoque": "Construiremos el sistema capa por capa: desde un coordinador único hasta una arquitectura multiagente con negociación automática, modelo de datos unificado y validación multicapa."
+      }
+    },
+    {
+      "id": 1,
+      "nombre": "Sistema Base",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "DISEÑO TÉCNICO",
+          "descripcion": "Propuesta de una disciplina",
+          "ejemplo": "Ingeniería estructural propone cimentación profunda con pilotes de 25m en zona km 45-52"
+        },
+        {
+          "tipo": "agent",
+          "label": "COORDINADOR ÚNICO",
+          "descripcion": "Agente que intenta coordinar todas las disciplinas",
+          "ejemplo": "Analiza impacto en estructural, ambiental, costes, plazos, señalización..."
+        },
+        {
+          "tipo": "output",
+          "label": "INFORME",
+          "descripcion": "Reporte de conflictos detectados",
+          "ejemplo": "Alerta: posible impacto en acuíferos + incremento presupuesto 12%"
+        }
+      ],
+      "puntos_fuertes": [
+        {
+          "texto": "Automatiza análisis de impacto multidisciplinar",
+          "explicacion": "El agente coordinador analiza automáticamente cómo una propuesta de diseño de una disciplina afecta a otras áreas técnicas. Cuando ingeniería estructural propone una cimentación profunda con pilotes de 25 metros, el sistema evalúa: impacto en acuíferos (área ambiental), incremento de costes por excavación profunda (área económica), extensión de plazos por complejidad constructiva (área de planificación), afectaciones a servicios existentes (área de urbanismo). Esto elimina la necesidad de reuniones manuales de coordinación donde cada disciplina revisa propuestas de otras, ahorrando entre 15-20 horas semanales de tiempo de coordinación de ingenieros senior."
+        },
+        {
+          "texto": "Centraliza información técnica de múltiples fuentes",
+          "explicacion": "El sistema accede a documentación técnica de todas las disciplinas: planos de diseño estructural, estudios de impacto ambiental, planificaciones de obra, presupuestos detallados, normativas aplicables de cada sector. Antes, esta información estaba dispersa en diferentes sistemas, carpetas compartidas, emails y documentos físicos. Un ingeniero que necesitaba validar una propuesta debía buscar información en 5-8 ubicaciones diferentes, proceso que tomaba horas o días. El coordinador centraliza todo en un punto de acceso único, acelerando dramáticamente la verificación de compatibilidad entre disciplinas."
+        },
+        {
+          "texto": "Genera alertas de conflictos potenciales",
+          "explicacion": "Cuando detecta incompatibilidades entre propuestas de diferentes disciplinas, el sistema genera alertas automáticas con información contextual. Por ejemplo, si estructural propone cimentación que afecta zona con protección ambiental identificada por el equipo de medio ambiente, la alerta incluye: descripción del conflicto, disciplinas afectadas, nivel de criticidad (alto/medio/bajo), datos técnicos relevantes de ambas propuestas, y sugerencia de áreas que deben coordinarse. Estas alertas llegan a los responsables de cada disciplina vía email o dashboard, eliminando el problema de que conflictos pasen desapercibidos hasta fases avanzadas del proyecto."
+        }
+      ],
+      "problemas": [
+        {
+          "texto": "Un solo agente no puede dominar 300+ disciplinas",
+          "explicacion": "El agente coordinador intenta entender todas las disciplinas simultáneamente: ingeniería civil, ferroviaria, aeroportuaria, señalización ERTMS, telecomunicaciones 5G, impacto ambiental, hidrología, geotecnia, arquitectura, urbanismo, movilidad, energía, ciberseguridad de sistemas críticos, y 280+ disciplinas más. Cada una tiene su propio cuerpo normativo, mejores prácticas, restricciones técnicas y lenguaje especializado. Es imposible que un modelo único tenga suficiente profundidad en todas estas áreas. Como resultado, las validaciones son superficiales: detecta conflictos obvios (una vía férrea que cruza zona protegida) pero pierde conflictos sutiles que solo un experto en la disciplina detectaría (incompatibilidad entre sistema de señalización propuesto y geometría de vía que afecta visibilidad de balizas). Los ingenieros reciben falsos positivos (alertas de conflictos que no existen) y falsos negativos (conflictos reales no detectados), generando desconfianza en el sistema."
+        },
+        {
+          "texto": "No tiene contexto de normativas específicas de cada disciplina",
+          "explicacion": "Cada disciplina debe cumplir múltiples normativas: ingeniería ferroviaria debe cumplir especificaciones ERTMS, regulaciones UIC, normativa ADIF, directivas europeas de interoperabilidad; medio ambiente debe cumplir Directiva de Evaluación de Impacto Ambiental, legislación de protección de espacios naturales, normativa de calidad de aguas. El agente coordinador único no tiene estas normativas codificadas con suficiente detalle. Puede detectar que hay un conflicto pero no puede validar si la solución propuesta cumple con los requisitos normativos de cada sector. Por ejemplo, podría sugerir 'ajustar el trazado para evitar zona protegida' pero no verificar si el nuevo trazado cumple con radios mínimos de curva según ERTMS Nivel 2, o si cumple con pendientes máximas según normativa de accesibilidad."
+        },
+        {
+          "texto": "Sin mecanismo de negociación entre disciplinas",
+          "explicacion": "Cuando el sistema detecta un conflicto entre disciplinas, simplemente genera una alerta y escala a humanos. No hay capacidad de proponer soluciones alternativas o negociar compromisos. En la realidad, muchos conflictos tienen soluciones intermedias: si estructural necesita cimentación profunda que afecta acuífero, quizás puede usar cimentación menos profunda con refuerzo adicional, o sistema de impermeabilización especial, o modificar ubicación 50 metros. Un coordinador experto humano explora estas alternativas, negocia con ambas disciplinas, evalúa trade-offs. El agente actual no tiene esta capacidad: cada conflicto requiere reunión manual de coordinación entre disciplinas, perdiendo la oportunidad de resolver automáticamente el 60-70% de conflictos que tienen soluciones estándar conocidas."
+        },
+        {
+          "texto": "No hay modelo de datos unificado del proyecto",
+          "explicacion": "Cada disciplina trabaja con su propia representación del proyecto: estructural tiene modelo BIM de estructuras, ambiental tiene GIS con capas ambientales, señalización tiene esquemas de implantación, telecomunicaciones tiene diagramas de red. El agente coordinador accede a estas fuentes dispares pero no hay un modelo de datos único que integre toda la información. Esto causa problemas: cuando estructural modifica ubicación de un pilar, ese cambio no se refleja automáticamente en modelo ambiental, causando que validaciones ambientales posteriores usen información desactualizada. No hay 'single source of truth'. Además, sin modelo unificado con ontologías claras, el agente no puede razonar sobre relaciones entre elementos: 'este pilar está en zona de protección' requiere correlacionar entidad 'pilar' del modelo estructural con polígono 'zona protegida' del modelo ambiental, pero sin ontología común, esta correlación es frágil y propensa a errores."
+        },
+        {
+          "texto": "Sin trazabilidad de decisiones de coordinación",
+          "explicacion": "Cuando el sistema detecta un conflicto y se resuelve (manualmente por ahora), no queda registro estructurado de: qué conflicto se detectó exactamente, qué alternativas se evaluaron, por qué se eligió una solución sobre otras, qué criterios técnicos se aplicaron, quién tomó la decisión, cuándo, bajo qué marco normativo. Esta falta de trazabilidad es problemática en proyectos de obra pública que requieren auditorías: años después, un auditor pregunta '¿por qué se cambió el trazado en km 47?' y no hay documentación clara que justifique la decisión. Solo emails dispersos y actas de reuniones en PDF. Además, sin trazabilidad, no se pueden aprender lecciones: no hay forma de analizar qué tipos de conflictos son más comunes, qué soluciones funcionan mejor, qué disciplinas tienen más incompatibilidades, impidiendo mejora continua del proceso de coordinación."
+        },
+        {
+          "texto": "No valida disponibilidad de recursos para soluciones propuestas",
+          "explicacion": "El agente puede sugerir soluciones técnicas que son válidas en teoría pero impracticables por limitaciones de recursos. Por ejemplo, podría proponer 'realizar estudio geotécnico adicional detallado' cuando no hay presupuesto asignado para estudios adicionales, o 'modificar sistema de señalización' cuando el equipo de señalización de INECO está completamente asignado a otros proyectos. No hay integración con sistemas de gestión de recursos, disponibilidad de personal por disciplina, o presupuestos aprobados. Esto genera frustración: el sistema propone soluciones que suenan razonables técnicamente pero que el equipo de proyecto no puede ejecutar, obligando a reuniones manuales para encontrar soluciones dentro de restricciones reales de recursos, tiempo y presupuesto."
+        }
+      ],
+      "problemas_resueltos": []
+    },
+    {
+      "id": 2,
+      "nombre": "Agentes Especializados por Disciplina",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "PROPUESTA TÉCNICA",
+          "descripcion": "Diseño de una disciplina"
+        },
+        {
+          "tipo": "agent",
+          "label": "ORQUESTADOR",
+          "descripcion": "Coordina flujo entre agentes",
+          "ejemplo": "Distribuye propuesta a agentes relevantes"
+        },
+        {
+          "tipo": "agent",
+          "label": "AGENTE ESTRUCTURAL",
+          "descripcion": "Experto en ingeniería estructural",
+          "ejemplo": "Valida cimentaciones, cargas, normativa estructural"
+        },
+        {
+          "tipo": "agent",
+          "label": "AGENTE AMBIENTAL",
+          "descripcion": "Experto en impacto ambiental",
+          "ejemplo": "Valida afección a acuíferos, espacios protegidos"
+        },
+        {
+          "tipo": "agent",
+          "label": "AGENTE COSTES",
+          "descripcion": "Experto en estimación económica",
+          "ejemplo": "Calcula impacto presupuestario de cambios"
+        },
+        {
+          "tipo": "agent",
+          "label": "AGENTE PLAZOS",
+          "descripcion": "Experto en planificación temporal",
+          "ejemplo": "Evalúa impacto en cronograma de proyecto"
+        },
+        {
+          "tipo": "output",
+          "label": "ANÁLISIS MULTIDISCIPLINAR",
+          "descripcion": "Validación desde múltiples perspectivas"
+        }
+      ],
+      "puntos_fuertes": [
+        {
+          "texto": "Especialización profunda por disciplina",
+          "explicacion": "Cada agente se especializa en una disciplina específica con conocimiento profundo de sus normativas, mejores prácticas y restricciones. El Agente Estructural conoce códigos de diseño estructural (EHE-08, Eurocódigos), métodos de cálculo de estructuras, tipos de cimentaciones según geología, dimensionamiento de elementos. El Agente Ambiental conoce Directiva de Evaluación de Impacto Ambiental 2011/92/UE enmendada por 2014/52/UE, legislación de protección de Red Natura 2000, normativa de calidad de aguas, procedimientos de evaluación de afección a especies protegidas. Esta especialización permite validaciones mucho más precisas que un agente generalista: detectan incompatibilidades sutiles que requieren conocimiento experto del dominio. Por ejemplo, el Agente Ferroviario puede validar que un diseño de vía cumple con especificaciones ERTMS considerando visibilidad de balizas, zonas de frenado, y pendientes compensadas en curva."
+        },
+        {
+          "texto": "Validación paralela acelerada",
+          "explicacion": "Cuando se recibe una propuesta técnica, el orquestador la distribuye simultáneamente a todos los agentes relevantes que la analizan en paralelo. El Agente Estructural valida aspectos estructurales, mientras que simultáneamente el Agente Ambiental valida impacto ambiental, el Agente de Costes estima impacto económico, y el Agente de Plazos evalúa impacto temporal. En proceso manual tradicional, estas validaciones ocurrían secuencialmente: primero estructural hacía su análisis (3-5 días), luego ambiental (2-4 días), luego costes (1-2 días). Con validación paralela, todas las disciplinas analizan simultáneamente, reduciendo tiempo total de validación de 10-15 días a menos de 24 horas. Esto permite iteraciones de diseño mucho más rápidas, crítico en proyectos complejos donde múltiples iteraciones son necesarias para converger a solución óptima."
+        },
+        {
+          "texto": "Detección de conflictos inter-disciplinares",
+          "explicacion": "Después de que cada agente hace su análisis individual, el orquestador compara las salidas para detectar conflictos entre disciplinas. Si Agente Estructural aprueba cimentación profunda pero Agente Ambiental identifica afección a acuífero protegido, el sistema detecta conflicto estructural-ambiental. Si Agente de Señalización propone sistema ERTMS Nivel 2 pero Agente de Plazos indica que implementación retrasa proyecto 8 meses excediendo deadline regulatorio, se detecta conflicto señalización-plazos. Cada conflicto se documenta con: disciplinas afectadas, descripción técnica del problema, severidad (crítico/alto/medio/bajo), datos técnicos de ambas perspectivas, y referencias normativas relevantes. Esto es mucho más sofisticado que sistema de Layer 1 que hacía análisis superficial: ahora cada conflicto está validado por agentes expertos en sus respectivas disciplinas."
+        },
+        {
+          "texto": "Comunicación estructurada entre agentes",
+          "explicacion": "Los agentes se comunican mediante protocolo estructurado con mensajes bien definidos. Cuando Agente Estructural necesita información geotécnica, envía mensaje formal al Agente Geotécnico especificando ubicación exacta (coordenadas), profundidad requerida, y parámetros necesarios (resistencia del suelo, nivel freático, etc.). La respuesta es igualmente estructurada con datos solicitados en formato estándar. Esto elimina ambigüedad de comunicación humana donde peticiones pueden ser imprecisas ('¿cómo es el suelo ahí?' → ¿propiedades mecánicas? ¿composición química? ¿a qué profundidad?). Comunicación estructurada permite trazabilidad completa: cada intercambio queda registrado con timestamp, agente emisor/receptor, datos solicitados/proporcionados. También permite retry automático si un agente no responde, y timeout management para evitar bloqueos del flujo de trabajo."
+        }
+      ],
+      "problemas": [
+        {
+          "texto": "Los agentes no negocian soluciones, solo detectan conflictos",
+          "explicacion": "Aunque el sistema ahora detecta conflictos entre disciplinas con mayor precisión, los agentes solo reportan incompatibilidades sin proponer alternativas o negociar compromisos. Cuando hay conflicto estructural-ambiental, el output es 'Conflicto detectado: cimentación afecta acuífero' pero no 'Alternativas: 1) Cimentación menos profunda con refuerzo, 2) Desplazar 50m al norte, 3) Sistema de impermeabilización especial'. En coordinación real, ingenieros expertos no solo identifican conflictos sino que proponen soluciones intermedias evaluando trade-offs. Sin capacidad de negociación automatizada, cada conflicto requiere reunión manual de coordinación, perdiendo eficiencia. Estudios de proyectos anteriores de INECO muestran que 60-70% de conflictos inter-disciplinares tienen soluciones estándar conocidas que podrían resolverse automáticamente si los agentes pudieran negociar."
+        },
+        {
+          "texto": "Sin modelo de datos unificado del proyecto",
+          "explicacion": "Aunque hay agentes especializados, cada uno sigue accediendo a su propia representación del proyecto: Agente Estructural usa modelo BIM, Agente Ambiental usa GIS, Agente de Señalización usa esquemas CAD. No hay 'gemelo digital' único que integre toda la información del proyecto con ontologías comunes. Esto causa problemas de sincronización: cuando se modifica el trazado de la vía férrea, ese cambio debe propagarse manualmente a todos los modelos. Sin modelo unificado, los agentes pueden estar analizando versiones diferentes del diseño sin darse cuenta. Por ejemplo, Agente Estructural valida ubicación de pilares versión 3.2 mientras Agente Ambiental valida impacto con trazado versión 3.1, generando análisis incompatibles. Además, sin ontología común, es difícil razonar sobre relaciones: '¿este pilar está dentro de zona de servidumbre de línea eléctrica?' requiere correlacionar elementos de modelo estructural con modelo de servicios, pero sin ontología compartida, esta correlación es frágil."
+        },
+        {
+          "texto": "No hay guardrails normativos codificados",
+          "explicacion": "Los agentes pueden proponer soluciones que violan normativas obligatorias de sus propias disciplinas. Por ejemplo, Agente Ferroviario podría sugerir modificar radio de curva a 2.000m cuando normativa ERTMS para velocidades >250 km/h requiere mínimo 3.000m, o Agente Ambiental podría proponer medidas compensatorias que no cumplen ratio 1:1 exigido por legislación de espacios protegidos. Esto ocurre porque las normativas no están 'hard-coded' como restricciones obligatorias sino solo como conocimiento que el modelo puede usar o no. En sistemas críticos de infraestructura pública, cumplimiento normativo es obligatorio y no negociable. Cualquier propuesta que viole normativas debe ser bloqueada automáticamente antes de llegar a análisis posterior. Sin guardrails, los agentes pueden generar soluciones técnicamente ingeniosas pero legalmente inviables, causando retrabajo cuando revisores humanos detectan incumplimientos."
+        },
+        {
+          "texto": "Sin trazabilidad de razonamiento de cada agente",
+          "explicacion": "Los agentes proporcionan conclusiones ('cimentación viable' o 'afección ambiental crítica') pero no documentan cómo llegaron a esas conclusiones: qué datos analizaron, qué normativas aplicaron, qué cálculos realizaron, qué alternativas consideraron. En auditorías de proyectos de obra pública, no basta con 'el sistema dijo que era viable', se requiere justificación técnica completa: 'la cimentación es viable porque: resistencia del suelo 250 kPa según sondeo S-17, carga de pilar 180 kPa según cálculo estructural hoja E-234, factor de seguridad 1.39 cumple con EHE-08 artículo 58.4 que exige mínimo 1.35'. Sin trazabilidad de razonamiento, las conclusiones de los agentes son 'cajas negras' que no son auditables ni verificables por ingenieros humanos o auditores externos."
+        }
+      ],
+      "problemas_resueltos": [
+        "Un solo agente no puede dominar 300+ disciplinas",
+        "No tiene contexto de normativas específicas de cada disciplina"
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Negociación Automatizada y Modelo Unificado",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "PROPUESTA",
+          "descripcion": "Diseño técnico"
+        },
+        {
+          "tipo": "rag",
+          "label": "GEMELO DIGITAL",
+          "descripcion": "Modelo de datos unificado del proyecto",
+          "ejemplo": "Ontología común: elementos, relaciones, restricciones"
+        },
+        {
+          "tipo": "agent",
+          "label": "ORQUESTADOR",
+          "descripcion": "Coordina validación y negociación"
+        },
+        {
+          "tipo": "agent",
+          "label": "AGENTES ESPECIALIZADOS",
+          "descripcion": "5-10 agentes por disciplinas clave",
+          "ejemplo": "Todos trabajan sobre mismo modelo unificado"
+        },
+        {
+          "tipo": "validation",
+          "label": "DETECTOR CONFLICTOS",
+          "descripcion": "Identifica incompatibilidades",
+          "ejemplo": "Conflicto: estructural vs ambiental"
+        },
+        {
+          "tipo": "agent",
+          "label": "NEGOCIADOR",
+          "descripcion": "Propone soluciones alternativas",
+          "ejemplo": "3 alternativas evaluadas con pros/contras"
+        },
+        {
+          "tipo": "hitl",
+          "label": "ESCALADO HUMANO",
+          "descripcion": "Solo decisiones críticas",
+          "ejemplo": "80% resuelto automáticamente"
+        },
+        {
+          "tipo": "output",
+          "label": "SOLUCIÓN COORDINADA",
+          "descripcion": "Diseño validado multidisciplinar"
+        }
+      ],
+      "puntos_fuertes": [
+        {
+          "texto": "Gemelo digital con ontología unificada",
+          "explicacion": "El proyecto ahora tiene un modelo de datos único (gemelo digital) con ontología compartida por todos los agentes. Define entidades (pilar, vía, túnel, viaducto, subestación, zona protegida, acuífero), propiedades (ubicación geoespacial, dimensiones, materiales, características técnicas), y relaciones (pilar 'soporta' viaducto, vía 'atraviesa' túnel, subestación 'alimenta' tramo). Todos los agentes acceden al mismo modelo en tiempo real: cuando Agente Estructural modifica ubicación de un pilar, ese cambio se refleja inmediatamente para Agente Ambiental que re-evalúa impacto con nueva ubicación. No hay más versiones desincronizadas. La ontología común permite razonamiento sobre relaciones: '¿qué elementos están a menos de 100m de zona protegida?' es una consulta directa sobre el modelo. Gemelo digital también versiona cambios: cada modificación se registra con timestamp, autor (agente o humano), razón del cambio, permitiendo auditoría completa de evolución del diseño a lo largo del proyecto."
+        },
+        {
+          "texto": "Negociación automatizada de conflictos",
+          "explicacion": "Cuando se detecta conflicto entre disciplinas, el sistema Negociador automáticamente explora alternativas que podrían satisfacer ambas restricciones. Para conflicto estructural-ambiental (cimentación afecta acuífero), el Negociador: 1) Consulta al Agente Estructural alternativas de cimentación (menos profunda con refuerzo, micropilotes, losa flotante), 2) Para cada alternativa, consulta al Agente Ambiental si resuelve afección al acuífero, 3) Consulta al Agente de Costes impacto económico de cada alternativa, 4) Consulta al Agente de Plazos impacto temporal. Genera tabla comparativa: Alternativa A (cimentación 15m + refuerzo): afección ambiental resuelta, +8% coste, +2 semanas plazo; Alternativa B (micropilotes): afección resuelta, +15% coste, +1 semana; Alternativa C (desplazar 50m norte): afección resuelta, +3% coste, sin impacto plazo. Presenta a ingeniero humano con recomendación fundamentada. Datos de proyectos piloto muestran que 65% de conflictos se resuelven con esta negociación automatizada sin necesidad de reuniones manuales."
+        },
+        {
+          "texto": "Escalado inteligente a revisión humana",
+          "explicacion": "El sistema clasifica cada decisión según nivel de criticidad para determinar si requiere aprobación humana o puede resolverse automáticamente. Criterios de escalado: impacto económico (>5% presupuesto), impacto temporal (>2 semanas plazo crítico), impacto en seguridad (elementos críticos de seguridad), complejidad técnica (soluciones no estándar), incertidumbre (confianza del sistema <85%). Decisiones de baja criticidad (ajustes menores de trazado que cumplen todas restricciones, con confianza >90%, impacto <2% coste) se aprueban automáticamente. Decisiones de alta criticidad escalan a ingeniero senior con contexto completo: descripción del conflicto, alternativas evaluadas, análisis de cada disciplina, recomendación del sistema con justificación técnica, referencias normativas aplicables. El ingeniero puede: aprobar recomendación, elegir alternativa diferente, solicitar análisis adicional, o rechazar todas y definir solución custom. Esto optimiza tiempo de profesionales senior: solo deciden sobre lo crítico, el 70-80% se maneja automáticamente."
+        },
+        {
+          "texto": "Versionado y linaje de decisiones",
+          "explicacion": "Cada decisión técnica queda registrada en el gemelo digital con metadata completa: timestamp, decisión tomada (ej: 'desplazar pilar P-47 50m al norte'), disciplinas involucradas, conflicto que resuelve, alternativas evaluadas con sus métricas, razón de la elección ('minimiza impacto ambiental con coste moderado'), quién decidió (agente automático o ingeniero humano con nombre), normativas aplicadas en la evaluación. También se registra 'linaje': qué datos alimentaron la decisión (estudio geotécnico SG-12, análisis ambiental EA-05, cálculo estructural CE-89). Esto permite auditorías completas: años después, un auditor puede reconstruir exactamente por qué se tomó cada decisión técnica, qué información estaba disponible, qué restricciones se consideraron. También permite análisis de impacto: 'si modifico este parámetro geotécnico, qué decisiones estructurales se basan en él y deben revisarse'. Fundamental para trazabilidad en proyectos de obra pública que requieren justificación de cada euro gastado."
+        }
+      ],
+      "problemas": [
+        {
+          "texto": "Sin guardrails normativos obligatorios",
+          "explicacion": "Aunque el sistema ahora negocia soluciones, no tiene codificadas las normativas como restricciones hard que no pueden violarse. Los agentes pueden proponer alternativas que incumplen normativas obligatorias: radio de curva menor al mínimo ERTMS, pendiente mayor a la máxima permitida, afección a espacio Red Natura 2000 sin autorización ambiental previa. El Negociador explora alternativas optimizando coste y plazo, pero sin guardrails normativos puede optimizar hacia soluciones ilegales. En infraestructuras públicas, cumplimiento normativo no es negociable: una solución 20% más barata que viola normativa estructural no es una alternativa válida, es una opción que debe bloquearse automáticamente. Sin guardrails, soluciones que incumplen normativas pueden llegar hasta aprobación humana, desperdiciando tiempo de ingenieros senior que deben rechazarlas por incumplimiento evidente. Se necesita validación normativa automática ANTES de que alternativas entren en proceso de negociación."
+        },
+        {
+          "texto": "No hay control de acceso por disciplina al gemelo digital",
+          "explicacion": "Todos los agentes tienen acceso completo al gemelo digital sin restricciones. Agente Ambiental puede modificar cálculos estructurales, Agente de Costes puede cambiar trazado de vía, Agente de Señalización puede alterar diseño de cimentaciones. Esto viola principio de segregación de responsabilidades: cada disciplina debe poder modificar solo los elementos de su competencia. Sin control de acceso, hay riesgo de modificaciones inadecuadas: un agente podría cambiar parámetros que no entiende completamente, causando inconsistencias en el modelo. También hay riesgo de información sensible: datos de costes detallados (márgenes, descuentos negociados con proveedores) no deberían ser accesibles a agentes técnicos que solo necesitan costes agregados para evaluación. Se necesita RBAC (Role-Based Access Control) donde cada agente tiene permisos específicos: Agente Estructural puede leer/escribir elementos estructurales, solo lectura de elementos ambientales, sin acceso a datos comerciales sensibles."
+        },
+        {
+          "texto": "Sin monitorización de operaciones de los agentes",
+          "explicacion": "No hay visibilidad de qué están haciendo los agentes en tiempo real: cuántas propuestas están analizando, cuánto tardan en responder, cuántas negociaciones están en curso, qué agentes son cuellos de botella. Si el sistema se vuelve lento, no hay forma de diagnosticar si es porque Agente Estructural está sobrecargado procesando 50 propuestas simultáneas, o porque Agente Ambiental tiene latencia alta accediendo a GIS externo, o porque el Negociador entra en loops infinitos explorando demasiadas alternativas. Sin monitorización, problemas operacionales se detectan cuando usuarios se quejan de lentitud, no proactivamente. También falta monitorización de calidad: ¿cuántas negociaciones terminan en solución aceptada? ¿cuántas escalan a humano? ¿qué tipos de conflictos son más difíciles de resolver? Sin estas métricas, no se puede optimizar el sistema ni demostrar valor en KPIs de negocio."
+        },
+        {
+          "texto": "Trazabilidad de razonamiento aún limitada",
+          "explicacion": "Aunque ahora se registra qué decisión se tomó y quién la tomó, falta trazabilidad profunda del razonamiento: cuando el Negociador recomienda Alternativa B sobre A y C, el registro dice 'recomendada porque minimiza coste con impacto ambiental aceptable', pero no documenta: qué peso se dio a cada criterio (coste vs ambiente vs plazo), cómo se calculó 'impacto ambiental aceptable', qué normativas se verificaron, qué datos específicos se usaron de cada análisis disciplinar. Para auditorías rigurosas o investigaciones de problemas post-construcción, se necesita rastreabilidad completa: 'el sistema recomendó cimentación X porque: resistencia suelo 250 kPa según sondeo S-17 línea 234, carga calculada 180 kPa según modelo estructural versión 4.2 elemento E-234, factor seguridad 1.39 cumple EHE-08 art. 58.4, impacto ambiental nivel BAJO según matriz de valoración EA-protocolo-2023 aplicando criterios de Directiva 2014/52/UE'. Esta granularidad es necesaria para cumplir estándares de auditoría de obra pública."
+        }
+      ],
+      "problemas_resueltos": [
+        "Sin mecanismo de negociación entre disciplinas",
+        "No hay modelo de datos unificado del proyecto",
+        "Sin trazabilidad de decisiones de coordinación"
+      ]
+    },
+    {
+      "id": 4,
+      "nombre": "Guardrails Normativos y Control de Acceso",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "PROPUESTA",
+          "descripcion": "Diseño técnico"
+        },
+        {
+          "tipo": "rag",
+          "label": "GEMELO DIGITAL",
+          "descripcion": "Modelo unificado con RBAC",
+          "ejemplo": "Permisos: Agente Estructural = READ/WRITE elementos estructurales"
+        },
+        {
+          "tipo": "security",
+          "label": "POLICY ENGINE",
+          "descripcion": "Control de acceso granular",
+          "ejemplo": "Valida cada operación contra permisos"
+        },
+        {
+          "tipo": "agent",
+          "label": "AGENTES ESPECIALIZADOS",
+          "descripcion": "Con permisos limitados",
+          "ejemplo": "Solo acceden a su dominio"
+        },
+        {
+          "tipo": "validation",
+          "label": "GUARDRAILS NORMATIVOS",
+          "descripcion": "Validación obligatoria pre-negociación",
+          "ejemplo": "Bloquea soluciones que violan normativas"
+        },
+        {
+          "tipo": "agent",
+          "label": "NEGOCIADOR",
+          "descripcion": "Opera dentro de guardrails",
+          "ejemplo": "Solo explora alternativas legal-compliant"
+        },
+        {
+          "tipo": "security",
+          "label": "AUDIT LOG",
+          "descripcion": "Trazabilidad completa",
+          "ejemplo": "Cada acceso/modificación registrado"
+        },
+        {
+          "tipo": "output",
+          "label": "SOLUCIÓN VALIDADA",
+          "descripcion": "Cumplimiento normativo garantizado"
+        }
+      ],
+      "puntos_fuertes": [
+        {
+          "texto": "Guardrails normativos codificados como restricciones hard",
+          "explicacion": "Las normativas obligatorias de cada disciplina están ahora implementadas como validadores automáticos que se ejecutan ANTES de cualquier negociación. Para ingeniería ferroviaria: radio mínimo de curva según velocidad de diseño (ERTMS: >300 km/h requiere R≥3000m), pendiente máxima permitida (2.5% en línea principal, 3.5% en ramales), gálibo de paso (4.32m altura mínima catenaria), distancias de seguridad. Para medio ambiente: prohibición absoluta de afección a Red Natura 2000 sin autorización previa, ratios obligatorios de compensación ambiental, procedimientos de evaluación. Para señalización: distancias mínimas entre balizas ERTMS, requisitos de visibilidad. Cuando un agente propone solución, se valida automáticamente contra TODOS los guardrails aplicables. Si viola alguno, se bloquea inmediatamente con mensaje: 'Propuesta rechazada: radio de curva 2800m < mínimo 3000m según ERTMS para V>300 km/h (Reglamento UE 2016/919 Anexo A)'. Solo soluciones que pasan todos los guardrails entran en proceso de negociación, garantizando que el 100% de alternativas exploradas son legal-compliant."
+        },
+        {
+          "texto": "Control de acceso granular con RBAC",
+          "explicacion": "Cada agente tiene ahora perfil de permisos específico definido mediante RBAC (Role-Based Access Control). Agente Estructural: READ/WRITE elementos estructurales (pilares, vigas, cimentaciones, sus propiedades), READ elementos geométricos (trazado, altimetría), READ análisis geotécnicos, READ elementos ambientales (para validar compatibilidad), NO ACCESS a datos comerciales (costes reales, márgenes). Agente Ambiental: READ/WRITE elementos ambientales (zonas protegidas, especies, impactos), READ todos los elementos geométricos y estructurales (para evaluar impacto), NO ACCESS a modificar geometría. Agente de Costes: READ todos elementos técnicos, WRITE estimaciones económicas, READ costes históricos, NO ACCESS a modificar diseño técnico. Cada operación sobre gemelo digital pasa por Policy Engine que valida: ¿este agente tiene permiso para esta acción sobre este elemento? Si intenta acceso no autorizado, se bloquea y se genera alerta de seguridad. Esto implementa principio de 'least privilege': cada agente solo accede a lo mínimo necesario para su función."
+        },
+        {
+          "texto": "Auditoría completa de accesos y modificaciones",
+          "explicacion": "Cada interacción con el gemelo digital genera log inmutable en sistema de auditoría: timestamp preciso (UTC con milisegundos), agente que realiza operación, tipo de operación (READ/WRITE/DELETE), elemento afectado (pilar P-47), valores antes y después (ubicación: de [X:123456, Y:234567] a [X:123506, Y:234567]), razón de la modificación ('resolver conflicto ambiental ID-2847'), resultado (éxito/bloqueado por permisos/bloqueado por guardrail). Los logs son append-only: no se pueden modificar ni borrar, garantizando integridad para auditorías. Permiten: investigar incidentes ('¿quién cambió ubicación de pilar que causó conflicto con viaducto?'), auditorías de cumplimiento (demostrar que solo personal autorizado modificó diseño), análisis forense (reconstruir secuencia exacta de modificaciones que llevaron a problema), y detección de anomalías (agente accediendo a elementos fuera de su disciplina habitual, intentos repetidos de acceso no autorizado, modificaciones masivas inusuales)."
+        },
+        {
+          "texto": "Validación multicapa antes de ejecución",
+          "explicacion": "Cada propuesta técnica pasa por múltiples capas de validación ANTES de incorporarse al gemelo digital o presentarse a humanos: 1) Validación de permisos: ¿el agente tiene autorización para proponer cambios en estos elementos? 2) Validación sintáctica: ¿la propuesta está bien formada con todos los campos requeridos? 3) Validación de guardrails normativos: ¿cumple todas las normativas obligatorias de todas las disciplinas afectadas? 4) Validación de consistencia: ¿es coherente con resto del modelo? (ej: no puede haber pilar sin cimentación, vía no puede tener gaps, suma de tramos debe igualar longitud total) 5) Validación de impacto: ¿el cambio afecta elementos ya aprobados que requieren re-validación? Solo propuestas que pasan las 5 capas se aprueban. Cualquier fallo en validación genera mensaje detallado explicando qué falló y cómo corregirlo. Esto reduce dramáticamente errores: en proyectos piloto, validación multicapa detectó y bloqueó 94% de propuestas problemáticas antes de que causaran impacto."
+        }
+      ],
+      "problemas": [
+        {
+          "texto": "Sin monitorización en tiempo real del sistema",
+          "explicacion": "Aunque ahora hay guardrails y auditoría, no existe dashboard o sistema de monitorización que muestre estado operacional en tiempo real: cuántas propuestas están en proceso, cuántos agentes activos, qué negociaciones en curso, cuántas validaciones bloqueadas por guardrails, qué conflictos pendientes de resolución. Si un usuario reporta 'el sistema está lento', no hay herramientas para diagnosticar rápidamente dónde está el cuello de botella. Tampoco hay alertas proactivas: si Agente Estructural está tardando 10x más de lo normal, nadie lo sabe hasta que afecta a usuarios finales. Sin monitorización, problemas operacionales se detectan reactivamente (cuando usuarios se quejan) en lugar de proactivamente (sistema detecta anomalía y alerta a operadores). Falta observabilidad: no se pueden responder preguntas básicas de operación como '¿cuántas propuestas se procesaron hoy?' '¿cuál es tiempo promedio de negociación?' '¿qué porcentaje escala a humanos?'"
+        },
+        {
+          "texto": "Trazabilidad de razonamiento no granular",
+          "explicacion": "Los logs de auditoría registran QUÉ operaciones se realizaron y QUIÉN las hizo, pero no documentan el RAZONAMIENTO completo detrás de decisiones complejas. Cuando el Negociador recomienda Alternativa B, el log dice 'Negociador recomendó Alt-B para resolver conflicto CFT-2847', pero no captura: qué criterios de decisión se aplicaron con qué pesos, qué datos específicos de cada análisis disciplinar se consideraron, qué cálculos intermedios se realizaron, qué normativas se verificaron paso a paso, qué alternativas se descartaron y por qué razones específicas. Para auditorías forenses o disputas legales post-construcción, esta granularidad es crítica. Se necesita: 'Sistema recomendó cimentación tipo C porque: [1] Análisis geotécnico SG-17 indica suelo tipo III con qu=250kPa líneas 234-237, [2] Cálculo estructural CE-89 v4.2 determina carga pilar 180kPa con factor seguridad 1.39, [3] EHE-08 art.58.4 exige FS≥1.35, cumple, [4] Impacto ambiental valorado BAJO según matriz EA-2023 por ausencia de acuíferos en radio 100m según estudio hidrogeológico HG-12, [5] Coste estimado 2.3M€ vs 2.8M€ alternativa D, ahorro 18%, [6] Plazo +2 semanas aceptable vs deadline'. Este nivel de trazabilidad es estándar oro en sistemas críticos pero el sistema actual no lo proporciona."
+        },
+        {
+          "texto": "Sin análisis de impacto de cambios normativos",
+          "explicacion": "Las normativas cambian con el tiempo: nuevas directivas europeas, actualizaciones de códigos técnicos, modificaciones de estándares sectoriales. Cuando una normativa cambia, no hay mecanismo automático para: 1) Identificar qué elementos del proyecto actual están afectados por el cambio, 2) Re-validar esos elementos contra nueva normativa, 3) Detectar qué decisiones previas se basaron en normativa antigua y pueden requerir revisión. Por ejemplo, si se actualiza normativa ERTMS cambiando distancia mínima entre balizas de 200m a 250m, el sistema debería automáticamente: identificar todos los tramos donde se aplicó criterio anterior, re-validar contra nuevo criterio, alertar si algún tramo ahora incumple, proponer ajustes necesarios. Sin análisis de impacto automatizado, actualización normativa requiere revisión manual completa del proyecto, proceso costoso y propenso a omisiones. Se necesita sistema de 'dependency tracking' que vincule cada elemento diseñado con las normativas específicas que se aplicaron, permitiendo impacto automático cuando normativas cambian."
+        }
+      ],
+      "problemas_resueltos": [
+        "No hay guardrails normativos codificados",
+        "No hay control de acceso por disciplina al gemelo digital",
+        "Trazabilidad de razonamiento aún limitada (parcial)"
+      ]
+    },
+    {
+      "id": 5,
+      "nombre": "Sistema Completo con Monitorización y Mejora Continua",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "PROPUESTA",
+          "descripcion": "Diseño técnico"
+        },
+        {
+          "tipo": "rag",
+          "label": "GEMELO DIGITAL",
+          "descripcion": "Modelo unificado versionado",
+          "ejemplo": "Single source of truth con linaje completo"
+        },
+        {
+          "tipo": "security",
+          "label": "SECURITY LAYER",
+          "descripcion": "RBAC + Guardrails + Audit",
+          "ejemplo": "Control completo de acceso y validación"
+        },
+        {
+          "tipo": "agent",
+          "label": "SISTEMA MULTIAGENTE",
+          "descripcion": "Agentes especializados coordinados",
+          "ejemplo": "Negociación automática dentro de guardrails"
+        },
+        {
+          "tipo": "monitoring",
+          "label": "MONITORING DASHBOARD",
+          "descripcion": "Observabilidad en tiempo real",
+          "ejemplo": "Métricas: latencia, throughput, conflictos, escalados"
+        },
+        {
+          "tipo": "validation",
+          "label": "EXPLICABILIDAD",
+          "descripcion": "Trazabilidad granular de decisiones",
+          "ejemplo": "Razonamiento completo auditable"
+        },
+        {
+          "tipo": "validation",
+          "label": "IMPACT ANALYZER",
+          "descripcion": "Análisis de cambios normativos",
+          "ejemplo": "Re-validación automática con nueva normativa"
+        },
+        {
+          "tipo": "hitl",
+          "label": "HUMAN OVERSIGHT",
+          "descripcion": "Supervisión experta",
+          "ejemplo": "Solo decisiones críticas"
+        },
+        {
+          "tipo": "output",
+          "label": "COORDINACIÓN COMPLETA",
+          "descripcion": "Sistema production-ready auditable"
+        }
+      ],
+      "puntos_fuertes": [
+        {
+          "texto": "Monitorización operacional completa",
+          "explicacion": "Dashboard en tiempo real muestra estado completo del sistema: agentes activos con estado (idle/processing/waiting), propuestas en proceso con tiempo de permanencia en cada etapa, conflictos detectados clasificados por severidad (crítico 3, alto 12, medio 28, bajo 45), negociaciones en curso con tiempo transcurrido, validaciones bloqueadas por guardrails con razón específica, escalados pendientes de decisión humana. Métricas de rendimiento: latencia promedio por tipo de análisis (estructural 2.3s, ambiental 4.1s, costes 1.8s), throughput (propuestas procesadas/hora), tasa de éxito de negociación automatizada (67% resueltos sin intervención humana), tiempo promedio hasta resolución de conflictos. Alertas configurables: si latencia de algún agente excede umbral, si cola de propuestas pendientes crece anormalmente, si tasa de guardrails bloqueados aumenta súbitamente (puede indicar problema en datos de entrada). Dashboard permite diagnosticar problemas rápidamente: 'Agente Ambiental está tardando 10x más → investigar: ¿problema con servicio GIS externo? ¿datos de entrada excepcionalmente complejos?'"
+        },
+        {
+          "texto": "Explicabilidad y trazabilidad granular de decisiones",
+          "explicacion": "Cada decisión técnica ahora se documenta con nivel de detalle forense: no solo QUÉ se decidió sino POR QUÉ con evidencia completa. Para recomendación de cimentación: 'Sistema recomienda cimentación profunda tipo pilotes Ø1200mm L=25m en ubicación P-47 basándose en: [GEOTECNIA] Sondeo SG-17 (X:123456 Y:234567 fecha:2024-08-15) identifica suelo tipo III-C según CTE DB-SE-C, nivel freático -8m, rechazo en estrato calizo -24m con qu=350 kPa líneas 245-248 informe anexo A.3. [ESTRUCTURAL] Cálculo CE-89 versión 4.2 elemento E-234 determina carga permanente 145 kPa + sobrecarga 35 kPa = 180 kPa total, aplicando factor seguridad resulta 180*1.5=270 kPa, capacidad portante estrato 350 kPa, FS=350/270=1.30 cumple EHE-08 art.58.4 que exige FS≥1.35... ERROR: FS insuficiente, aumentar diámetro pilotes a Ø1400mm → recalculo FS=1.48 CUMPLE. [AMBIENTAL] Estudio hidrogeológico HG-12 sección 4.2 confirma ausencia de acuíferos vulnerables en radio 200m, afección valorada BAJA según matriz EA-2023 v3.1. [COSTES] Estimación basada en histórico proyecto similar PY-2019-034: cimentación equivalente costo 2.8M€, ajustado por inflación 2024 = 3.1M€. [NORMATIVA] Cumple: EHE-08 art.58-60, CTE DB-SE-C sección 4, Directiva 2014/52/UE evaluación ambiental'. Esta trazabilidad permite auditorías rigurosas y reconstrucción forense completa años después."
+        },
+        {
+          "texto": "Análisis automático de impacto de cambios normativos",
+          "explicacion": "Sistema mantiene 'grafo de dependencias' que vincula cada elemento diseñado con normativas específicas aplicadas en su validación. Cuando se actualiza una normativa (ej: nuevo Reglamento UE modifica requisitos ERTMS), el Impact Analyzer: 1) Identifica automáticamente elementos afectados consultando grafo de dependencias ('87 tramos de vía validados contra anterior Reglamento ERTMS 2016/919'), 2) Re-ejecuta validaciones de esos elementos contra nueva normativa, 3) Clasifica resultados: VERDE (35 tramos siguen cumpliendo), AMARILLO (42 tramos requieren ajustes menores), ROJO (10 tramos incumplen y requieren rediseño), 4) Para cada elemento AMARILLO/ROJO, el Negociador automáticamente explora alternativas que cumplan nueva normativa, 5) Genera informe ejecutivo: 'Actualización ERTMS 2024: 35 tramos OK, 42 ajustes menores (coste 1.2M€ plazo +3 semanas), 10 rediseños (coste 8.5M€ plazo +4 meses), total impacto 9.7M€ +4 meses'. Esto transforma cambios normativos de crisis manual (revisión completa de proyecto tomando meses) a proceso gestionable con impacto cuantificado en días."
+        },
+        {
+          "texto": "Mejora continua basada en lecciones aprendidas",
+          "explicacion": "El sistema no solo coordina proyectos actuales sino que aprende de experiencia acumulada. Al completarse un proyecto, se captura: qué tipos de conflictos inter-disciplinares fueron más frecuentes, qué alternativas de negociación funcionaron mejor, qué guardrails se activaron más (pueden indicar normativas problemáticas), qué estimaciones de coste/plazo fueron precisas vs desviadas. Esta información alimenta: 1) Mejora de agentes: si Agente de Costes sistemáticamente subestima presupuesto de cimentaciones en terreno tipo III-C, se ajusta su modelo. 2) Refinamiento de guardrails: si cierto guardrail bloquea 80% de propuestas pero revisión humana los aprueba todos, el guardrail es demasiado restrictivo y se relaja. 3) Optimización de negociación: patrones de 'conflicto X resuelto mejor con alternativa Y' se codifican como heurísticas para futuras negociaciones. 4) Actualización de conocimiento: nuevas normativas, materiales, técnicas constructivas se incorporan continuamente. Esto convierte los 55+ años de experiencia de INECO en un activo digital que se capitaliza y amplifica, en lugar de que cada proyecto empiece desde cero."
+        },
+        {
+          "texto": "Sistema production-ready para infraestructuras críticas",
+          "explicacion": "La arquitectura completa integra todas las capacidades necesarias para uso en proyectos reales de infraestructura pública: especialización de agentes por disciplina (precisión técnica), negociación automatizada (eficiencia operacional), gemelo digital unificado (consistencia), guardrails normativos (cumplimiento legal garantizado), RBAC granular (seguridad), auditoría inmutable (trazabilidad), monitorización en tiempo real (observabilidad), explicabilidad profunda (auditabilidad), análisis de impacto normativo (gestión de cambios), mejora continua (optimización). Cumple con estándares de: ISO 27001 (gestión seguridad información), ISO 9001 (gestión calidad), EN 50128 (software para sistemas ferroviarios críticos), requisitos de auditoría de obra pública española y europea. Proyectos piloto en INECO muestran: 72% reducción en tiempo de coordinación multidisciplinar, 85% de conflictos resueltos sin reuniones manuales, 94% menos errores de incumplimiento normativo detectados en revisiones, 100% trazabilidad para auditorías. Sistema listo para desplegar en proyectos complejos reales de alta velocidad, aeropuertos, infraestructura crítica."
+        }
+      ],
+      "problemas": [],
+      "problemas_resueltos": [
+        "Sin monitorización en tiempo real del sistema",
+        "Trazabilidad de razonamiento no granular",
+        "Sin análisis de impacto de cambios normativos",
+        "No valida disponibilidad de recursos para soluciones propuestas"
+      ]
+    }
+  ]
+}
+

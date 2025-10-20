@@ -25,6 +25,14 @@ def caso1():
 def caso2():
     return render_template('caso2.html')
 
+@app.route('/caso3')
+def caso3():
+    return render_template('caso3.html')
+
+@app.route('/caso4')
+def caso4():
+    return render_template('caso4.html')
+
 @app.route('/api/caso/<int:caso_id>/layer/<int:layer_id>')
 def get_layer(caso_id, layer_id):
     data = load_layer_data(caso_id)

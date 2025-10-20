@@ -1,0 +1,482 @@
+{
+  "caso": {
+    "id": 4,
+    "titulo": "Asistente Multiagente para Preparación de Licitaciones",
+    "descripcion": "Sistema de agentes especializados para preparación automática de propuestas técnicas y reporting"
+  },
+  "layers": [
+    {
+      "id": 0,
+      "nombre": "Problema de Negocio",
+      "es_introduccion": true,
+      "problema": {
+        "titulo": "El Desafío de la Preparación de Licitaciones y Reporting Continuo",
+        "descripcion": "Como medio propio de la Administración, INECO debe responder continuamente a encargos de diferentes ministerios y organismos públicos. Este proceso es intensivo en tiempo y recursos:",
+        "puntos": [
+          "📋 Decenas de encargos simultáneos de múltiples organismos públicos",
+          "📊 Requiere analizar 55+ años de datos históricos para estimaciones precisas",
+          "⏰ Preparación manual de propuestas toma 2-4 semanas de profesionales senior",
+          "📝 Validación de cumplimiento normativo complejo (española, europea, sectorial)",
+          "📈 Reporting continuo sobre cientos de proyectos activos consume 20% tiempo administrativo"
+        ],
+        "impacto": "Respuestas lentas reducen competitividad. Estimaciones imprecisas causan sobrecostes del 10-15%. Profesionales senior dedican tiempo excesivo a tareas administrativas en lugar de aportar valor estratégico."
+      },
+      "solucion": {
+        "titulo": "¿Por qué un Sistema Multiagente Especializado?",
+        "descripcion": "Un sistema de agentes especializados puede:",
+        "beneficios": [
+          "📚 Analizar automáticamente 55+ años de históricos para estimaciones precisas",
+          "⚡ Reducir tiempo de preparación de propuestas de 2-4 semanas a 2-3 días",
+          "✅ Validar automáticamente cumplimiento de marcos regulatorios complejos",
+          "📝 Generar documentación formal siguiendo templates oficiales de INECO",
+          "📊 Reporting automático sobre proyectos activos sin carga administrativa"
+        ],
+        "enfoque": "Construiremos el sistema capa por capa: desde un generador único hasta una arquitectura multiagente con analista de históricos, estimador, validador normativo, redactor, y supervisor, con gobierno completo del dato histórico."
+      }
+    },
+    {
+      "id": 1,
+      "nombre": "Sistema Base",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "ENCARGO",
+          "descripcion": "Solicitud de organismo público",
+          "input_value": "Ministerio de Transportes solicita propuesta técnica y presupuesto para: Estudio de viabilidad de corredor ferroviario de mercancías Mediterráneo (1.200 km), incluyendo análisis de demanda, diseño conceptual, estimación económica y planificación temporal. Plazo presentación: 15 días.",
+          "es_interactivo": true
+        },
+        {
+          "tipo": "agent",
+          "label": "GENERADOR",
+          "descripcion": "Agente único que genera propuesta completa",
+          "system_prompt": "Eres un asistente experto que genera propuestas técnicas y presupuestos para proyectos de infraestructura. Produce documentos profesionales con estructura completa: memoria técnica, plan de trabajo, presupuesto y planificación temporal."
+        },
+        {
+          "tipo": "output",
+          "label": "PROPUESTA",
+          "descripcion": "Documento técnico-económico",
+          "output_completo": {
+            "titulo": "PROPUESTA TÉCNICA - ESTUDIO VIABILIDAD CORREDOR MEDITERRÁNEO",
+            "contenido": "1. OBJETO DEL ENCARGO\n\nElaboración de estudio de viabilidad para corredor ferroviario de mercancías del Mediterráneo, con análisis de demanda, diseño conceptual, viabilidad económica y planificación.\n\n2. ALCANCE TÉCNICO\n\n2.1 Análisis de Demanda\n- Estudio de tráficos actuales y proyecciones 2030/2040/2050\n- Análisis de flujos origen-destino\n- Evaluación de modal shift carretera-ferrocarril\n\n2.2 Diseño Conceptual\n- Definición de alternativas de trazado\n- Análisis multicriterio\n- Soluciones técnicas principales\n\n2.3 Viabilidad Económica\n- Estimación de inversión\n- Análisis coste-beneficio\n- Evaluación de rentabilidad socioeconómica\n\n3. METODOLOGÍA\n\nSe aplicarán estándares internacionales de análisis de viabilidad ferroviaria, utilizando herramientas de modelización de demanda y análisis económico.\n\n4. EQUIPO PROPUESTO\n\n- Jefe de Proyecto: 1 Ingeniero Senior (200 horas)\n- Análisis Demanda: 2 Analistas (300 horas)\n- Diseño: 3 Ingenieros (450 horas)\n- Económico: 2 Economistas (250 horas)\n- Apoyo: 1 Técnico (150 horas)\n\nTOTAL: 1.350 horas\n\n5. PRESUPUESTO ESTIMADO\n\nHonorarios profesionales: 135.000 €\nGastos análisis y estudios: 25.000 €\nGastos generales (15%): 24.000 €\n\nTOTAL: 184.000 €\n\n6. PLAZO DE EJECUCIÓN\n\nDuración estimada: 4 meses desde encargo\n\n7. EXPERIENCIA RELEVANTE\n\nINECO cuenta con amplia experiencia en estudios de viabilidad ferroviaria en corredores nacionales e internacionales.",
+            "metadata": {
+              "fecha_generacion": "2025-10-20",
+              "tiempo_generacion": "12.4s",
+              "palabras": 285
+            }
+          }
+        }
+      ],
+      "puntos_fuertes": [
+        {
+          "texto": "Genera propuesta estructurada automáticamente",
+          "explicacion": "El agente produce documento con estructura profesional completa: objeto del encargo, alcance técnico detallado por disciplinas, metodología a aplicar, equipo propuesto con roles y dedicaciones, presupuesto desglosado, planificación temporal, y referencia a experiencia de INECO. Sigue convenciones de documentación formal para organismos públicos: lenguaje técnico apropiado, secciones numeradas jerárquicamente, presentación clara. Esto ahorra 4-6 horas de trabajo de redacción manual que normalmente haría un ingeniero senior, permitiendo enfocarse en revisión y afinamiento en lugar de partir de cero. El formato es consistente con templates de INECO, facilitando lectura por clientes habituales (ministerios, ADIF, Aena) que conocen estructura estándar."
+        },
+        {
+          "texto": "Identifica componentes clave del alcance",
+          "explicacion": "El agente analiza el encargo del cliente y descompone automáticamente en componentes técnicos necesarios: para estudio de viabilidad ferroviaria identifica que requiere análisis de demanda (con proyecciones temporales), diseño conceptual (alternativas de trazado, análisis multicriterio), viabilidad económica (inversión, coste-beneficio, rentabilidad). Esta descomposición demuestra comprensión del dominio ferroviario: sabe que viabilidad ferroviaria requiere estos tres pilares. Evita que el equipo de INECO olvide componentes críticos en propuesta inicial, reduciendo necesidad de addendas o aclaraciones posteriores que retrasan proceso de contratación."
+        },
+        {
+          "texto": "Propone composición de equipo multidisciplinar",
+          "explicacion": "El sistema sugiere estructura de equipo con roles diferenciados: jefe de proyecto (coordinación general), analistas de demanda (modelización de tráficos), ingenieros de diseño (trazado y soluciones técnicas), economistas (análisis coste-beneficio), técnicos de apoyo (documentación y CAD). Incluye estimación de dedicación en horas por rol, permitiendo verificación rápida de coherencia: jefe de proyecto con 200 horas puede supervisar equipo de 6 personas durante 4 meses. Esto acelera definición inicial de equipo, que tradicionalmente requiere reuniones entre jefes de área para negociar disponibilidad de personal. El agente proporciona punto de partida razonable que luego se ajusta según disponibilidad real."
+        }
+      ],
+      "problemas": [
+        {
+          "texto": "No accede a datos históricos de proyectos similares",
+          "explicacion": "Las estimaciones de recursos (1.350 horas), presupuesto (184.000 €) y plazo (4 meses) son valores genéricos no fundamentados en experiencia real de INECO. El agente no tiene acceso a base de datos de 2.500+ proyectos ejecutados en 55+ años donde podría consultar: '¿cuánto costaron estudios de viabilidad ferroviaria similares?' '¿cuánto tiempo tomaron realmente?' '¿qué desviaciones hubo entre estimado y real?'. Sin históricos, las estimaciones son esencialmente 'inventadas' basándose en conocimiento general de LLMs entrenados con datos públicos, no en experiencia específica de INECO. Esto causa dos problemas: 1) Imprecisión: estimación puede estar 30-50% desviada de realidad, causando problemas contractuales si se compromete presupuesto insuficiente. 2) Pérdida de ventaja competitiva: INECO tiene 55+ años de datos que son su activo más valioso, pero no se aprovechan, generando propuestas igualmente genéricas que podría hacer cualquier competidor."
+        },
+        {
+          "texto": "No valida cumplimiento normativo",
+          "explicacion": "La propuesta no verifica si cumple con marcos regulatorios complejos aplicables: Ley de Contratos del Sector Público (requisitos de contenido mínimo de ofertas), normativa específica del Ministerio cliente (pueden requerir metodologías concretas, formatos específicos), regulaciones sectoriales (estudios ferroviarios deben cumplir normativa de evaluación ambiental estratégica, análisis de alternativas según legislación aplicable), políticas internas de INECO (límites de descuento, requisitos de calidad, procedimientos de aprobación). Sin validación automática, un ingeniero senior debe revisar manualmente cada aspecto normativo, proceso que toma 1-2 días y es propenso a omisiones. Si la propuesta enviada incumple algún requisito formal del procedimiento de contratación, puede ser descartada administrativamente sin siquiera valorarse técnicamente, perdiendo oportunidad de negocio."
+        },
+        {
+          "texto": "Sin verificación de disponibilidad de recursos",
+          "explicacion": "La propuesta sugiere equipo de 9 profesionales (1 senior, 2 analistas, 3 ingenieros diseño, 2 economistas, 1 técnico) sin verificar si INECO tiene esos recursos disponibles. Puede proponer '3 ingenieros ferroviarios' cuando actualmente solo hay 2 disponibles (el resto están asignados a proyectos activos). O proponer '2 economistas con experiencia en análisis coste-beneficio ferroviario' cuando esa especialización solo la tienen 3 personas en toda la organización y están en proyectos críticos. Sin integración con sistemas de gestión de recursos y planificación de personal, cada propuesta generada requiere verificación manual con jefes de área ('¿tienes ingenieros disponibles para esto en marzo-junio?'), proceso que toma días y múltiples iteraciones, anulando gran parte de la ganancia de eficiencia de generación automática."
+        },
+        {
+          "texto": "Redacción genérica sin personalización al cliente",
+          "explicacion": "El documento usa lenguaje estándar sin adaptar a características específicas del cliente o contexto del encargo. No refleja: prioridades conocidas del Ministerio cliente (ej: si están enfocados en sostenibilidad, enfatizar análisis de emisiones; si en competitividad portuaria, enfatizar conectividad con puertos), referencias a proyectos previos para ese cliente que demuestran experiencia específica ('INECO realizó estudio similar de Corredor Atlántico en 2019 para este mismo Ministerio con resultados exitosos'), terminología y acrónimos preferidos por ese organismo, estructura de documento alineada con templates que ese cliente usa habitualmente. Esta falta de personalización hace que propuesta sea perceptiblemente genérica, reduciendo probabilidad de éxito en procesos competitivos donde personalización y demostración de comprensión profunda del cliente son diferenciadores clave."
+        },
+        {
+          "texto": "Estimaciones sin justificación ni trazabilidad",
+          "explicacion": "Los números presentados (184.000 € presupuesto, 4 meses plazo, 1.350 horas esfuerzo) no tienen justificación explícita. Si el cliente pregunta '¿por qué 4 meses y no 3?' o '¿cómo se llegó a 184.000 €?', no hay respuesta trazable más allá de 'el sistema lo estimó'. En procesos de contratación pública, especialmente en altos valores, los organismos exigen justificación detallada de presupuestos: 'presupuesto basado en coste medio de X proyectos similares ejecutados 2019-2023, ajustado por inflación 2024, con desglose de Y horas de perfil Z a tarifa T'. Sin trazabilidad, las estimaciones no son defendibles ante auditorías internas de INECO ni ante cuestionamientos de clientes, generando falta de confianza y requiriendo trabajo manual posterior de justificación."
+        },
+        {
+          "texto": "No genera reporting de proyectos activos",
+          "explicacion": "El sistema solo genera propuestas para encargos nuevos pero no ayuda con la otra gran carga administrativa: reporting continuo sobre proyectos en ejecución. INECO gestiona cientos de proyectos simultáneos que requieren reportes periódicos a diferentes stakeholders: Ministerios (reportes ejecutivos mensuales), ADIF/Renfe/Aena (seguimiento técnico semanal/quincenal), dirección de INECO (dashboard de cartera), auditorías internas (control de desviaciones). Cada reporte requiere: recopilar datos de progreso de múltiples sistemas (gestión proyectos, control costes, RRHH), detectar desviaciones sobre planificado, identificar riesgos emergentes, generar narrativa ejecutiva. Actualmente esto consume 15-20% del tiempo de jefes de proyecto. Sin capacidad de reporting automatizado, este problema no se aborda."
+        }
+      ],
+      "problemas_resueltos": []
+    },
+    {
+      "id": 2,
+      "nombre": "Agentes Especializados y Análisis de Históricos",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "ENCARGO",
+          "descripcion": "Solicitud de organismo"
+        },
+        {
+          "tipo": "agent",
+          "label": "SUPERVISOR",
+          "descripcion": "Orquesta flujo entre agentes",
+          "ejemplo": "Coordina análisis → estimación → validación → redacción"
+        },
+        {
+          "tipo": "vectordb",
+          "label": "BD HISTÓRICOS",
+          "descripcion": "55+ años de proyectos INECO",
+          "ejemplo": "2.500+ proyectos con costes reales, plazos, desviaciones"
+        },
+        {
+          "tipo": "agent",
+          "label": "ANALISTA HISTÓRICOS",
+          "descripcion": "Busca proyectos similares",
+          "ejemplo": "Encuentra 12 estudios viabilidad ferroviaria comparables"
+        },
+        {
+          "tipo": "agent",
+          "label": "ESTIMADOR",
+          "descripcion": "Calcula recursos, costes, plazos",
+          "ejemplo": "Basado en datos reales de históricos"
+        },
+        {
+          "tipo": "agent",
+          "label": "VALIDADOR NORMATIVO",
+          "descripcion": "Verifica cumplimiento regulatorio",
+          "ejemplo": "Valida vs LCSP, normativa sectorial, políticas INECO"
+        },
+        {
+          "tipo": "agent",
+          "label": "REDACTOR",
+          "descripcion": "Genera documentación formal",
+          "ejemplo": "Templates oficiales INECO adaptados al cliente"
+        },
+        {
+          "tipo": "output",
+          "label": "PROPUESTA FUNDAMENTADA",
+          "descripcion": "Con trazabilidad a históricos"
+        }
+      ],
+      "puntos_fuertes": [
+        {
+          "texto": "Análisis de históricos para estimaciones precisas",
+          "explicacion": "El Agente Analista de Históricos accede a base de datos con 2.500+ proyectos de 55+ años de INECO, estructurados con metadata rica: tipo de proyecto, sector (ferroviario/aeroportuario/carreteras), cliente, alcance, presupuesto estimado vs real, plazo planificado vs real, recursos asignados, desviaciones ocurridas, lecciones aprendidas. Para encargo de estudio de viabilidad ferroviaria de 1.200 km, busca proyectos similares: estudios de viabilidad (no diseño detallado ni obra), sector ferroviario, longitud comparable (500-2000 km), ejecutados últimos 10 años (para relevancia). Encuentra 12 proyectos comparables: Corredor Atlántico 2019 (890 km, 4.5 meses, 215.000€), Eje Transversal 2020 (1.350 km, 5 meses, 267.000€), etc. Extrae patrones: coste medio 0.18 €/km-lineal, plazo medio 4.8 meses, desviación media +12% sobre estimado. Estas estimaciones basadas en datos reales son 3-5x más precisas que estimaciones genéricas del Layer 1."
+        },
+        {
+          "texto": "Estimación fundamentada de recursos y costes",
+          "explicacion": "El Agente Estimador toma los datos de proyectos similares del Analista de Históricos y genera estimaciones detalladas. Para estudio de viabilidad 1.200 km: Coste base = 1.200 km × 0.18 €/km = 216.000 € (basado en media históricos), ajustado por factores: corredor mediterráneo tiene complejidad urbana mayor (+15%), terreno montañoso (+10%), pero aprovecharía estudios previos existentes (-8%), resultado: 216.000 × 1.17 = 252.720 €. Recursos: históricos muestran ratio 0.85 horas/km-lineal para estudios viabilidad, total 1.020 horas, distribuidas según perfiles históricos: 15% jefe proyecto (153h), 25% análisis demanda (255h), 35% diseño (357h), 20% económico (204h), 5% apoyo (51h). Plazo: históricos muestran 4.8 meses para proyectos similares, ajustado por disponibilidad actual de equipo y deadline cliente = 5 meses. Cada cifra está trazada a datos históricos específicos con ajustes fundamentados, no son números inventados."
+        },
+        {
+          "texto": "Validación automática de cumplimiento normativo",
+          "explicacion": "El Agente Validador Normativo tiene codificados requisitos de múltiples marcos regulatorios. Para propuesta a Ministerio de Transportes verifica: 1) Ley Contratos Sector Público (LCSP): propuesta incluye memoria técnica completa (✓), presupuesto desglosado (✓), planificación (✓), experiencia demostrable (✓). 2) Normativa sectorial ferroviaria: estudio de viabilidad debe incluir evaluación ambiental estratégica según Ley 21/2013 (verifica que alcance lo incluya), análisis de alternativas de trazado (✓), viabilidad económica con análisis coste-beneficio (✓). 3) Políticas internas INECO: presupuesto dentro de rangos autorizados para este tipo de proyecto (✓), equipo incluye certificaciones requeridas (verifica que jefe proyecto tenga nivel mínimo). 4) Requisitos cliente: Ministerio requiere experiencia previa en corredores >500 km (verifica en BD que INECO tiene 8 proyectos que califican, incluye referencias). Genera checklist de cumplimiento: 18 requisitos verificados, 18 cumplidos, 0 incumplimientos. Si detecta incumplimiento, alerta y bloquea envío hasta corregir."
+        },
+        {
+          "texto": "Redacción adaptada al cliente específico",
+          "explicacion": "El Agente Redactor no genera documento genérico sino personalizado al cliente y contexto. Para Ministerio de Transportes: usa template oficial INECO para ministerios (diferente de template para ADIF o Aena), incluye referencias a proyectos previos exitosos para ese cliente específico ('INECO ejecutó estudio Corredor Atlántico 2019 para Ministerio de Transportes, entregado en plazo con valoración excelente por Director General de Planificación'), enfatiza aspectos que históricos muestran que ese cliente valora (sostenibilidad, conectividad europea, impacto económico territorial), usa terminología y acrónimos preferidos por ese organismo. También adapta nivel de detalle técnico: propuestas a áreas técnicas (subdirecciones de ingeniería) incluyen más detalle técnico, propuestas a áreas administrativas enfatizan marco regulatorio y procedimientos. Esta personalización aumenta tasa de éxito: análisis de propuestas INECO 2019-2023 muestra que propuestas personalizadas tienen 23% más probabilidad de adjudicación que genéricas."
+        },
+        {
+          "texto": "Coordinación eficiente entre agentes especializados",
+          "explicacion": "El Agente Supervisor orquesta flujo de trabajo optimizado: 1) Analista de Históricos busca proyectos similares (2-3 minutos), 2) Mientras tanto, Validador Normativo verifica requisitos formales del encargo en paralelo (1-2 minutos), 3) Estimador recibe salidas de Analista y genera estimaciones detalladas (3-4 minutos), 4) Validador verifica que estimaciones cumplen políticas INECO (1 minuto), 5) Redactor recibe todas las salidas y genera documento formal (5-7 minutos). Total: 12-17 minutos vs 8 segundos del Layer 1 (que era rápido pero inexacto) y vs 2-4 semanas del proceso manual (preciso pero lento). El sistema encuentra equilibrio: velocidad de automatización con precisión de análisis fundamentado. Supervisor también gestiona errores: si Analista no encuentra históricos suficientes, ajusta estrategia (buscar proyectos en sectores adyacentes, usar datos agregados), si Validador detecta incumplimiento, itera con Redactor para corregir."
+        }
+      ],
+      "problemas": [
+        {
+          "texto": "Sin verificación de disponibilidad real de recursos",
+          "explicacion": "Aunque el Estimador ahora calcula recursos basándose en históricos (153h jefe proyecto, 255h análisis, 357h diseño, etc.), no verifica si INECO actualmente tiene esos recursos disponibles para el período propuesto. Puede estimar equipo de 5 ingenieros ferroviarios cuando solo 2 están disponibles marzo-julio, los otros 3 están en proyectos de alta velocidad Barcelona-Tarragona que no pueden liberarse. No hay integración con sistemas de: gestión de recursos (¿quién está asignado a qué proyecto?), planificación de personal (¿cuándo se liberan recursos de proyectos actuales?), capacidades técnicas (¿qué ingenieros tienen especialización específica requerida?). Esto causa problema: propuesta técnicamente sólida y bien presupuestada se envía al cliente, se adjudica, pero al intentar montar equipo se descubre que recursos propuestos no están disponibles, obligando a renegociar plazo o buscar recursos externos más caros, erosionando margen o causando incumplimiento contractual."
+        },
+        {
+          "texto": "Calidad de datos históricos variable",
+          "explicacion": "La base de datos históricos contiene 2.500+ proyectos pero con calidad de información heterogénea. Proyectos recientes (2018-2024) tienen metadata rica: presupuesto detallado, desglose de recursos, desviaciones documentadas, lecciones aprendidas estructuradas. Proyectos antiguos (1970-2000) tienen información limitada: solo presupuesto total, plazo, y descripción textual no estructurada. Proyectos intermedios tienen calidad variable según quién documentó. Esto afecta análisis: cuando Analista de Históricos busca proyectos de túneles ferroviarios, encuentra 45, pero solo 12 tienen datos suficientemente detallados para estimación precisa. Si usa los 45 incluyendo los mal documentados, las estadísticas son ruidosas (desviación estándar alta). Si usa solo los 12 bien documentados, pierde muestra estadística (menos representativo). Además, no hay proceso continuo de enriquecimiento: proyectos que se completan hoy no alimentan automáticamente la base históricos con lecciones aprendidas, perdiendo oportunidad de mejora continua."
+        },
+        {
+          "texto": "No hay capacidad de reporting automático",
+          "explicacion": "El sistema resuelve preparación de propuestas nuevas pero no aborda el otro gran problema administrativo: reporting continuo de proyectos en ejecución. Jefes de proyecto de INECO dedican 15-20% de su tiempo a generar reportes para diferentes stakeholders: Ministerios quieren reportes ejecutivos mensuales (progreso, hitos, desviaciones, riesgos), clientes técnicos (ADIF/Renfe) quieren seguimiento técnico detallado semanal/quincenal, dirección INECO necesita dashboard de cartera de proyectos, auditorías internas requieren reportes de control de desviaciones presupuestarias. Cada reporte requiere: acceder a múltiples sistemas (MS Project para cronogramas, sistema financiero para costes, RRHH para recursos), consolidar datos, detectar desviaciones, analizar causas, redactar narrativa. Sin agentes especializados en reporting, esta carga administrativa permanece manual, consumiendo tiempo valioso de profesionales que podría dedicarse a gestión técnica real del proyecto."
+        },
+        {
+          "texto": "Sin análisis de riesgos basado en históricos",
+          "explicacion": "Aunque el sistema accede a históricos para estimar costes y plazos, no analiza RIESGOS específicos basándose en problemas ocurridos en proyectos similares. Los históricos contienen información sobre: qué salió mal en proyectos previos (expropiaciones retrasaron 8 meses proyecto Corredor Norte), qué supuestos fallaron (estimación de demanda de viajeros sobrestimó 30% en proyecto X), qué dependencias causaron problemas (retrasos en aprobación ambiental afectaron 15 proyectos 2018-2020), qué soluciones técnicas funcionaron vs no funcionaron. Esta información no se capitaliza para identificar riesgos en encargo actual. Por ejemplo, si históricos muestran que todos los estudios de viabilidad en terreno montañoso del Mediterráneo tuvieron desviaciones +25-35% en costes de túneles, el sistema debería alertar: 'RIESGO ALTO: terreno montañoso, considerar contingencia 30% en presupuesto de túneles'. Sin análisis de riesgos, propuesta puede ser optimista y vulnerable a problemas predecibles."
+        }
+      ],
+      "problemas_resueltos": [
+        "No accede a datos históricos de proyectos similares",
+        "No valida cumplimiento normativo",
+        "Redacción genérica sin personalización al cliente",
+        "Estimaciones sin justificación ni trazabilidad"
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Integración con Sistemas y Reporting Automatizado",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "ENCARGO / SOLICITUD REPORTING",
+          "descripcion": "Nueva propuesta o reporte de proyecto activo"
+        },
+        {
+          "tipo": "agent",
+          "label": "SUPERVISOR",
+          "descripcion": "Orquesta flujo de trabajo"
+        },
+        {
+          "tipo": "vectordb",
+          "label": "BD HISTÓRICOS",
+          "descripcion": "Datos de proyectos con calidad mejorada"
+        },
+        {
+          "tipo": "rag",
+          "label": "SISTEMAS INTEGRADOS",
+          "descripcion": "Recursos, Planning, Financiero, RRHH",
+          "ejemplo": "Consulta disponibilidad real de personal"
+        },
+        {
+          "tipo": "agent",
+          "label": "AGENTES PROPUESTAS",
+          "descripcion": "Analista, Estimador, Validador, Redactor",
+          "ejemplo": "Con verificación de recursos reales"
+        },
+        {
+          "tipo": "agent",
+          "label": "AGENTE RECOLECTOR",
+          "descripcion": "Extrae datos de progreso de proyectos",
+          "ejemplo": "Cronogramas, costes, recursos de sistemas operacionales"
+        },
+        {
+          "tipo": "agent",
+          "label": "AGENTE ANALÍTICO",
+          "descripcion": "Detecta desviaciones y riesgos",
+          "ejemplo": "Alerta: Proyecto X con +15% sobrecoste"
+        },
+        {
+          "tipo": "agent",
+          "label": "AGENTE REPORTERO",
+          "descripcion": "Genera informes adaptados",
+          "ejemplo": "Ejecutivo para Ministerio, técnico para ADIF"
+        },
+        {
+          "tipo": "output",
+          "label": "PROPUESTAS / REPORTES",
+          "descripcion": "Documentación completa y actualizada"
+        }
+      ],
+      "puntos_fuertes": [
+        {
+          "texto": "Verificación de disponibilidad real de recursos",
+          "explicacion": "El sistema ahora se integra con plataforma de gestión de recursos de INECO. Cuando Estimador propone equipo (ej: 3 ingenieros ferroviarios, 2 analistas demanda, 1 economista), el sistema consulta: 1) Sistema de asignación de proyectos: ¿quiénes están disponibles marzo-julio 2025? → identifica 15 ingenieros ferroviarios, 6 analistas, 4 economistas. 2) Sistema de capacidades: de los disponibles, ¿quiénes tienen especialización requerida? → filtra a 8 ingenieros con experiencia en estudios viabilidad, 4 analistas con experiencia modelización ferroviaria. 3) Sistema de carga de trabajo: de los capacitados, ¿quiénes tienen capacidad? → identifica que 3 ingenieros tienen 60-70% ocupación (pueden asumir proyecto), 5 están >90% (no disponibles). Resultado: propuesta incluye nombres reales de profesionales disponibles o indica 'se requerirá contratación temporal de 1 ingeniero adicional, coste estimado 65K€'. Esto elimina 80% de renegociaciones post-adjudicación por falta de recursos."
+        },
+        {
+          "texto": "Reporting automático de proyectos activos",
+          "explicacion": "Para los 200+ proyectos activos de INECO, el sistema genera reportes automáticamente sin intervención manual. Agente Recolector extrae datos cada lunes: de MS Project descarga cronogramas actualizados (hitos completados, progreso tareas, critical path), de sistema financiero obtiene costes reales vs presupuestados, de RRHH carga recursos asignados vs planificados. Agente Analítico compara real vs planificado y detecta: Proyecto A va 2 semanas retrasado en ruta crítica (ALERTA), Proyecto B tiene sobrecoste 12% por cambio alcance aprobado (INFO), Proyecto C completó hito mayor adelantado 1 semana (POSITIVO). Agente Reportero genera: para Ministerios informe ejecutivo mensual (1 página, solo KPIs principales y desviaciones críticas), para clientes técnicos reporte semanal detallado (progreso por paquetes trabajo, issues técnicos, próximos hitos), para dirección INECO dashboard consolidado (RAG status de 200 proyectos, top-10 riesgos, previsión cierre trimestre). Esto reduce carga administrativa de jefes proyecto de 8-10 horas/semana a 1-2 horas de revisión y ajustes."
+        },
+        {
+          "texto": "Análisis predictivo de desviaciones",
+          "explicacion": "El Agente Analítico no solo reporta desviaciones actuales sino que predice desviaciones futuras basándose en patrones históricos y tendencias actuales. Si proyecto está 5% sobre presupuesto a 30% de avance, el sistema analiza: ¿en proyectos similares, desviación de 5% a 30% avance, cómo evolucionó al final? → históricos muestran que desviación media final fue 14%. Predice: 'Proyecto en riesgo de cerrar con +14% sobrecoste si tendencia continúa'. También detecta señales tempranas: si horas de retrabajos han aumentado 40% últimas 3 semanas (indicador de problemas de calidad), si reuniones de coordinación han aumentado 60% (indicador de problemas de alcance), si cambios en cronograma se han acelerado (indicador de problemas de planificación). Genera alertas proactivas: 'Proyecto X muestra patrones similares a Proyecto Y-2019 que terminó con +25% sobrecoste y 4 meses retraso, recomendar revisión de riesgos'. Esto permite intervención correctiva temprana antes de que problemas escalen."
+        },
+        {
+          "texto": "Enriquecimiento continuo de base históricos",
+          "explicacion": "Cada vez que un proyecto se completa o alcanza hito mayor, el sistema automáticamente: 1) Extrae datos finales (coste real, plazo real, recursos utilizados, desviaciones finales), 2) Compara con estimación inicial para calcular precisión, 3) Captura lecciones aprendidas de sesión de cierre del proyecto (qué salió bien, qué falló, qué haríamos diferente), 4) Estructura metadata (tipo proyecto, sector, cliente, complejidad, factores de éxito/riesgo), 5) Incorpora a base de datos históricos con versionado. Además, sistema solicita feedback de jefes de proyecto: '¿qué factores no considerados al inicio afectaron el proyecto?' → captura conocimiento tácito. Esto crea ciclo de mejora continua: cada proyecto ejecutado enriquece la base de conocimiento, mejorando precisión de estimaciones futuras. Análisis 2019-2024 muestra: proyectos estimados con históricos de <50 proyectos similares tienen error medio 18%, con 50-100 proyectos error baja a 12%, con >100 proyectos error baja a 8%. Sistema se vuelve más preciso con el tiempo."
+        }
+      ],
+      "problemas": [
+        {
+          "texto": "Sin guardrails de capacidad máxima de INECO",
+          "explicacion": "Aunque el sistema verifica disponibilidad de recursos específicos, no valida restricciones globales de capacidad de INECO. Podría generar 10 propuestas simultáneas que individualmente son viables (cada una tiene recursos disponibles asignados) pero que colectivamente exceden capacidad: si las 10 se adjudican, requerirían 45 ingenieros ferroviarios cuando INECO tiene 38 en plantilla. No hay validación de: capacidad máxima por disciplina, límite de proyectos simultáneos que la organización puede gestionar eficientemente, capacidad de jefes de proyecto senior (limitada, no se puede contratar fácilmente en mercado), impacto acumulativo en áreas de soporte (calidad, IT, administración). Sin guardrails de capacidad, INECO puede comprometerse en exceso, causando: necesidad de contratación urgente externa (más cara, menor calidad), sobrecarga de personal (burnout, rotación), o incumplimientos contractuales por no poder ejecutar todo lo adjudicado."
+        },
+        {
+          "texto": "Análisis de riesgos aún no implementado",
+          "explicacion": "El sistema genera estimaciones precisas y verifica recursos, pero no analiza sistemáticamente riesgos específicos del encargo basándose en históricos. La base de datos contiene información rica sobre: qué tipos de proyectos tuvieron más desviaciones, qué factores causaron problemas (expropiaciones, aprobaciones ambientales, interfaces con otros proyectos, complejidad técnica no anticipada), qué clientes tienen historial de cambios de alcance frecuentes, qué sectores tienen normativas más cambiantes. Esta información no se usa para generar sección de 'Análisis de Riesgos' en propuestas. Por ejemplo, si históricos muestran que proyectos en Cataluña han tenido retrasos medios de 6 meses por complejidad administrativa autonómica, propuesta para proyecto en Barcelona debería incluir: 'RIESGO: coordinación administrativa compleja, contingencia +3 meses recomendada'. Sin análisis de riesgos, propuestas pueden ser optimistas y no reflejar incertidumbres reales."
+        },
+        {
+          "texto": "Sin validación de coherencia entre componentes",
+          "explicacion": "Los diferentes agentes generan sus salidas de forma semi-independiente sin validación exhaustiva de coherencia. Estimador calcula 1.250 horas totales, Redactor escribe plan de trabajo que implica 1.450 horas (incoherencia), presupuesto indica 5 meses pero cronograma detallado muestra 6.5 meses (incoherencia). Estos errores de coherencia interna pueden pasar desapercibidos si no hay validación cruzada exhaustiva. En propuestas reales, incoherencias son señal de mala calidad y reducen credibilidad: si cliente nota que presupuesto y cronograma no cuadran, duda de rigor técnico de INECO. Se necesita componente de validación que verifica: presupuesto = suma de costes de recursos + gastos + overhead, plazo = ruta crítica de cronograma detallado, equipo propuesto tiene capacidad suficiente para completar tareas en plazo (ej: 1.250 horas / 5 personas / 5 meses = 50 horas/persona/mes, verificar si es realista vs 160 horas/mes disponibles)."
+        },
+        {
+          "texto": "Sin aprobación humana obligatoria para propuestas críticas",
+          "explicacion": "El sistema puede generar propuestas end-to-end y potencialmente enviarlas sin revisión humana. Esto es peligroso para propuestas de alto valor o complejidad: proyectos >2M€ deberían requerir aprobación de Director de Área, proyectos con nuevos clientes deberían revisarse por Desarrollo de Negocio, proyectos con alcance innovador deberían validarse técnicamente por expertos. Sin Human-in-the-Loop obligatorio para casos críticos, hay riesgo de que propuestas con errores sutiles (fuera de experiencia histórica, con supuestos cuestionables, con riesgos no identificados) se envíen sin supervisión adecuada, causando: compromisos que INECO no puede cumplir, presupuestos insuficientes que causan pérdidas, o propuestas técnicamente cuestionables que dañan reputación. Se necesita clasificación de criticidad y escalado inteligente: propuestas estándar <500K€ pueden ir automáticas con revisión ligera, >500K€ requieren aprobación línea manager, >2M€ requieren aprobación Director."
+        }
+      ],
+      "problemas_resueltos": [
+        "Sin verificación de disponibilidad de recursos",
+        "Calidad de datos históricos variable (parcial)",
+        "No hay capacidad de reporting automático"
+      ]
+    },
+    {
+      "id": 4,
+      "nombre": "Guardrails de Capacidad y Análisis de Riesgos",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "ENCARGO",
+          "descripcion": "Solicitud de propuesta"
+        },
+        {
+          "tipo": "agent",
+          "label": "SISTEMA MULTIAGENTE",
+          "descripcion": "Analista, Estimador, Validador, Redactor"
+        },
+        {
+          "tipo": "rag",
+          "label": "BD HISTÓRICOS + SISTEMAS",
+          "descripcion": "Históricos enriquecidos + Recursos + Planning"
+        },
+        {
+          "tipo": "validation",
+          "label": "GUARDRAILS CAPACIDAD",
+          "descripcion": "Valida capacidad global de INECO",
+          "ejemplo": "Verifica: ¿capacidad disponible? ¿límites por disciplina?"
+        },
+        {
+          "tipo": "agent",
+          "label": "ANALIZADOR RIESGOS",
+          "descripcion": "Identifica riesgos basado en históricos",
+          "ejemplo": "Proyecto similar tuvo +25% desviación por factor X"
+        },
+        {
+          "tipo": "validation",
+          "label": "VALIDADOR COHERENCIA",
+          "descripcion": "Verifica consistencia interna",
+          "ejemplo": "Presupuesto = costes recursos, plazo = ruta crítica"
+        },
+        {
+          "tipo": "security",
+          "label": "AUDIT LOG",
+          "descripcion": "Trazabilidad completa de decisiones"
+        },
+        {
+          "tipo": "output",
+          "label": "PROPUESTA VALIDADA",
+          "descripcion": "Con análisis de riesgos y coherencia verificada"
+        }
+      ],
+      "puntos_fuertes": [
+        {
+          "texto": "Guardrails de capacidad global de INECO",
+          "explicacion": "El sistema ahora valida no solo disponibilidad de recursos específicos sino capacidad organizacional completa. Mantiene dashboard de capacidad en tiempo real: por disciplina (38 ingenieros ferroviarios, 22 aeroportuarios, 15 medioambientales, etc.), por nivel (12 jefes proyecto senior, 28 ingenieros senior, 65 ingenieros, 34 técnicos), por tipo de proyecto (capacidad máxima simultánea: 8 proyectos tipo 'estudio viabilidad grande', 15 'diseño construcción media', 40 'asistencias técnicas'). Cuando se genera propuesta, verifica: si se adjudica, ¿capacidad restante suficiente? Si propuesta requiere 3 ing. ferroviarios de 38 disponibles, quedan 35, OK. Pero si ya hay 6 propuestas pendientes que requieren 4+5+3+4+6+5=27 ing. ferroviarios adicionales, capacidad total (38) - comprometido (27) - nuevo (3) = 8 restantes, sistema alerta: 'ADVERTENCIA: capacidad ing. ferroviarios al límite, si las 6 propuestas + esta se adjudican, solo quedarían 8 disponibles (<25% capacidad), considerar priorización o contratación'. Evita sobre-compromiso organizacional."
+        },
+        {
+          "texto": "Análisis automático de riesgos basado en históricos",
+          "explicacion": "El Agente Analizador de Riesgos examina base de datos históricos para identificar factores de riesgo específicos del encargo. Para estudio viabilidad corredor mediterráneo: 1) Riesgo geográfico: históricos muestran que proyectos en región mediterránea han tenido retrasos medios +3 meses por complejidad ambiental (múltiples espacios Red Natura 2000), recomienda contingencia temporal. 2) Riesgo técnico: proyectos en terreno montañoso costero han tenido desviaciones de coste +22% en fase de túneles por geología compleja no anticipada en estudios previos, recomienda: 'incluir campaña geotécnica adicional en presupuesto, +45K€'. 3) Riesgo cliente: Ministerio de Transportes tiene historial de 4 cambios de alcance promedio por proyecto (superior a media 2.3), recomienda: 'definir claramente límites de alcance, establecer procedimiento de gestión de cambios desde inicio'. 4) Riesgo regulatorio: proyectos ferroviarios 2020-2024 han sufrido retrasos por cambios en normativa ERTMS, recomienda: 'cláusula de revisión si normativa cambia durante ejecución'. Genera matriz de riesgos (probabilidad × impacto) y propone mitigaciones específicas basadas en qué funcionó en proyectos similares."
+        },
+        {
+          "texto": "Validación exhaustiva de coherencia interna",
+          "explicacion": "Antes de finalizar propuesta, el Validador de Coherencia ejecuta 15+ verificaciones cruzadas: 1) Presupuesto total = suma(coste recursos + gastos + overhead + margen), con tolerancia <1%. 2) Plazo = duración de ruta crítica del cronograma detallado. 3) Recursos: total horas estimadas / personas / plazo = carga por persona, verificar <160 h/mes/persona (hay que dejar margen para vacaciones, bajas, otros proyectos). 4) Alcance: componentes descritos en memoria técnica corresponden con paquetes de trabajo en planificación. 5) Experiencia: proyectos de referencia citados en sección experiencia existen en BD y son relevantes (mismo sector, complejidad similar). 6) Normativa: todas las normativas citadas están vigentes (no obsoletas). 7) Costes unitarios: tarifas de personal están dentro de rangos oficiales INECO 2024. Si detecta incoherencia: 'ERROR: presupuesto indica 185K€ pero suma de costes es 192K€, discrepancia 7K€, requiere corrección'. Bloquea envío hasta que se resuelvan todas las incoherencias, garantizando calidad del documento."
+        },
+        {
+          "texto": "Trazabilidad completa de cada decisión",
+          "explicacion": "Cada elemento de la propuesta está vinculado a sus fuentes y razonamiento. Presupuesto de 252K€ trazable a: 'basado en 12 proyectos similares ejecutados 2017-2023 (listar códigos: PY-2017-089, PY-2018-034...), coste medio ajustado por inflación 2024 usando índice INE construcción, factores de ajuste: +15% complejidad urbana según análisis GIS de trazado, +10% terreno montañoso según MDT, -8% aprovechar estudios previos según inventario de documentación existente en base documental'. Recursos de 1.020 horas trazable a: 'ratio 0.85 h/km basado en proyectos PY-2019-034 (0.82 h/km) y PY-2021-067 (0.89 h/km), distribución por perfil según media histórica de estudios viabilidad ferroviaria >500 km'. Esta trazabilidad permite: defender propuesta ante cuestionamientos de cliente ('¿por qué tan caro?' → mostrar datos históricos), auditorías internas de INECO (demostrar que estimaciones son fundamentadas), y aprendizaje (si proyecto termina con +18% desviación, analizar qué supuesto de la estimación falló)."
+        }
+      ],
+      "problemas": [
+        {
+          "texto": "Sin Human-in-the-Loop para propuestas críticas",
+          "explicacion": "El sistema genera propuestas completas end-to-end con validaciones automáticas, pero no requiere aprobación humana obligatoria antes de envío. Esto es apropiado para propuestas de rutina (<100K€, alcance estándar, cliente conocido) donde automatización aporta máximo valor. Pero es riesgoso para propuestas críticas: >2M€ de valor (impacto financiero alto en INECO), nuevos clientes (sin historial, riesgo reputacional), alcance innovador (fuera de experiencia histórica, más incertidumbre), clientes estratégicos (ministerios, grandes operadores donde relación es clave), o proyectos en mercados internacionales (regulaciones diferentes, riesgos geopolíticos). Estas propuestas deberían requerir revisión y aprobación de: Director de Área (visión estratégica), expertos técnicos seniors (validación de supuestos técnicos), Desarrollo de Negocio (alineación con estrategia comercial), Legal (revisión de términos contractuales complejos). Sin HITL obligatorio para casos críticos, hay riesgo de enviar propuestas técnicamente correctas pero estratégicamente subóptimas o con riesgos sutiles no detectados por validaciones automáticas."
+        },
+        {
+          "texto": "Análisis de riesgos no cuantifica impacto económico",
+          "explicacion": "El Analizador de Riesgos identifica factores de riesgo y propone mitigaciones, pero no cuantifica impacto económico de cada riesgo. Identifica 'Riesgo: complejidad ambiental puede causar retrasos' pero no estima: ¿cuál es la probabilidad? (30%? 60%?) ¿cuál es el impacto si se materializa? (+2 meses plazo, +80K€ coste?). Sin cuantificación, no es posible: calcular contingencia apropiada (¿cuánto buffer incluir en presupuesto/plazo?), priorizar mitigaciones (enfocar en los riesgos de mayor impacto esperado), o comunicar riesgos cuantitativamente a cliente ('proyecto tiene 40% probabilidad de exceder presupuesto en 50-80K€ por factor X, mitigación Y reduce probabilidad a 15%'). Se necesita análisis cuantitativo de riesgos que genere: distribución probabilística de coste final (P50: 252K€, P75: 289K€, P90: 324K€) y plazo (P50: 5 meses, P75: 5.8 meses, P90: 6.5 meses), permitiendo tomar decisiones informadas sobre contingencias a incluir."
+        },
+        {
+          "texto": "Sin optimización de portfolio de propuestas",
+          "explicacion": "El sistema evalúa cada propuesta independientemente sin considerar portfolio completo de propuestas activas de INECO. Desde perspectiva de negocio, no todas las propuestas son igualmente atractivas: algunas tienen mayor margen, otras abren mercados estratégicos, otras consolidan relaciones con clientes clave, otras desarrollan capacidades nuevas. Si INECO tiene capacidad limitada (ej: solo puede aceptar 8 de 12 propuestas potenciales debido a restricciones de recursos), debería priorizar las más valiosas estratégicamente. El sistema actual no hace optimización de portfolio: no sugiere 'de estas 5 propuestas, priorizar A y C por margen alto, depriorizarB por bajo margen y cliente secundario, D requiere capacidades que no tenemos y tendríamos que subcontratar (bajo margen), E es estratégica aunque margen bajo porque abre mercado aeroportuario en Latinoamérica'. Sin optimización de portfolio, INECO puede terminar ejecutando mix subóptimo de proyectos: muchos de bajo margen que consumen recursos, perdiendo oportunidades de mayor valor estratégico."
+        }
+      ],
+      "problemas_resueltos": [
+        "Sin guardrails de capacidad máxima de INECO",
+        "Análisis de riesgos aún no implementado (parcial)",
+        "Sin validación de coherencia entre componentes"
+      ]
+    },
+    {
+      "id": 5,
+      "nombre": "Sistema Completo con HITL y Optimización Estratégica",
+      "componentes": [
+        {
+          "tipo": "input",
+          "label": "ENCARGO",
+          "descripcion": "Solicitud de propuesta"
+        },
+        {
+          "tipo": "agent",
+          "label": "SISTEMA MULTIAGENTE",
+          "descripcion": "Analista, Estimador, Validador, Redactor, Analizador Riesgos"
+        },
+        {
+          "tipo": "rag",
+          "label": "ECOSISTEMA DATOS",
+          "descripcion": "Históricos + Recursos + Planning + Financiero + Estrategia"
+        },
+        {
+          "tipo": "validation",
+          "label": "VALIDACIONES COMPLETAS",
+          "descripcion": "Guardrails capacidad + Coherencia + Riesgos cuantificados"
+        },
+        {
+          "tipo": "validation",
+          "label": "RISK ASSESSOR",
+          "descripcion": "Análisis cuantitativo de riesgos",
+          "ejemplo": "P50: 252K€, P90: 324K€ - Recomienda contingencia"
+        },
+        {
+          "tipo": "agent",
+          "label": "OPTIMIZADOR PORTFOLIO",
+          "descripcion": "Prioriza propuestas estratégicamente",
+          "ejemplo": "De 8 propuestas, priorizar A, C, E por valor estratégico"
+        },
+        {
+          "tipo": "hitl",
+          "label": "HUMAN REVIEW",
+          "descripcion": "Aprobación obligatoria para propuestas críticas",
+          "ejemplo": ">2M€, nuevo cliente, alcance innovador → requiere Director"
+        },
+        {
+          "tipo": "monitoring",
+          "label": "DASHBOARD ANALÍTICO",
+          "descripcion": "Monitorización de propuestas y proyectos",
+          "ejemplo": "KPIs: tasa éxito, precisión estimaciones, capacidad utilizada"
+        },
+        {
+          "tipo": "security",
+          "label": "GOVERNANCE",
+          "descripcion": "Auditoría + Trazabilidad + Mejora continua"
+        },
+        {
+          "tipo": "output",
+          "label": "PROPUESTAS OPTIMIZADAS",
+          "descripcion": "Sistema production-ready con supervisión estratégica"
+        }
+      ],
+      "puntos_fuertes": [
+        {
+          "texto": "Human-in-the-Loop inteligente para decisiones críticas",
+          "explicacion": "El sistema clasifica automáticamente cada propuesta según criticidad mediante múltiples criterios: valor económico (>2M€ = crítico, >500K€ = alto, <500K€ = estándar), tipo de cliente (nuevo = crítico, estratégico conocido = alto, recurrente = estándar), complejidad técnica (alcance innovador = crítico, estándar con variaciones = alto, rutinario = estándar), riesgo geográfico/regulatorio (internacional = crítico, nacional complejo = alto, nacional estándar = estándar). Según clasificación, aplica nivel de revisión apropiado: ESTÁNDAR (<500K€, cliente conocido, alcance rutinario): generación automática, revisión ligera por jefe de proyecto (15-30 min), envío. ALTO (500K-2M€, cliente estratégico, alcance estándar): generación automática, revisión detallada por jefe proyecto + validación técnica por experto senior (2-3 horas), aprobación jefe de área. CRÍTICO (>2M€, nuevo cliente, internacional, innovador): generación automática proporciona borrador, revisión exhaustiva por equipo multidisciplinar (técnico senior + desarrollo negocio + legal + dirección área), puede requerir iteraciones, aprobación Director de Área obligatoria. Esto optimiza tiempo: automatiza 70% de propuestas estándar completamente, profesionales senior se enfocan en 30% crítico donde aportan máximo valor."
+        },
+        {
+          "texto": "Análisis cuantitativo de riesgos e incertidumbre",
+          "explicacion": "El Risk Assessor ahora no solo identifica riesgos sino que los cuantifica probabilísticamente. Para estudio viabilidad corredor mediterráneo: 1) Identifica 8 riesgos principales con probabilidad e impacto estimados basándose en históricos: complejidad ambiental (P=45%, impacto +2 meses +75K€), geología compleja túneles (P=35%, +3 meses +120K€), cambios alcance por cliente (P=40%, +1 mes +45K€), retrasos aprobaciones (P=25%, +1.5 meses +30K€), etc. 2) Ejecuta simulación Monte Carlo combinando todos los riesgos: genera 10.000 escenarios alternativos, en cada uno algunos riesgos se materializan y otros no, según sus probabilidades. 3) Produce distribución de resultados: Coste (P50=252K€, P75=289K€, P90=324K€, P95=358K€), Plazo (P50=5.0 meses, P75=5.8, P90=6.5, P95=7.2). 4) Recomienda contingencias: 'Presupuesto base 252K€, contingencia P75 (+37K€) recomendada para confianza 75%, contingencia P90 (+72K€) para confianza 90%. Plazo base 5 meses, buffer +0.8 meses (P75) o +1.5 meses (P90)'. Permite decisiones informadas: cliente adverso al riesgo puede elegir P90, cliente tolerante puede elegir P50 aceptando riesgo de desviación."
+        },
+        {
+          "texto": "Optimización estratégica de portfolio de propuestas",
+          "explicacion": "El Optimizador de Portfolio analiza todas las propuestas activas y en preparación considerando múltiples dimensiones estratégicas: 1) Valor económico: margen esperado, probabilidad de adjudicación, impacto en cash flow. 2) Valor estratégico: abre nuevos mercados/sectores, consolida relación con cliente clave, desarrolla capacidades nuevas (ej: movilidad urbana sostenible), referencia para futuros proyectos. 3) Capacidades requeridas: usa capacidades existentes vs requiere desarrollo/subcontratación, balance de portfolio (diversificación entre sectores). 4) Riesgo: probabilidad de éxito, exposición a desviaciones, requisitos de capacidad management. Genera recomendaciones: 'Portfolio actual: 12 propuestas en preparación, capacidad para ejecutar 8 simultáneamente. RECOMENDACIÓN PRIORIZACIÓN: Alta prioridad (4): Propuesta A (2.5M€, margen 18%, Ministerio cliente clave, capacidades existentes), Propuesta C (850K€, margen 22%, abre mercado puertos latinoamericanos estratégico), Propuesta E (1.2M€, margen 16%, desarrolla capacidad BIM avanzado necesaria para futuros proyectos), Propuesta G (450K€, margen 20%, cliente recurrente bajo riesgo). Media prioridad (3): Propuesta B, D, F. Baja prioridad (2): H, K (bajo margen, no estratégicas). DEPRIORITIZAR: I (requiere subcontratación 60%, margen 8%, cliente secundario), L (alto riesgo técnico, fuera de experiencia).' Esto maximiza valor del portfolio: enfoca recursos limitados en oportunidades de mayor valor económico y estratégico."
+        },
+        {
+          "texto": "Dashboard analítico y mejora continua",
+          "explicacion": "Sistema proporciona observabilidad completa mediante dashboard ejecutivo: 1) Métricas de propuestas: número generado/mes, distribución por valor/sector/cliente, tiempo medio de preparación (objetivo <3 días, actual 2.1 días, mejora 78% vs manual), tasa de envío (90% propuestas generadas se envían, 10% canceladas por cambio prioridades). 2) Métricas de éxito: tasa de adjudicación (45% propuestas enviadas se adjudican, benchmark sector 35%, INECO está por encima), análisis de por qué algunas no se adjudican (precio 40%, plazo 15%, evaluación técnica 25%, otros 20%). 3) Métricas de precisión: comparar estimaciones iniciales vs resultados reales de proyectos completados: presupuesto (error medio 9.2%, objetivo <10%, cumpliendo), plazo (error medio 11.5%, objetivo <12%, cumpliendo), recursos (error medio 8.7%). 4) Identificar áreas de mejora: tipo de proyectos donde estimaciones son menos precisas (ej: proyectos aeroportuarios tienen error 15%, superior a media, investigar por qué), riesgos más frecuentes no anticipados, clientes con mayor tasa de cambios. 5) Mejora continua automática: sistema ajusta modelos de estimación basándose en resultados reales, enriquece base de riesgos con nuevos patrones detectados, actualiza perfiles de clientes con comportamiento observado."
+        },
+        {
+          "texto": "Sistema production-ready para organización compleja",
+          "explicacion": "Arquitectura completa integra todas las capacidades necesarias para operación en organización del tamaño y complejidad de INECO: análisis profundo de 55+ años de históricos (capitalización de conocimiento organizacional), integración con sistemas operacionales (recursos, planning, financiero), agentes especializados por función (precisión y velocidad), validaciones multicapa (calidad), guardrails de capacidad (previene sobre-compromiso), análisis cuantitativo de riesgos (gestión de incertidumbre), optimización de portfolio (decisiones estratégicas), HITL inteligente (supervisión humana donde aporta valor), reporting automatizado (reduce carga administrativa), trazabilidad completa (auditoría), dashboard analítico (observabilidad), mejora continua (optimización). Cumple con requisitos de: ISO 27001 (seguridad información), ISO 9001 (calidad), normativa contratación sector público, políticas internas INECO. Proyectos piloto 2024 muestran: 82% reducción en tiempo de preparación de propuestas (de 3 semanas a 3 días), 67% reducción en carga administrativa de reporting (de 10h/sem a 3h/sem), precisión de estimaciones mejorada (error medio 9% vs 18% manual), tasa de adjudicación mejorada (+7 puntos porcentuales por propuestas de mayor calidad), satisfacción de jefes de proyecto alta (87% valoran positivamente, liberación de tiempo para gestión técnica real). Sistema listo para desplegar en toda INECO, procesando cientos de propuestas y proyectos simultáneos."
+        }
+      ],
+      "problemas": [],
+      "problemas_resueltos": [
+        "Sin Human-in-the-Loop para propuestas críticas",
+        "Análisis de riesgos no cuantifica impacto económico",
+        "Sin optimización de portfolio de propuestas"
+      ]
+    }
+  ]
+}
+
